@@ -46,21 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MyGuitarShopDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MyGuitarShopDataSetHome.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +86,17 @@
     </None>
     <None Include="MyGuitarShopDataSet.xss">
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MyGuitarShopDataSetHome.xsc">
+      <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
+    </None>
+    <None Include="MyGuitarShopDataSetHome.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MyGuitarShopDataSetHome.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyGuitarShopDataSetHome.xss">
+      <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

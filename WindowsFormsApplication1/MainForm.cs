@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -22,12 +22,12 @@ namespace WindowsFormsApplication1
         {
             string connetionString = null;
             SqlConnection cnn;
-            connetionString = "Data Source=CEIT2551204X040\\LOCAL;Initial Catalog=MyGuitarShop;Integrated Security=True";
+            connetionString = "Data Source=DANNY-LAPTOP\\SQLEXPRESS01;Initial Catalog=MyGuitarShop;Integrated Security=True";
             cnn = new SqlConnection(connetionString);
             try
             {
                 cnn.Open();
-                MessageBox.Show("Connection Open !");
+                MessageBox.Show("Connection Open!");
 
                 SqlCommand command = new SqlCommand("SELECT * FROM Products", cnn);
                 // Create new SqlDataReader object and read data from the command.
@@ -58,14 +58,14 @@ namespace WindowsFormsApplication1
                         lvProducts.Items.Add(new ListViewItem(rowData));
                     }
 
-                    lvProducts.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    lvProducts.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 }
 
                 cnn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! ");
+                MessageBox.Show("Cannot open connection !");
             }
         }
 

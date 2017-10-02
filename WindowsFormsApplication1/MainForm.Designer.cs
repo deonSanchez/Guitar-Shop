@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -53,15 +53,15 @@
             this.lvProducts.View = System.Windows.Forms.View.Details;
             this.lvProducts.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 433);
             this.Controls.Add(this.lvProducts);
             this.Controls.Add(this.btn_Connect);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Guitar Shop Management";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
