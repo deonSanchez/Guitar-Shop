@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace WindowsFormsApplication1 {
+namespace GuitarShop {
     
     
     /// <summary>
@@ -4144,7 +4144,7 @@ namespace WindowsFormsApplication1 {
         }
     }
 }
-namespace WindowsFormsApplication1.MyGuitarShopDataSetTableAdapters {
+namespace GuitarShop.MyGuitarShopDataSetTableAdapters {
     
     
     /// <summary>
@@ -4337,7 +4337,7 @@ SELECT AddressID, CustomerID, Line1, Line2, City, State, ZipCode, Phone, Disable
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4862,7 +4862,7 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5253,7 +5253,7 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5598,7 +5598,7 @@ SELECT CustomerID, EmailAddress, Password, FirstName, LastName, ShippingAddressI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6067,7 +6067,7 @@ SELECT ItemID, OrderID, ProductID, ItemPrice, DiscountAmount, Quantity FROM Orde
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6477,7 +6477,7 @@ SELECT OrderID, CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6993,7 +6993,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.MyGuitarShopConnectionString;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

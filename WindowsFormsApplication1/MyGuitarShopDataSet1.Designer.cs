@@ -20,9 +20,9 @@ namespace GuitarShop {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("MyGuitarShopDataSetHome")]
+    [global::System.Xml.Serialization.XmlRootAttribute("MyGuitarShopDataSet1")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class MyGuitarShopDataSetHome : global::System.Data.DataSet {
+    public partial class MyGuitarShopDataSet1 : global::System.Data.DataSet {
         
         private AddressesDataTable tableAddresses;
         
@@ -52,7 +52,7 @@ namespace GuitarShop {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public MyGuitarShopDataSetHome() {
+        public MyGuitarShopDataSet1() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -63,7 +63,7 @@ namespace GuitarShop {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected MyGuitarShopDataSetHome(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected MyGuitarShopDataSet1(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -227,7 +227,7 @@ namespace GuitarShop {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            MyGuitarShopDataSetHome cln = ((MyGuitarShopDataSetHome)(base.Clone()));
+            MyGuitarShopDataSet1 cln = ((MyGuitarShopDataSet1)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -358,9 +358,9 @@ namespace GuitarShop {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "MyGuitarShopDataSetHome";
+            this.DataSetName = "MyGuitarShopDataSet1";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/MyGuitarShopDataSetHome.xsd";
+            this.Namespace = "http://tempuri.org/MyGuitarShopDataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableAddresses = new AddressesDataTable();
@@ -452,7 +452,7 @@ namespace GuitarShop {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+            MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -847,7 +847,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1173,7 +1173,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1451,7 +1451,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1805,7 +1805,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2146,7 +2146,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2562,7 +2562,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2933,7 +2933,7 @@ namespace GuitarShop {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MyGuitarShopDataSetHome ds = new MyGuitarShopDataSetHome();
+                MyGuitarShopDataSet1 ds = new MyGuitarShopDataSet1();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4144,7 +4144,7 @@ namespace GuitarShop {
         }
     }
 }
-namespace GuitarShop.MyGuitarShopDataSetHomeTableAdapters {
+namespace GuitarShop.MyGuitarShopDataSet1TableAdapters {
     
     
     /// <summary>
@@ -4337,7 +4337,7 @@ SELECT AddressID, CustomerID, Line1, Line2, City, State, ZipCode, Phone, Disable
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4355,7 +4355,7 @@ SELECT AddressID, CustomerID, Line1, Line2, City, State, ZipCode, Phone, Disable
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.AddressesDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.AddressesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4368,9 +4368,9 @@ SELECT AddressID, CustomerID, Line1, Line2, City, State, ZipCode, Phone, Disable
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.AddressesDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.AddressesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.AddressesDataTable dataTable = new MyGuitarShopDataSetHome.AddressesDataTable();
+            MyGuitarShopDataSet1.AddressesDataTable dataTable = new MyGuitarShopDataSet1.AddressesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -4378,14 +4378,14 @@ SELECT AddressID, CustomerID, Line1, Line2, City, State, ZipCode, Phone, Disable
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.AddressesDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.AddressesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Addresses");
         }
         
@@ -4862,7 +4862,7 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4880,7 +4880,7 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.AdministratorsDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.AdministratorsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4893,9 +4893,9 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.AdministratorsDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.AdministratorsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.AdministratorsDataTable dataTable = new MyGuitarShopDataSetHome.AdministratorsDataTable();
+            MyGuitarShopDataSet1.AdministratorsDataTable dataTable = new MyGuitarShopDataSet1.AdministratorsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -4903,14 +4903,14 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.AdministratorsDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.AdministratorsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Administrators");
         }
         
@@ -5253,7 +5253,7 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5270,7 +5270,7 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.CategoriesDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.CategoriesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5283,9 +5283,9 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.CategoriesDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.CategoriesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.CategoriesDataTable dataTable = new MyGuitarShopDataSetHome.CategoriesDataTable();
+            MyGuitarShopDataSet1.CategoriesDataTable dataTable = new MyGuitarShopDataSet1.CategoriesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -5293,14 +5293,14 @@ SELECT AdminID, EmailAddress, Password, FirstName, LastName FROM Administrators 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.CategoriesDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.CategoriesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Categories");
         }
         
@@ -5598,7 +5598,7 @@ SELECT CustomerID, EmailAddress, Password, FirstName, LastName, ShippingAddressI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5616,7 +5616,7 @@ SELECT CustomerID, EmailAddress, Password, FirstName, LastName, ShippingAddressI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.CustomersDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.CustomersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5629,9 +5629,9 @@ SELECT CustomerID, EmailAddress, Password, FirstName, LastName, ShippingAddressI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.CustomersDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.CustomersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.CustomersDataTable dataTable = new MyGuitarShopDataSetHome.CustomersDataTable();
+            MyGuitarShopDataSet1.CustomersDataTable dataTable = new MyGuitarShopDataSet1.CustomersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -5639,14 +5639,14 @@ SELECT CustomerID, EmailAddress, Password, FirstName, LastName, ShippingAddressI
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.CustomersDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.CustomersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Customers");
         }
         
@@ -6067,7 +6067,7 @@ SELECT ItemID, OrderID, ProductID, ItemPrice, DiscountAmount, Quantity FROM Orde
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6085,7 +6085,7 @@ SELECT ItemID, OrderID, ProductID, ItemPrice, DiscountAmount, Quantity FROM Orde
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.OrderItemsDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.OrderItemsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6098,9 +6098,9 @@ SELECT ItemID, OrderID, ProductID, ItemPrice, DiscountAmount, Quantity FROM Orde
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.OrderItemsDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.OrderItemsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.OrderItemsDataTable dataTable = new MyGuitarShopDataSetHome.OrderItemsDataTable();
+            MyGuitarShopDataSet1.OrderItemsDataTable dataTable = new MyGuitarShopDataSet1.OrderItemsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -6108,14 +6108,14 @@ SELECT ItemID, OrderID, ProductID, ItemPrice, DiscountAmount, Quantity FROM Orde
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.OrderItemsDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.OrderItemsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "OrderItems");
         }
         
@@ -6477,7 +6477,7 @@ SELECT OrderID, CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6495,7 +6495,7 @@ SELECT OrderID, CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.OrdersDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.OrdersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6508,9 +6508,9 @@ SELECT OrderID, CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.OrdersDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.OrdersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.OrdersDataTable dataTable = new MyGuitarShopDataSetHome.OrdersDataTable();
+            MyGuitarShopDataSet1.OrdersDataTable dataTable = new MyGuitarShopDataSet1.OrdersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -6518,14 +6518,14 @@ SELECT OrderID, CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddr
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.OrdersDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.OrdersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Orders");
         }
         
@@ -6993,7 +6993,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString1;
+            this._connection.ConnectionString = global::GuitarShop.Properties.Settings.Default.MyGuitarShopConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7011,7 +7011,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MyGuitarShopDataSetHome.ProductsDataTable dataTable) {
+        public virtual int Fill(MyGuitarShopDataSet1.ProductsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -7024,9 +7024,9 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MyGuitarShopDataSetHome.ProductsDataTable GetData() {
+        public virtual MyGuitarShopDataSet1.ProductsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            MyGuitarShopDataSetHome.ProductsDataTable dataTable = new MyGuitarShopDataSetHome.ProductsDataTable();
+            MyGuitarShopDataSet1.ProductsDataTable dataTable = new MyGuitarShopDataSet1.ProductsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -7034,14 +7034,14 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome.ProductsDataTable dataTable) {
+        public virtual int Update(MyGuitarShopDataSet1.ProductsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MyGuitarShopDataSetHome dataSet) {
+        public virtual int Update(MyGuitarShopDataSet1 dataSet) {
             return this.Adapter.Update(dataSet, "Products");
         }
         
@@ -7488,7 +7488,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(MyGuitarShopDataSetHome dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(MyGuitarShopDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._categoriesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -7561,7 +7561,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(MyGuitarShopDataSetHome dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(MyGuitarShopDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._categoriesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -7627,7 +7627,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(MyGuitarShopDataSetHome dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(MyGuitarShopDataSet1 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._orderItemsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.OrderItems.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -7717,7 +7717,7 @@ SELECT ProductID, CategoryID, ProductCode, ProductName, Description, ListPrice, 
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(MyGuitarShopDataSetHome dataSet) {
+        public virtual int UpdateAll(MyGuitarShopDataSet1 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace GuitarShop
 {
     public partial class MainForm : Form
     {
@@ -17,12 +17,17 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
-        private void btn_Connect_Click(object sender, EventArgs e)
+        }
+
+        private void openConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string connetionString = null;
             SqlConnection cnn;
-            connetionString = "Data Source=DANNY-LAPTOP\\SQLEXPRESS01;Initial Catalog=MyGuitarShop;Integrated Security=True";
+            connetionString = "Data Source=DEONSANCHEZEB14;Initial Catalog=MyGuitarShop;Integrated Security=True";
             cnn = new SqlConnection(connetionString);
             try
             {
@@ -36,12 +41,12 @@ namespace WindowsFormsApplication1
                     DataTable tableSchema = reader.GetSchemaTable();
                     string[] columNames = new string[tableSchema.Rows.Count];
 
-                    for(int i = 0; i < columNames.Length; i++)
+                    for (int i = 0; i < columNames.Length; i++)
                     {
                         columNames[i] = tableSchema.Rows[i]["ColumnName"].ToString();
                     }
 
-                    foreach(string column in columNames)
+                    foreach (string column in columNames)
                     {
                         lvProducts.Columns.Add(column, -2, HorizontalAlignment.Left);
                     }
@@ -50,7 +55,7 @@ namespace WindowsFormsApplication1
                     while (reader.Read())
                     {
                         string[] rowData = new string[columNames.Length];
-                        for(int i = 0; i < rowData.Length; i++)
+                        for (int i = 0; i < rowData.Length; i++)
                         {
                             rowData[i] = reader[i].ToString();
                         }
@@ -69,14 +74,20 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            
+        }
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OrderForm of = new OrderForm();
+            of.Show();
         }
     }
 }

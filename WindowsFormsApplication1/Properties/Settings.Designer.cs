@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApplication1.Properties {
+namespace GuitarShop.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -42,6 +42,17 @@ namespace WindowsFormsApplication1.Properties {
         public string MyGuitarShopConnectionString1 {
             get {
                 return ((string)(this["MyGuitarShopConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DEONSANCHEZEB14;Initial Catalog=MyGuitarShop;Integrated Security=True" +
+            "")]
+        public string MyGuitarShopConnectionString2 {
+            get {
+                return ((string)(this["MyGuitarShopConnectionString2"]));
             }
         }
     }

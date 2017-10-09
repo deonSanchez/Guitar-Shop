@@ -52,20 +52,43 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management.Designer.cs">
+      <DependentUpon>Management.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyGuitarShopDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MyGuitarShopDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyGuitarShopDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="MyGuitarShopDataSetHome.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
     </Compile>
+    <Compile Include="OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management.resx">
+      <DependentUpon>Management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +109,17 @@
     </None>
     <None Include="MyGuitarShopDataSet.xss">
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MyGuitarShopDataSet1.xsc">
+      <DependentUpon>MyGuitarShopDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MyGuitarShopDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MyGuitarShopDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyGuitarShopDataSet1.xss">
+      <DependentUpon>MyGuitarShopDataSet1.xsd</DependentUpon>
     </None>
     <None Include="MyGuitarShopDataSetHome.xsc">
       <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
