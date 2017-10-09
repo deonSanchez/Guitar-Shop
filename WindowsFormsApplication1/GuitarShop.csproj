@@ -59,19 +59,9 @@
       <DependentUpon>Management.cs</DependentUpon>
     </Compile>
     <Compile Include="MyGuitarShopDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MyGuitarShopDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyGuitarShopDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MyGuitarShopDataSetHome.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
     </Compile>
     <Compile Include="OrderForm.cs">
       <SubType>Form</SubType>
@@ -109,28 +99,6 @@
     </None>
     <None Include="MyGuitarShopDataSet.xss">
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="MyGuitarShopDataSet1.xsc">
-      <DependentUpon>MyGuitarShopDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="MyGuitarShopDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MyGuitarShopDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MyGuitarShopDataSet1.xss">
-      <DependentUpon>MyGuitarShopDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="MyGuitarShopDataSetHome.xsc">
-      <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
-    </None>
-    <None Include="MyGuitarShopDataSetHome.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MyGuitarShopDataSetHome.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="MyGuitarShopDataSetHome.xss">
-      <DependentUpon>MyGuitarShopDataSetHome.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
