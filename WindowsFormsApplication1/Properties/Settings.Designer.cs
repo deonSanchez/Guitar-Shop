@@ -66,5 +66,16 @@ namespace WindowsFormsApplication1.Properties {
                 return ((string)(this["MainConnection"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CEIT2551204X062\\LOCAL;Initial Catalog=MyGuitarShop;Integrated Securit" +
+            "y=True")]
+        public string MyGuitarShopConnectionString3 {
+            get {
+                return ((string)(this["MyGuitarShopConnectionString3"]));
+            }
+        }
     }
 }
