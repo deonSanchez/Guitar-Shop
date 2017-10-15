@@ -55,7 +55,7 @@ namespace GuitarShop
                             customerList.Add(reader[0].ToString() + " - " + reader[1]);                            
                         }
 
-                        cmb_Customer.Items.AddRange(customerList.ToArray());
+                        cmb_customer.Items.AddRange(customerList.ToArray());
                     }
                 }
                 catch (SqlException ex)
@@ -76,6 +76,16 @@ namespace GuitarShop
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_customerCreate_Click(object sender, EventArgs e)
+        {
+            // TODO: This should open a CustomerForm which will be used to create and modify customers.
+        }
+
+        private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

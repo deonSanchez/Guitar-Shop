@@ -36,6 +36,7 @@
             treeNode2,
             treeNode3});
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Orders");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Customers");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,9 +157,12 @@
             treeNode4.Text = "Inventory";
             treeNode5.Name = "nodeOrders";
             treeNode5.Text = "Orders";
+            treeNode6.Name = "Node0";
+            treeNode6.Text = "Customers";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4,
-            treeNode5});
+            treeNode5,
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(138, 529);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);

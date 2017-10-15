@@ -23,6 +23,7 @@ namespace GuitarShop
             tableRegistry.Add("Categories", "Categories");
             tableRegistry.Add("Instruments", "Products");
             tableRegistry.Add("Orders", "Orders");
+            tableRegistry.Add("Customers", "Customers");
         }
         
         private void Form1_Load(object sender, EventArgs e)
