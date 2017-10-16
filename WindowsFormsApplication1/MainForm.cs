@@ -9,6 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// General TODOS:
+/// 
+/// - Abstract SQL connection prep/teardown. Because we have to repeat the same steps so many times
+///   let's find a way to not re-write so much code.
+/// 
+/// - Better data source management. Pull directly from application properties, avoid duplicating sources.
+/// 
+/// - Clean up event handlers accidentally created in form designer.
+/// 
+/// - Either make forms more rigid or more responsive.
+/// 
+/// </summary>
 namespace GuitarShop
 {
     public partial class MainForm : Form

@@ -110,7 +110,6 @@ namespace GuitarShop
             this.lbl_cardNumber.Size = new System.Drawing.Size(69, 13);
             this.lbl_cardNumber.TabIndex = 0;
             this.lbl_cardNumber.Text = "Card Number";
-            this.lbl_cardNumber.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtb_cardNumber
             // 
@@ -130,7 +129,6 @@ namespace GuitarShop
             this.lbl_orderItems.Size = new System.Drawing.Size(61, 13);
             this.lbl_orderItems.TabIndex = 0;
             this.lbl_orderItems.Text = "Order Items";
-            this.lbl_orderItems.Click += new System.EventHandler(this.label3_Click);
             // 
             // lv_orderItems
             // 
@@ -148,7 +146,6 @@ namespace GuitarShop
             this.btn_orderItemsRemove.TabIndex = 2;
             this.btn_orderItemsRemove.Text = "Remove";
             this.btn_orderItemsRemove.UseVisualStyleBackColor = true;
-            this.btn_orderItemsRemove.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_orderItemsAdd
             // 
@@ -158,7 +155,6 @@ namespace GuitarShop
             this.btn_orderItemsAdd.TabIndex = 2;
             this.btn_orderItemsAdd.Text = "Add";
             this.btn_orderItemsAdd.UseVisualStyleBackColor = true;
-            this.btn_orderItemsAdd.Click += new System.EventHandler(this.button2_Click);
             // 
             // lbl_subtotal
             // 
@@ -273,7 +269,6 @@ namespace GuitarShop
             this.Controls.Add(this.lbl_customer);
             this.Name = "OrderForm";
             this.Text = "Create New Order";
-            this.Load += new System.EventHandler(this.OrderForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

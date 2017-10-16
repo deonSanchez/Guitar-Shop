@@ -9,6 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// <summary>
+/// Create a new order with user-provided data values.
+/// 
+/// TODO: validation. Check out https://docs.microsoft.com/en-us/dotnet/framework/winforms/user-input-validation-in-windows-forms.
+/// </summary>
 namespace GuitarShop
 {
     public partial class OrderForm : Form
@@ -71,21 +76,6 @@ namespace GuitarShop
                     Console.WriteLine("Could not open customers.");
                 }
             }
-        }
-
-        private void OrderForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_customerCreate_Click(object sender, EventArgs e)

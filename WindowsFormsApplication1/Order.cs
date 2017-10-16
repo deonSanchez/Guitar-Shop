@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// This might not be necesary - evaluate.
+    /// </summary>
     class Order
     {
         public int OrderID;
