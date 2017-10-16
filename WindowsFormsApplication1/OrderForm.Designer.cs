@@ -49,6 +49,7 @@ namespace GuitarShop
             this.lbl_shipping = new System.Windows.Forms.Label();
             this.txtb_orderTotal = new System.Windows.Forms.TextBox();
             this.lbl_orderTotal = new System.Windows.Forms.Label();
+            this.btn_sumbit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_customer
@@ -99,6 +100,7 @@ namespace GuitarShop
             this.cmb_cardType.Name = "cmb_cardType";
             this.cmb_cardType.Size = new System.Drawing.Size(640, 21);
             this.cmb_cardType.TabIndex = 1;
+            this.cmb_cardType.SelectedIndexChanged += new System.EventHandler(this.cmb_cardType_SelectedIndexChanged);
             // 
             // lbl_cardNumber
             // 
@@ -114,9 +116,11 @@ namespace GuitarShop
             // 
             this.txtb_cardNumber.Location = new System.Drawing.Point(15, 111);
             this.txtb_cardNumber.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.txtb_cardNumber.MaxLength = 16;
             this.txtb_cardNumber.Name = "txtb_cardNumber";
             this.txtb_cardNumber.Size = new System.Drawing.Size(640, 20);
             this.txtb_cardNumber.TabIndex = 3;
+            this.txtb_cardNumber.TextChanged += new System.EventHandler(this.txtb_cardNumber_TextChanged);
             // 
             // lbl_orderItems
             // 
@@ -168,17 +172,23 @@ namespace GuitarShop
             // 
             // txtb_subtotal
             // 
+            this.txtb_subtotal.Enabled = false;
             this.txtb_subtotal.Location = new System.Drawing.Point(555, 317);
             this.txtb_subtotal.Name = "txtb_subtotal";
             this.txtb_subtotal.Size = new System.Drawing.Size(100, 20);
             this.txtb_subtotal.TabIndex = 5;
+            this.txtb_subtotal.Text = "0";
+            this.txtb_subtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtb_tax
             // 
+            this.txtb_tax.Enabled = false;
             this.txtb_tax.Location = new System.Drawing.Point(555, 343);
             this.txtb_tax.Name = "txtb_tax";
             this.txtb_tax.Size = new System.Drawing.Size(100, 20);
             this.txtb_tax.TabIndex = 5;
+            this.txtb_tax.Text = "0";
+            this.txtb_tax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbl_tax
             // 
@@ -195,6 +205,8 @@ namespace GuitarShop
             this.txtb_shipping.Name = "txtb_shipping";
             this.txtb_shipping.Size = new System.Drawing.Size(100, 20);
             this.txtb_shipping.TabIndex = 5;
+            this.txtb_shipping.Text = "0";
+            this.txtb_shipping.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbl_shipping
             // 
@@ -211,6 +223,8 @@ namespace GuitarShop
             this.txtb_orderTotal.Name = "txtb_orderTotal";
             this.txtb_orderTotal.Size = new System.Drawing.Size(100, 20);
             this.txtb_orderTotal.TabIndex = 5;
+            this.txtb_orderTotal.Text = "0";
+            this.txtb_orderTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbl_orderTotal
             // 
@@ -222,11 +236,22 @@ namespace GuitarShop
             this.lbl_orderTotal.TabIndex = 0;
             this.lbl_orderTotal.Text = "Order Total";
             // 
+            // btn_sumbit
+            // 
+            this.btn_sumbit.Location = new System.Drawing.Point(580, 442);
+            this.btn_sumbit.Name = "btn_sumbit";
+            this.btn_sumbit.Size = new System.Drawing.Size(75, 23);
+            this.btn_sumbit.TabIndex = 6;
+            this.btn_sumbit.Text = "Submit";
+            this.btn_sumbit.UseVisualStyleBackColor = true;
+            this.btn_sumbit.Click += new System.EventHandler(this.btn_sumbit_Click);
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 477);
+            this.Controls.Add(this.btn_sumbit);
             this.Controls.Add(this.txtb_orderTotal);
             this.Controls.Add(this.txtb_shipping);
             this.Controls.Add(this.txtb_tax);
@@ -280,5 +305,6 @@ namespace GuitarShop
         private System.Windows.Forms.Label lbl_shipping;
         private System.Windows.Forms.TextBox txtb_orderTotal;
         private System.Windows.Forms.Label lbl_orderTotal;
+        private System.Windows.Forms.Button btn_sumbit;
     }
 }

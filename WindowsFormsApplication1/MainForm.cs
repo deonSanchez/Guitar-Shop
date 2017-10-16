@@ -13,7 +13,7 @@ namespace GuitarShop
 {
     public partial class MainForm : Form
     {
-        private static string connetionString = "Data Source=CEIT2551204X062\\LOCAL;Initial Catalog=MyGuitarShop;Integrated Security=True";
+        private static string connetionString = "Data Source=CEIT2553214X016\\LOCAL;Initial Catalog=MyGuitarShop;Integrated Security=True";
         private Dictionary<string, string> tableRegistry;
 
         public MainForm()
