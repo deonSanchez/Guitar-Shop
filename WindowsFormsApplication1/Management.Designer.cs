@@ -146,6 +146,7 @@
             this.deleteButton.Size = new System.Drawing.Size(25, 25);
             this.deleteButton.TabIndex = 8;
             this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // copyButton
             // 
@@ -197,7 +198,6 @@
             this.sideMenu.Size = new System.Drawing.Size(200, 495);
             this.sideMenu.TabIndex = 11;
             this.sideMenu.TabStop = false;
-            this.sideMenu.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // Promotions
             // 
@@ -458,7 +458,6 @@
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "Inventory";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // groupBox2
             // 
@@ -478,7 +477,6 @@
             this.groupBox2.Size = new System.Drawing.Size(673, 90);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // dataGridView1
             // 

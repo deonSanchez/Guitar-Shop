@@ -47,11 +47,6 @@ namespace GuitarShop
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button8_Click(object sender, EventArgs e)
         {
             //catergories button
@@ -124,11 +119,6 @@ namespace GuitarShop
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void button15_Click(object sender, EventArgs e)
         {
             //opens administrators
@@ -163,15 +153,6 @@ namespace GuitarShop
             //open up another design for inputing data
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void Addresses_Click(object sender, EventArgs e)
         {
@@ -247,6 +228,15 @@ namespace GuitarShop
 
         private void Parts_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.RemoveAt(row.Index);
+            }
 
         }
     }
