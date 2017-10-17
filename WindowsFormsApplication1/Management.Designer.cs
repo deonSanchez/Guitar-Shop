@@ -51,14 +51,15 @@
             this.Addresses = new System.Windows.Forms.Button();
             this.Parts = new System.Windows.Forms.Button();
             this.Instruments = new System.Windows.Forms.Button();
-            this.Catergories = new System.Windows.Forms.Button();
+            this.Categories = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.sideMenu.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // settingsButton
@@ -187,7 +188,7 @@
             this.sideMenu.Controls.Add(this.Addresses);
             this.sideMenu.Controls.Add(this.Parts);
             this.sideMenu.Controls.Add(this.Instruments);
-            this.sideMenu.Controls.Add(this.Catergories);
+            this.sideMenu.Controls.Add(this.Categories);
             this.sideMenu.Controls.Add(this.label4);
             this.sideMenu.Controls.Add(this.label3);
             this.sideMenu.Controls.Add(this.label2);
@@ -207,9 +208,9 @@
             this.Promotions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Promotions.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Promotions.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Promotions.Location = new System.Drawing.Point(31, 355);
+            this.Promotions.Location = new System.Drawing.Point(6, 355);
             this.Promotions.Name = "Promotions";
-            this.Promotions.Size = new System.Drawing.Size(169, 24);
+            this.Promotions.Size = new System.Drawing.Size(194, 24);
             this.Promotions.TabIndex = 27;
             this.Promotions.Text = "Promotions";
             this.Promotions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,9 +225,9 @@
             this.Payments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Payments.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Payments.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Payments.Location = new System.Drawing.Point(31, 336);
+            this.Payments.Location = new System.Drawing.Point(6, 336);
             this.Payments.Name = "Payments";
-            this.Payments.Size = new System.Drawing.Size(169, 24);
+            this.Payments.Size = new System.Drawing.Size(194, 24);
             this.Payments.TabIndex = 26;
             this.Payments.Text = "Payments";
             this.Payments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -242,9 +243,9 @@
             this.Repairs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Repairs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Repairs.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Repairs.Location = new System.Drawing.Point(31, 316);
+            this.Repairs.Location = new System.Drawing.Point(6, 316);
             this.Repairs.Name = "Repairs";
-            this.Repairs.Size = new System.Drawing.Size(169, 24);
+            this.Repairs.Size = new System.Drawing.Size(194, 24);
             this.Repairs.TabIndex = 25;
             this.Repairs.Text = "Repairs";
             this.Repairs.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -259,13 +260,14 @@
             this.OrderItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OrderItems.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OrderItems.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.OrderItems.Location = new System.Drawing.Point(31, 296);
+            this.OrderItems.Location = new System.Drawing.Point(6, 296);
             this.OrderItems.Name = "OrderItems";
-            this.OrderItems.Size = new System.Drawing.Size(169, 24);
+            this.OrderItems.Size = new System.Drawing.Size(194, 24);
             this.OrderItems.TabIndex = 24;
             this.OrderItems.Text = "Order Items";
             this.OrderItems.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OrderItems.UseVisualStyleBackColor = false;
+            this.OrderItems.Click += new System.EventHandler(this.OrderItems_Click);
             // 
             // Orders
             // 
@@ -276,13 +278,14 @@
             this.Orders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Orders.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Orders.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Orders.Location = new System.Drawing.Point(31, 277);
+            this.Orders.Location = new System.Drawing.Point(6, 277);
             this.Orders.Name = "Orders";
-            this.Orders.Size = new System.Drawing.Size(169, 24);
+            this.Orders.Size = new System.Drawing.Size(194, 24);
             this.Orders.TabIndex = 23;
             this.Orders.Text = "Orders";
             this.Orders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Orders.UseVisualStyleBackColor = false;
+            this.Orders.Click += new System.EventHandler(this.Orders_Click);
             // 
             // Administrators
             // 
@@ -293,9 +296,9 @@
             this.Administrators.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Administrators.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Administrators.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Administrators.Location = new System.Drawing.Point(31, 141);
+            this.Administrators.Location = new System.Drawing.Point(6, 141);
             this.Administrators.Name = "Administrators";
-            this.Administrators.Size = new System.Drawing.Size(169, 24);
+            this.Administrators.Size = new System.Drawing.Size(194, 24);
             this.Administrators.TabIndex = 22;
             this.Administrators.Text = "Administrators";
             this.Administrators.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -311,9 +314,9 @@
             this.Employees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Employees.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Employees.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Employees.Location = new System.Drawing.Point(31, 160);
+            this.Employees.Location = new System.Drawing.Point(6, 160);
             this.Employees.Name = "Employees";
-            this.Employees.Size = new System.Drawing.Size(169, 24);
+            this.Employees.Size = new System.Drawing.Size(194, 24);
             this.Employees.TabIndex = 21;
             this.Employees.Text = "Employees";
             this.Employees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -328,9 +331,9 @@
             this.Customers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Customers.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Customers.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Customers.Location = new System.Drawing.Point(31, 180);
+            this.Customers.Location = new System.Drawing.Point(6, 180);
             this.Customers.Name = "Customers";
-            this.Customers.Size = new System.Drawing.Size(169, 24);
+            this.Customers.Size = new System.Drawing.Size(194, 24);
             this.Customers.TabIndex = 20;
             this.Customers.Text = "Customers";
             this.Customers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -346,9 +349,9 @@
             this.Suppliers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Suppliers.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Suppliers.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Suppliers.Location = new System.Drawing.Point(31, 200);
+            this.Suppliers.Location = new System.Drawing.Point(6, 200);
             this.Suppliers.Name = "Suppliers";
-            this.Suppliers.Size = new System.Drawing.Size(169, 24);
+            this.Suppliers.Size = new System.Drawing.Size(194, 24);
             this.Suppliers.TabIndex = 19;
             this.Suppliers.Text = "Suppliers";
             this.Suppliers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -363,13 +366,14 @@
             this.Addresses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Addresses.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Addresses.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Addresses.Location = new System.Drawing.Point(31, 220);
+            this.Addresses.Location = new System.Drawing.Point(6, 220);
             this.Addresses.Name = "Addresses";
-            this.Addresses.Size = new System.Drawing.Size(169, 24);
+            this.Addresses.Size = new System.Drawing.Size(194, 24);
             this.Addresses.TabIndex = 18;
             this.Addresses.Text = "Addresses";
             this.Addresses.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Addresses.UseVisualStyleBackColor = false;
+            this.Addresses.Click += new System.EventHandler(this.Addresses_Click);
             // 
             // Parts
             // 
@@ -380,9 +384,9 @@
             this.Parts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Parts.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Parts.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Parts.Location = new System.Drawing.Point(31, 85);
+            this.Parts.Location = new System.Drawing.Point(6, 85);
             this.Parts.Name = "Parts";
-            this.Parts.Size = new System.Drawing.Size(169, 24);
+            this.Parts.Size = new System.Drawing.Size(194, 24);
             this.Parts.TabIndex = 17;
             this.Parts.Text = "Parts";
             this.Parts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -397,32 +401,32 @@
             this.Instruments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Instruments.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Instruments.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Instruments.Location = new System.Drawing.Point(31, 65);
+            this.Instruments.Location = new System.Drawing.Point(6, 65);
             this.Instruments.Name = "Instruments";
-            this.Instruments.Size = new System.Drawing.Size(169, 24);
+            this.Instruments.Size = new System.Drawing.Size(194, 24);
             this.Instruments.TabIndex = 16;
             this.Instruments.Text = "Instruments";
             this.Instruments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Instruments.UseVisualStyleBackColor = false;
             this.Instruments.Click += new System.EventHandler(this.button9_Click);
             // 
-            // Catergories
+            // Categories
             // 
-            this.Catergories.BackColor = System.Drawing.SystemColors.Control;
-            this.Catergories.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Catergories.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.Catergories.FlatAppearance.BorderSize = 0;
-            this.Catergories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Catergories.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Catergories.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Catergories.Location = new System.Drawing.Point(31, 45);
-            this.Catergories.Name = "Catergories";
-            this.Catergories.Size = new System.Drawing.Size(169, 24);
-            this.Catergories.TabIndex = 13;
-            this.Catergories.Text = "Catergories";
-            this.Catergories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Catergories.UseVisualStyleBackColor = false;
-            this.Catergories.Click += new System.EventHandler(this.button8_Click);
+            this.Categories.BackColor = System.Drawing.SystemColors.Control;
+            this.Categories.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Categories.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.Categories.FlatAppearance.BorderSize = 0;
+            this.Categories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Categories.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Categories.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Categories.Location = new System.Drawing.Point(6, 45);
+            this.Categories.Name = "Categories";
+            this.Categories.Size = new System.Drawing.Size(194, 24);
+            this.Categories.TabIndex = 13;
+            this.Categories.Text = "Categories";
+            this.Categories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Categories.UseVisualStyleBackColor = false;
+            this.Categories.Click += new System.EventHandler(this.button8_Click);
             // 
             // label4
             // 
@@ -470,30 +474,28 @@
             this.groupBox2.Controls.Add(this.backButton);
             this.groupBox2.Location = new System.Drawing.Point(-5, -6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(673, 81);
+            this.groupBox2.Size = new System.Drawing.Size(673, 90);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // listView1
+            // dataGridView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.AccessibleName = "";
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(193, 72);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(475, 484);
-            this.listView1.TabIndex = 13;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(191, 80);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(477, 476);
+            this.dataGridView1.TabIndex = 13;
             // 
             // Management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 556);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.sideMenu);
             this.Name = "Management";
@@ -503,6 +505,7 @@
             this.sideMenu.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -528,12 +531,12 @@
         private System.Windows.Forms.Button Addresses;
         private System.Windows.Forms.Button Parts;
         private System.Windows.Forms.Button Instruments;
-        private System.Windows.Forms.Button Catergories;
+        private System.Windows.Forms.Button Categories;
         private System.Windows.Forms.Button Promotions;
         private System.Windows.Forms.Button Payments;
         private System.Windows.Forms.Button Repairs;
         private System.Windows.Forms.Button OrderItems;
         private System.Windows.Forms.Button Orders;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
