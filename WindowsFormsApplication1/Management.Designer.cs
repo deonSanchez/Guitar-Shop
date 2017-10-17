@@ -391,6 +391,7 @@
             this.Parts.Text = "Parts";
             this.Parts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Parts.UseVisualStyleBackColor = false;
+            this.Parts.Click += new System.EventHandler(this.Parts_Click);
             // 
             // Instruments
             // 

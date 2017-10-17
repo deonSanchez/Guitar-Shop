@@ -55,7 +55,7 @@ namespace GuitarShop
         private void button8_Click(object sender, EventArgs e)
         {
             //catergories button
-            SqlCommand catCommand = new SqlCommand("select * from categories ;", sqlConnection);
+            SqlCommand catCommand = new SqlCommand("select categoryName from categories ;", sqlConnection);
 
             try
             {
@@ -243,6 +243,11 @@ namespace GuitarShop
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Parts_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
