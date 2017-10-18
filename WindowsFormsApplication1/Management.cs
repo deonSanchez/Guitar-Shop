@@ -15,7 +15,7 @@ namespace GuitarShop
     public partial class Management : Form
     {
       
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=DEONSANCHEZEB14;Initial Catalog=MyGuitarShop;Integrated Security=True");
+        SqlConnection sqlConnection = new SqlConnection(@"Data Source=DANNY-LAPTOP\SQLEXPRESS01;Initial Catalog=MyGuitarShop;Integrated Security=True");
 
         public Management()
         {
@@ -237,6 +237,11 @@ namespace GuitarShop
             {
                 dataGridView1.Rows.RemoveAt(row.Index);
             }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

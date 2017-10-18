@@ -8,25 +8,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 /// <summary>
 /// Create a new order with user-provided data values.
 /// 
 /// TODO: validation. Check out https://docs.microsoft.com/en-us/dotnet/framework/winforms/user-input-validation-in-windows-forms.
+/// 
+/// TODO: Data binding - audio update total fields, etc.
 /// </summary>
 namespace GuitarShop
 {
     public partial class OrderForm : Form
     {
-        private static string connetionString = "Data Source=CEIT2553214X016\\LOCAL;Initial Catalog=MyGuitarShop;Integrated Security=True";
         private static string[] cardTypes = new string[] {"Credit", "Debit", "EagleID"};
 
         private Order order;
 
+        private List<OrderItem> orderItems;
+ 
         public OrderForm()
         {
             InitializeComponent();
             order = new Order();
+            orderItems = new List<OrderItem>();
+            
+            lv_orderItems.Columns.Add("Item", -2, HorizontalAlignment.Left);
+            lv_orderItems.Columns.Add("Price", -2, HorizontalAlignment.Left);
+            lv_orderItems.Columns.Add("Quantity", -2, HorizontalAlignment.Left);
 
             loadCustomers();
             cmb_cardType.Items.AddRange(cardTypes);
@@ -34,7 +43,7 @@ namespace GuitarShop
 
         private void loadCustomers()
         {
-            SqlConnection cnn = new SqlConnection(connetionString);
+            SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
 
             using (SqlCommand command = new SqlCommand())
             {
@@ -96,9 +105,32 @@ namespace GuitarShop
             processOrder();
         }
 
+        public void addOrderItem(OrderItem oi)
+        {
+            orderItems.Add(oi);
+            lv_orderItems.Items.Add(new ListViewItem(new String[] { oi.ProductName, oi.ItemPrice.ToString(), oi.Quantity.ToString() }));
+            lv_orderItems.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            calcTotals();
+        }
+
+        public void calcTotals()
+        {
+            float totalPrice = 0;
+
+            foreach(OrderItem item in orderItems)
+            {
+                totalPrice += (item.ItemPrice * item.Quantity);
+            }
+
+            txtb_subtotal.Text = totalPrice.ToString();
+            txtb_tax.Text = (Math.Round(totalPrice * 0.07, 2)).ToString();
+            txtb_orderTotal.Text = (Math.Round(totalPrice * 1.07, 2) + int.Parse(txtb_shipping.Text)).ToString();
+        }
+
         private void processOrder()
         {
-            SqlConnection cnn = new SqlConnection(connetionString);
+            SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
 
             using (SqlCommand command = new SqlCommand())
             {
@@ -153,6 +185,17 @@ namespace GuitarShop
         {
             TextBox txtbox = (TextBox)sender;
             order.CardNumber = txtbox.Text;
+        }
+
+        private void btn_orderItemsAdd_Click(object sender, EventArgs e)
+        {
+            OrderItemSelection ois = new OrderItemSelection(this);
+            ois.Show();
+        }
+
+        private void txtb_shipping_TextChanged(object sender, EventArgs e)
+        {
+            calcTotals();
         }
     }
 }

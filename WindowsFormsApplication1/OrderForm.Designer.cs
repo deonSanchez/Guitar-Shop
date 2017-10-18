@@ -132,11 +132,13 @@ namespace GuitarShop
             // 
             // lv_orderItems
             // 
+            this.lv_orderItems.Alignment = System.Windows.Forms.ListViewAlignment.Default;
             this.lv_orderItems.Location = new System.Drawing.Point(15, 153);
             this.lv_orderItems.Name = "lv_orderItems";
             this.lv_orderItems.Size = new System.Drawing.Size(640, 97);
             this.lv_orderItems.TabIndex = 4;
             this.lv_orderItems.UseCompatibleStateImageBehavior = false;
+            this.lv_orderItems.View = System.Windows.Forms.View.Details;
             // 
             // btn_orderItemsRemove
             // 
@@ -155,6 +157,7 @@ namespace GuitarShop
             this.btn_orderItemsAdd.TabIndex = 2;
             this.btn_orderItemsAdd.Text = "Add";
             this.btn_orderItemsAdd.UseVisualStyleBackColor = true;
+            this.btn_orderItemsAdd.Click += new System.EventHandler(this.btn_orderItemsAdd_Click);
             // 
             // lbl_subtotal
             // 
@@ -168,9 +171,9 @@ namespace GuitarShop
             // 
             // txtb_subtotal
             // 
-            this.txtb_subtotal.Enabled = false;
             this.txtb_subtotal.Location = new System.Drawing.Point(555, 317);
             this.txtb_subtotal.Name = "txtb_subtotal";
+            this.txtb_subtotal.ReadOnly = true;
             this.txtb_subtotal.Size = new System.Drawing.Size(100, 20);
             this.txtb_subtotal.TabIndex = 5;
             this.txtb_subtotal.Text = "0";
@@ -178,9 +181,9 @@ namespace GuitarShop
             // 
             // txtb_tax
             // 
-            this.txtb_tax.Enabled = false;
             this.txtb_tax.Location = new System.Drawing.Point(555, 343);
             this.txtb_tax.Name = "txtb_tax";
+            this.txtb_tax.ReadOnly = true;
             this.txtb_tax.Size = new System.Drawing.Size(100, 20);
             this.txtb_tax.TabIndex = 5;
             this.txtb_tax.Text = "0";
@@ -203,6 +206,7 @@ namespace GuitarShop
             this.txtb_shipping.TabIndex = 5;
             this.txtb_shipping.Text = "0";
             this.txtb_shipping.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtb_shipping.TextChanged += new System.EventHandler(this.txtb_shipping_TextChanged);
             // 
             // lbl_shipping
             // 
@@ -217,6 +221,7 @@ namespace GuitarShop
             // 
             this.txtb_orderTotal.Location = new System.Drawing.Point(555, 395);
             this.txtb_orderTotal.Name = "txtb_orderTotal";
+            this.txtb_orderTotal.ReadOnly = true;
             this.txtb_orderTotal.Size = new System.Drawing.Size(100, 20);
             this.txtb_orderTotal.TabIndex = 5;
             this.txtb_orderTotal.Text = "0";
