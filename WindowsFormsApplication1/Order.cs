@@ -13,8 +13,8 @@ namespace GuitarShop
     {
         public int OrderID;
         public int CustomerID = 1;
-        public int ShipAmount = 0;
-        public int TaxAmount = 0;
+        public float ShipAmount = 0;
+        public float TaxAmount = 0;
         public string CardType = "";
         public string CardNumber = "";  
     }

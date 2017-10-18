@@ -124,8 +124,9 @@ namespace GuitarShop
             }
 
             txtb_subtotal.Text = totalPrice.ToString();
+            order.TaxAmount = (float) Math.Round(totalPrice * 0.07, 2);
             txtb_tax.Text = (Math.Round(totalPrice * 0.07, 2)).ToString();
-            txtb_orderTotal.Text = (Math.Round(totalPrice * 1.07, 2) + int.Parse(txtb_shipping.Text)).ToString();
+            txtb_orderTotal.Text = (Math.Round(totalPrice * 1.07, 2) + float.Parse(txtb_shipping.Text)).ToString();
         }
 
         private void processOrder()
@@ -143,8 +144,6 @@ namespace GuitarShop
                     MessageBox.Show("Error: the connection could not be opened.");
                 }
 
-                // https://stackoverflow.com/questions/19956533/sql-insert-query-using-c-sharp
-
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
                 command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID, CardType, CardNumber, CardExpires, BillingAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, CURRENT_TIMESTAMP, 1, @CardType, @CardNumber, '04/2014', 1); SELECT SCOPE_IDENTITY()";
@@ -155,7 +154,6 @@ namespace GuitarShop
                 command.Parameters.AddWithValue("@CardType", order.CardType);
                 command.Parameters.AddWithValue("@CardNumber", order.CardNumber);
 
-                // Create new SqlDataReader object and read data from the command.
                 int autoOrderID = 0;
                 try
                 {
@@ -171,16 +169,6 @@ namespace GuitarShop
                     Console.WriteLine("Could not write order.");
                 }
 
-                // Get the auto ID of the Order just created
-                //command.CommandText = "SELECT SCOPE_IDENTITY() AS LastInsertedOrderId";
-                
-                //using (SqlDataReader reader = command.ExecuteReader())
-                //{
-                //    reader.Read();
-                //    autoOrderID = Convert.ToInt32(reader[0]);
-                //}
-
-                // Now handle the OrderItems
                 foreach (OrderItem item in orderItems)
                 {
                     command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, DiscountAmount, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, '0.00', @Quantity)";
@@ -224,6 +212,7 @@ namespace GuitarShop
 
         private void txtb_shipping_TextChanged(object sender, EventArgs e)
         {
+            order.ShipAmount = float.Parse(txtb_shipping.Text);
             calcTotals();
         }
     }
