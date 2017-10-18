@@ -272,6 +272,7 @@ namespace GuitarShop
             this.Controls.Add(this.lbl_tax);
             this.Controls.Add(this.lbl_subtotal);
             this.Controls.Add(this.lbl_customer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OrderForm";
             this.Text = "Create New Order";
             this.ResumeLayout(false);

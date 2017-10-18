@@ -109,6 +109,7 @@
             this.Controls.Add(this.lbl_item);
             this.Controls.Add(this.lbl_quantity);
             this.Controls.Add(this.cmb_orderItemSelect);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OrderItemSelection";
             this.Text = "Select Order Item";
             this.Load += new System.EventHandler(this.OrderItemSelection_Load);

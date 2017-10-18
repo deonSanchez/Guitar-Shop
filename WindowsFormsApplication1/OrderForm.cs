@@ -147,7 +147,7 @@ namespace GuitarShop
 
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID, CardType, CardNumber, CardExpires, BillingAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, CURRENT_TIMESTAMP, 1, @CardType, @CardNumber, '04/2014', 1)";
+                command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID, CardType, CardNumber, CardExpires, BillingAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, CURRENT_TIMESTAMP, 1, @CardType, @CardNumber, '04/2014', 1); SELECT SCOPE_IDENTITY()";
 
                 command.Parameters.AddWithValue("@CustomerID", order.CustomerID);
                 command.Parameters.AddWithValue("@ShipAmount", order.ShipAmount);
@@ -156,11 +156,11 @@ namespace GuitarShop
                 command.Parameters.AddWithValue("@CardNumber", order.CardNumber);
 
                 // Create new SqlDataReader object and read data from the command.
+                int autoOrderID = 0;
                 try
                 {
-                    command.ExecuteNonQuery();
+                    autoOrderID = Convert.ToInt32(command.ExecuteScalar());
                     MessageBox.Show("Order Succefully Placed!");
-                    this.Close();
                 }
                 catch (SqlException ex)
                 {
@@ -170,9 +170,38 @@ namespace GuitarShop
                 {
                     Console.WriteLine("Could not write order.");
                 }
+
+                // Get the auto ID of the Order just created
+                //command.CommandText = "SELECT SCOPE_IDENTITY() AS LastInsertedOrderId";
+                
+                //using (SqlDataReader reader = command.ExecuteReader())
+                //{
+                //    reader.Read();
+                //    autoOrderID = Convert.ToInt32(reader[0]);
+                //}
+
+                // Now handle the OrderItems
+                foreach (OrderItem item in orderItems)
+                {
+                    command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, DiscountAmount, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, '0.00', @Quantity)";
+                    command.Parameters.AddWithValue("@OrderID", autoOrderID);
+                    command.Parameters.AddWithValue("@ProductID", item.ProductID);
+                    command.Parameters.AddWithValue("@ItemPrice", item.ItemPrice);
+                    command.Parameters.AddWithValue("@Quantity", item.Quantity);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine("Could not write OrderItem.");
+                    }
+                }
             }
 
             cnn.Close();
+            this.Close();
         }
 
         private void cmb_cardType_SelectedIndexChanged(object sender, EventArgs e)
