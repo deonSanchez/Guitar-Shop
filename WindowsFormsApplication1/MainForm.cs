@@ -201,7 +201,7 @@ namespace GuitarShop
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
 
         private void showAllToolStripMenuItem_Click(object sender, EventArgs e)

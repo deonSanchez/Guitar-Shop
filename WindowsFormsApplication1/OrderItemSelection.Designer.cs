@@ -76,7 +76,6 @@
             0,
             0,
             0});
-            this.num_quantity.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // btn_add
             // 
@@ -110,9 +109,10 @@
             this.Controls.Add(this.lbl_quantity);
             this.Controls.Add(this.cmb_orderItemSelect);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "OrderItemSelection";
             this.Text = "Select Order Item";
-            this.Load += new System.EventHandler(this.OrderItemSelection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.num_quantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
