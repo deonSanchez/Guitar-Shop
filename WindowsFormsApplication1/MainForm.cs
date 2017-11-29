@@ -41,6 +41,8 @@ namespace GuitarShop
             tableRegistry.Add("Instruments", "Products");
             tableRegistry.Add("Orders", "Orders");
             tableRegistry.Add("OrderItems", "OrderItems");
+            tableRegistry.Add("Repairs", "Repairs");
+            tableRegistry.Add("RepairItems", "RepairItems");
             tableRegistry.Add("Customers", "Customers");
             tableRegistry.Add("Administrators", "Administrators");
         }
@@ -299,6 +301,11 @@ namespace GuitarShop
             {
                 Console.WriteLine("No such table exists, doing nothing.");
             }
+        }
+
+        private void damnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

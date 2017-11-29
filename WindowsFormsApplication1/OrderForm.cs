@@ -16,6 +16,25 @@ using System.Configuration;
 /// TODO: validation. Check out https://docs.microsoft.com/en-us/dotnet/framework/winforms/user-input-validation-in-windows-forms.
 /// 
 /// TODO: Data binding - audio update total fields, etc.
+/// 
+/// Danny:
+/// Orders
+/// OrderItems
+/// Repairs
+/// RepairItems
+/// Products
+/// Promotions
+/// Payments
+/// 
+/// Deon:
+/// Employees
+/// Cusomters
+/// Administrators
+/// Suppliers
+/// Addreses
+/// 
+/// 
+/// 
 /// </summary>
 namespace GuitarShop
 {

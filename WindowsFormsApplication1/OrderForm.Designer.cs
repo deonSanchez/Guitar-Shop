@@ -32,7 +32,6 @@ namespace GuitarShop
         {
             this.lbl_customer = new System.Windows.Forms.Label();
             this.cmb_customer = new System.Windows.Forms.ComboBox();
-            this.btn_customerCreate = new System.Windows.Forms.Button();
             this.lbl_cardType = new System.Windows.Forms.Label();
             this.cmb_cardType = new System.Windows.Forms.ComboBox();
             this.lbl_cardNumber = new System.Windows.Forms.Label();
@@ -68,19 +67,9 @@ namespace GuitarShop
             this.cmb_customer.Location = new System.Drawing.Point(15, 25);
             this.cmb_customer.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.cmb_customer.Name = "cmb_customer";
-            this.cmb_customer.Size = new System.Drawing.Size(559, 21);
+            this.cmb_customer.Size = new System.Drawing.Size(640, 21);
             this.cmb_customer.TabIndex = 1;
             this.cmb_customer.SelectedIndexChanged += new System.EventHandler(this.cmb_customer_SelectedIndexChanged);
-            // 
-            // btn_customerCreate
-            // 
-            this.btn_customerCreate.Location = new System.Drawing.Point(580, 25);
-            this.btn_customerCreate.Name = "btn_customerCreate";
-            this.btn_customerCreate.Size = new System.Drawing.Size(75, 23);
-            this.btn_customerCreate.TabIndex = 2;
-            this.btn_customerCreate.Text = "Create new";
-            this.btn_customerCreate.UseVisualStyleBackColor = true;
-            this.btn_customerCreate.Click += new System.EventHandler(this.btn_customerCreate_Click);
             // 
             // lbl_cardType
             // 
@@ -261,7 +250,6 @@ namespace GuitarShop
             this.Controls.Add(this.txtb_cardNumber);
             this.Controls.Add(this.btn_orderItemsAdd);
             this.Controls.Add(this.btn_orderItemsRemove);
-            this.Controls.Add(this.btn_customerCreate);
             this.Controls.Add(this.cmb_cardType);
             this.Controls.Add(this.cmb_customer);
             this.Controls.Add(this.lbl_orderItems);
@@ -273,6 +261,7 @@ namespace GuitarShop
             this.Controls.Add(this.lbl_subtotal);
             this.Controls.Add(this.lbl_customer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "OrderForm";
             this.Text = "Create New Order";
             this.ResumeLayout(false);
@@ -289,7 +278,6 @@ namespace GuitarShop
 
         private System.Windows.Forms.Label lbl_customer;
         private System.Windows.Forms.ComboBox cmb_customer;
-        private System.Windows.Forms.Button btn_customerCreate;
         private System.Windows.Forms.Label lbl_cardType;
         private System.Windows.Forms.ComboBox cmb_cardType;
         private System.Windows.Forms.Label lbl_cardNumber;
