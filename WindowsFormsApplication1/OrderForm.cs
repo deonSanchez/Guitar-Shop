@@ -43,7 +43,6 @@ namespace GuitarShop
         private static string[] cardTypes = new string[] {"Credit", "Debit", "EagleID"};
 
         private Order order;
-        private List<OrderItem> orderItems;
 
         SqlConnection cnn;
 
@@ -52,11 +51,13 @@ namespace GuitarShop
             InitializeComponent();
 
             order = new Order();
-            orderItems = new List<OrderItem>();
-            
+
+            lv_orderItems.Columns.Add("", -2, HorizontalAlignment.Left); // Checkbox column
             lv_orderItems.Columns.Add("Item", -2, HorizontalAlignment.Left);
             lv_orderItems.Columns.Add("Price", -2, HorizontalAlignment.Left);
             lv_orderItems.Columns.Add("Quantity", -2, HorizontalAlignment.Left);
+            lv_orderItems.Columns.Add("Discount", -2, HorizontalAlignment.Left);
+            lv_orderItems.Columns.Add("Line Total", -2, HorizontalAlignment.Left);
 
             // Initialize SQL connection for this form.
             cnn = new SqlConnection(Constants.ConnectionString);
@@ -119,8 +120,50 @@ namespace GuitarShop
 
         public void addOrderItem(OrderItem oi)
         {
-            orderItems.Add(oi);
-            lv_orderItems.Items.Add(new ListViewItem(new String[] { oi.ProductName, oi.ItemPrice.ToString(), oi.Quantity.ToString() }));
+            ListViewItem oiLV = new ListViewItem();
+
+            decimal discountAmount = 0;
+
+            // If has a promo code, get the discount amount
+            if (oi.PromotionCode != 0)
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = cnn;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT DiscountAmount FROM Promotions WHERE ProductID = @ProductID AND PromotionCode = @PromotionCode AND CURRENT_TIMESTAMP BETWEEN StartDate AND EndDate";
+
+                    command.Parameters.AddWithValue("@ProductID", oi.ProductID);
+                    command.Parameters.AddWithValue("@PromotionCode", oi.PromotionCode);
+
+                    // TODO: Exception handling
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Should always be true
+                        if (reader.Read())
+                        {
+                            discountAmount = (decimal)reader[0];
+                        }
+                        else
+                        {
+                            // Somehow there was an error applying the promo code to the order (perhaps it just expired)
+                        }
+                    }
+                }
+            }
+
+            decimal lineTotal = (oi.ItemPrice * oi.Quantity) - discountAmount;
+
+            oiLV.Tag = oi;
+            oiLV.SubItems.AddRange(new String[] {
+                oi.ProductName,
+                oi.ItemPrice.ToString(),
+                oi.Quantity.ToString(),
+                discountAmount.ToString("F"),
+                lineTotal.ToString("F")
+            });
+
+            lv_orderItems.Items.Add(oiLV);
             lv_orderItems.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
             CalcTotals();
@@ -128,17 +171,20 @@ namespace GuitarShop
 
         public void CalcTotals()
         {
-            float totalPrice = 0;
+            decimal totalPrice = 0;
 
-            foreach(OrderItem item in orderItems)
+            foreach(ListViewItem item in lv_orderItems.Items)
             {
-                totalPrice += (item.ItemPrice * item.Quantity);
+                OrderItem oi = item.Tag as OrderItem;
+                totalPrice += decimal.Parse(item.SubItems[5].Text);
             }
 
-            txtb_subtotal.Text = totalPrice.ToString();
-            order.TaxAmount = (float) Math.Round(totalPrice * 0.07, 2);
-            txtb_tax.Text = (Math.Round(totalPrice * 0.07, 2)).ToString();
-            txtb_orderTotal.Text = (Math.Round(totalPrice * 1.07, 2) + float.Parse(txtb_shipping.Text)).ToString();
+            txtb_subtotal.Text = totalPrice.ToString("F");
+
+            order.TaxAmount = totalPrice * (decimal)0.07;
+            txtb_tax.Text = order.TaxAmount.ToString("F");
+
+            txtb_orderTotal.Text = ((totalPrice + order.TaxAmount) + updn_shipping.Value).ToString("F");
         }
 
         private void ProcessOrder()
@@ -167,17 +213,19 @@ namespace GuitarShop
                 }
             }
 
-            foreach (OrderItem item in orderItems)
+            foreach (ListViewItem item in lv_orderItems.Items)
             {
+                OrderItem oi = item.Tag as OrderItem;
+
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
                     command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, 101, @Quantity)";
 
                     command.Parameters.AddWithValue("@OrderID", autoOrderID);
-                    command.Parameters.AddWithValue("@ProductID", item.ProductID);
-                    command.Parameters.AddWithValue("@ItemPrice", item.ItemPrice);
-                    command.Parameters.AddWithValue("@Quantity", item.Quantity);
+                    command.Parameters.AddWithValue("@ProductID", oi.ProductID);
+                    command.Parameters.AddWithValue("@ItemPrice", oi.ItemPrice);
+                    command.Parameters.AddWithValue("@Quantity", oi.Quantity);
 
                     try
                     {
@@ -211,10 +259,35 @@ namespace GuitarShop
             OrderItemSelection ois = new OrderItemSelection(this);
             ois.Show();
         }
-
-        private void txtb_shipping_TextChanged(object sender, EventArgs e)
+        
+        private void lv_orderItems_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            order.ShipAmount = float.Parse(txtb_shipping.Text);
+            // If at least one item is checked, then the user may remove checked items from the list.
+            if(lv_orderItems.CheckedItems.Count > 0) 
+            {
+                btn_orderItemsRemove.Enabled = true;
+            }
+            else
+            {
+                btn_orderItemsRemove.Enabled = false;
+            }
+        }
+
+        private void btn_orderItemsRemove_Click(object sender, EventArgs e)
+        {
+            ListView.CheckedListViewItemCollection checkedItems = lv_orderItems.CheckedItems;
+
+            foreach (ListViewItem item in checkedItems)
+            {
+                lv_orderItems.Items.Remove(item);
+                lv_orderItems.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+            CalcTotals();
+        }
+
+        private void updn_shipping_ValueChanged(object sender, EventArgs e)
+        {
+            order.ShipAmount = updn_shipping.Value;
             CalcTotals();
         }
     }

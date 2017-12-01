@@ -10,10 +10,11 @@ namespace GuitarShop
     {
         public int ProductID;
         public int Quantity;
-        public float ItemPrice;
+        public decimal ItemPrice;
         public string ProductName;
+        public int PromotionCode;
         
-        public OrderItem(int ProductID, float ItemPrice, string ProductName)
+        public OrderItem(int ProductID, decimal ItemPrice, string ProductName)
         {
             this.ProductID = ProductID;
             this.ItemPrice = ItemPrice;

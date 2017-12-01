@@ -49,6 +49,7 @@
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.damnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.lvProducts = new System.Windows.Forms.ListView();
@@ -59,7 +60,6 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.damnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.Panel1.SuspendLayout();
@@ -140,6 +140,13 @@
             this.showAllToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.showAllToolStripMenuItem.Text = "Show All";
             this.showAllToolStripMenuItem.Click += new System.EventHandler(this.showAllToolStripMenuItem_Click);
+            // 
+            // damnToolStripMenuItem
+            // 
+            this.damnToolStripMenuItem.Name = "damnToolStripMenuItem";
+            this.damnToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.damnToolStripMenuItem.Text = "Repairs";
+            this.damnToolStripMenuItem.Click += new System.EventHandler(this.damnToolStripMenuItem_Click);
             // 
             // scMain
             // 
@@ -249,39 +256,29 @@
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = global::GuitarShop.Properties.Resources.NewFile_6276_24;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(78, 22);
             this.toolStripButton1.Text = "New Item";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton5
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton5.Image = global::GuitarShop.Properties.Resources.PencilTool_206;
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Size = new System.Drawing.Size(74, 22);
             this.toolStripButton5.Text = "Edit Item";
             // 
             // toolStripButton4
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton4.Image = global::GuitarShop.Properties.Resources.DeleteTablefromDatabase_270_24;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "Delete Item";
+            this.toolStripButton4.Size = new System.Drawing.Size(107, 22);
+            this.toolStripButton4.Text = "Delete Selected";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // damnToolStripMenuItem
-            // 
-            this.damnToolStripMenuItem.Name = "damnToolStripMenuItem";
-            this.damnToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.damnToolStripMenuItem.Text = "Repairs";
-            this.damnToolStripMenuItem.Click += new System.EventHandler(this.damnToolStripMenuItem_Click);
             // 
             // MainForm
             // 
