@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace GuitarShop
 {
     public partial class Staff : Form
     {
+        SqlConnection cnn;
     
         private static string[] TitleField = new string[] {"Cashier",
             "Guitar Specialist",
@@ -25,6 +27,34 @@ namespace GuitarShop
         public Staff()
         {
             InitializeComponent();
+
+            string query = "select * from employees where name ='"+ stuff +"' ;";
+            SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
+            SqlCommand command = new SqlCommand(query, cnn);
+            SqlDataReader dataReader;
+            
+            try
+            {
+                cnn.Open();
+                dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                { 
+                    textBox1.Text = dataReader["EmployeeID"].ToString();
+                    titleComboBox.Text = dataReader["title"].ToString();
+                    textBox1.Text = dataReader["firstname"].ToString();
+                    textBox2.Text = dataReader["lastname"].ToString();
+                    textBox5.Text = dataReader["password"].ToString();
+                    textBox4.Text = dataReader["emailaddress"].ToString();
+                    textBox7.Text = dataReader["datehired"].ToString();
+                    textBox8.Text = dataReader["birthdate"].ToString();
+                    EmployeeTypeComboBox.Text = dataReader["employeetype"].ToString();
+                }
+
+            } catch (SqlException ex)
+            {
+                MessageBox.Show(ex);
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,6 +77,22 @@ namespace GuitarShop
             {
                 //has normal privileges
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //idnumber
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            //firstname
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
