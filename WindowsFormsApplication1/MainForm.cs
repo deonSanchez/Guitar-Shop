@@ -32,12 +32,13 @@ namespace GuitarShop
 
             tableRegistry.Add("Instruments", "Instruments");
             formRegistry.Add("Instruments", typeof(ProductForm));
+
             tableRegistry.Add("Parts", "Parts");
             formRegistry.Add("Parts", typeof(ProductForm));
 
-
             tableRegistry.Add("Promotions", "Promotions");
-            
+            formRegistry.Add("Promotions", typeof(PromotionForm));
+
             tableRegistry.Add("Orders", "Orders");
             formRegistry.Add("Orders", typeof(OrderForm));
 
