@@ -293,7 +293,7 @@ namespace GuitarShop
         }
 
         // Test cnnection
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void toolStripDelete_Click(object sender, EventArgs e)
         {
 
             // Looks like we're gonna need specific deletion queries for each table to deal with FK contraints. Nuts.

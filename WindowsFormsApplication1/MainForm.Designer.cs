@@ -37,6 +37,7 @@
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Customers");
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Suppliers");
             System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Administrators");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Employees");
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.lvProducts = new System.Windows.Forms.ListView();
@@ -97,6 +98,8 @@
             treeNode8.Text = "Suppliers";
             treeNode9.Name = "Node0";
             treeNode9.Text = "Administrators";
+            treeNode10.Name = "Node0";
+            treeNode10.Text = "Employees";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
@@ -106,7 +109,8 @@
             treeNode6,
             treeNode7,
             treeNode8,
-            treeNode9});
+            treeNode9,
+            treeNode10});
             this.treeView1.Size = new System.Drawing.Size(138, 553);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -166,7 +170,7 @@
             this.toolStripDelete.Name = "toolStripDelete";
             this.toolStripDelete.Size = new System.Drawing.Size(107, 22);
             this.toolStripDelete.Text = "Delete Selected";
-            this.toolStripDelete.Click += new System.EventHandler(this.toolStripButton4_Click);
+            this.toolStripDelete.Click += new System.EventHandler(this.toolStripDelete_Click);
             // 
             // MainForm
             // 
