@@ -23,6 +23,7 @@ namespace GuitarShop
         {
             InitializeComponent();
 
+            // Stored values/procedures for specific user-facing tables
             tableRegistry = new Dictionary<string, string>();
             queryRegistry = new Dictionary<string, string>();
             formRegistry = new Dictionary<string, Type>();
@@ -191,26 +192,6 @@ namespace GuitarShop
                 JOIN Administrators ON AdminID = EmployeeID;"
             );
         }
-        
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openConnectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
-            try
-            {
-                cnn.Open();
-                MessageBox.Show("Connection successful.");
-                cnn.Close();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error: the connection could not be opened.");
-            }
-        }
 
         private void loadDataForInventory(string tableName)
         {
@@ -255,6 +236,7 @@ namespace GuitarShop
                         DataTable tableSchema = reader.GetSchemaTable();
                         string[] columNames = new string[tableSchema.Rows.Count];
 
+                        // Set columns
                         for (int i = 0; i < columNames.Length; i++)
                         {
                             columNames[i] = tableSchema.Rows[i]["ColumnName"].ToString();
@@ -265,7 +247,7 @@ namespace GuitarShop
                             lvProducts.Columns.Add(column, -2, HorizontalAlignment.Left);
                         }
 
-                        // while there is another record present
+                        // While there is another record present
                         while (reader.Read())
                         {
                             string[] rowData = new string[columNames.Length];
@@ -287,11 +269,6 @@ namespace GuitarShop
             }
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             string selectedTable;
@@ -310,11 +287,6 @@ namespace GuitarShop
             OrderForm of = new OrderForm(true, 0);
             of.Show();
             of.FormClosed += tableForm_closed;
-        }
-
-        private void lvProducts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         // Test cnnection
@@ -396,11 +368,6 @@ namespace GuitarShop
             }
         }
 
-        private void lvProducts_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void lvProducts_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             // If at least one item is checked, then the user may remove or edit checked items from the list.
@@ -443,6 +410,5 @@ namespace GuitarShop
         {
             loadDataForInventory(tableState);
         }
-
     }
 }

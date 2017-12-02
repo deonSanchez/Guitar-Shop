@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Orders");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Repairs");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Promotions");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Categories");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Instruments");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Parts");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Customers");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Suppliers");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Administrators");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Employees");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Orders");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Repairs");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Promotions");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Categories");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Instruments");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Parts");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Customers");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Suppliers");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Administrators");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Employees");
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.lvProducts = new System.Windows.Forms.ListView();
@@ -63,7 +63,6 @@
             // scMain.Panel1
             // 
             this.scMain.Panel1.Controls.Add(this.treeView1);
-            this.scMain.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // scMain.Panel2
             // 
@@ -80,37 +79,37 @@
             this.treeView1.HotTracking = true;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "nodeOrders";
-            treeNode1.Text = "Orders";
-            treeNode2.Name = "Node3";
-            treeNode2.Text = "Repairs";
-            treeNode3.Name = "Promotions";
-            treeNode3.Text = "Promotions";
-            treeNode4.Name = "Node4";
-            treeNode4.Text = "Categories";
-            treeNode5.Name = "Node5";
-            treeNode5.Text = "Instruments";
-            treeNode6.Name = "Node6";
-            treeNode6.Text = "Parts";
-            treeNode7.Name = "Node0";
-            treeNode7.Text = "Customers";
-            treeNode8.Name = "Node0";
-            treeNode8.Text = "Suppliers";
-            treeNode9.Name = "Node0";
-            treeNode9.Text = "Administrators";
-            treeNode10.Name = "Node0";
-            treeNode10.Text = "Employees";
+            treeNode21.Name = "nodeOrders";
+            treeNode21.Text = "Orders";
+            treeNode22.Name = "Node3";
+            treeNode22.Text = "Repairs";
+            treeNode23.Name = "Promotions";
+            treeNode23.Text = "Promotions";
+            treeNode24.Name = "Node4";
+            treeNode24.Text = "Categories";
+            treeNode25.Name = "Node5";
+            treeNode25.Text = "Instruments";
+            treeNode26.Name = "Node6";
+            treeNode26.Text = "Parts";
+            treeNode27.Name = "Node0";
+            treeNode27.Text = "Customers";
+            treeNode28.Name = "Node0";
+            treeNode28.Text = "Suppliers";
+            treeNode29.Name = "Node0";
+            treeNode29.Text = "Administrators";
+            treeNode30.Name = "Node0";
+            treeNode30.Text = "Employees";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8,
-            treeNode9,
-            treeNode10});
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28,
+            treeNode29,
+            treeNode30});
             this.treeView1.Size = new System.Drawing.Size(138, 553);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -129,7 +128,6 @@
             this.lvProducts.UseCompatibleStateImageBehavior = false;
             this.lvProducts.View = System.Windows.Forms.View.Details;
             this.lvProducts.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvProducts_ItemChecked);
-            this.lvProducts.SelectedIndexChanged += new System.EventHandler(this.lvProducts_SelectedIndexChanged_1);
             // 
             // toolStrip1
             // 
@@ -181,7 +179,6 @@
             this.Controls.Add(this.scMain);
             this.Name = "MainForm";
             this.Text = "Guitar Shop Management";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.scMain.Panel1.ResumeLayout(false);
             this.scMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).EndInit();
