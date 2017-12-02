@@ -15,8 +15,8 @@ namespace GuitarShop
     {
         public OrderForm parent;
 
-        public Dictionary<string, OrderItem> orderItemRegistry;
-        public OrderItem selected;
+        public Dictionary<string, RepairItem> orderItemRegistry;
+        public RepairItem selected;
         public int selectedQuantity;
         public float selectedPrice;
 
@@ -40,7 +40,7 @@ namespace GuitarShop
                 Close();
             }
 
-            orderItemRegistry = new Dictionary<string, OrderItem>();
+            orderItemRegistry = new Dictionary<string, RepairItem>();
             loadItems();
 
             lbl_validation.Visible = false;
@@ -65,7 +65,7 @@ namespace GuitarShop
                         {
                             string displayString = reader[0].ToString() + " - " + reader[1] + " - " + reader[2];
                             customerList.Add(displayString);
-                            orderItemRegistry.Add(displayString, new OrderItem(int.Parse(reader[0].ToString()), decimal.Parse(reader[2].ToString()), reader[1].ToString()));
+                            orderItemRegistry.Add(displayString, new RepairItem(int.Parse(reader[0].ToString()), decimal.Parse(reader[2].ToString()), reader[1].ToString()));
                         }
 
                         cmb_orderItemSelect.Items.AddRange(customerList.ToArray());
