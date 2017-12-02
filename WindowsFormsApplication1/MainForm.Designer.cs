@@ -179,7 +179,6 @@
             this.ClientSize = new System.Drawing.Size(913, 593);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.scMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Guitar Shop Management";
             this.Load += new System.EventHandler(this.Form1_Load);

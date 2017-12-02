@@ -44,7 +44,9 @@ namespace GuitarShop
             formRegistry.Add("Categories", typeof(CategoryForm));
 
             tableRegistry.Add("Instruments", "Instruments");
+            formRegistry.Add("Instruments", typeof(ProductForm));
             tableRegistry.Add("Parts", "Parts");
+            formRegistry.Add("Parts", typeof(ProductForm));
 
 
             tableRegistry.Add("Promotions", "Promotions");

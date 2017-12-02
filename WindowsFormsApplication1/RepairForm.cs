@@ -266,7 +266,7 @@ namespace GuitarShop
                     command.CommandText = "INSERT INTO Repairs (CustomerID, CompletionDate, Description) VALUES (@CustomerID, @CompletionDate, @Description); SELECT SCOPE_IDENTITY()";
 
                     command.Parameters.AddWithValue("@CustomerID", repair.CustomerID);
-                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate);
+                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate.ToString("yyyy-MM-dd"));
                     command.Parameters.AddWithValue("@Description", repair.Description);
 
                     try
@@ -292,7 +292,7 @@ namespace GuitarShop
 
                     command.Parameters.AddWithValue("@RepairID", editItemID);
                     command.Parameters.AddWithValue("@CustomerID", repair.CustomerID);
-                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate);
+                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate.ToString("yyyy-MM-dd"));
                     command.Parameters.AddWithValue("@Description", repair.Description);
 
                     try

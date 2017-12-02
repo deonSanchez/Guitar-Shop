@@ -299,7 +299,7 @@ namespace GuitarShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 568);
+            this.ClientSize = new System.Drawing.Size(667, 505);
             this.Controls.Add(this.cmb_shippingAddress);
             this.Controls.Add(this.lbl_shippingAddress);
             this.Controls.Add(this.cmb_billlingAddress);
