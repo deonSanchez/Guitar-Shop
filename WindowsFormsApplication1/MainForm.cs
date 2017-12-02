@@ -253,10 +253,8 @@ namespace GuitarShop
                         command.CommandType = CommandType.Text;
                         command.CommandText = "SELECT * FROM " + escTableName;
 
-
                         String IDColumn;
-
-
+                        
                         // Create new SqlDataReader object and read data from the command.
                         try
                         {
@@ -303,9 +301,11 @@ namespace GuitarShop
             }
         }
 
-        private void damnToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CustomerForm cf = new CustomerForm();
+            cf.Show();
+            cf.FormClosed += orderForm_closed;
         }
     }
 }

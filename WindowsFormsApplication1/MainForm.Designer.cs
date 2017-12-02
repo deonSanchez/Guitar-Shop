@@ -50,6 +50,8 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.damnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scMain = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.lvProducts = new System.Windows.Forms.ListView();
@@ -74,7 +76,8 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.ordersToolStripMenuItem,
-            this.damnToolStripMenuItem});
+            this.damnToolStripMenuItem,
+            this.customersToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(913, 24);
@@ -146,7 +149,21 @@
             this.damnToolStripMenuItem.Name = "damnToolStripMenuItem";
             this.damnToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.damnToolStripMenuItem.Text = "Repairs";
-            this.damnToolStripMenuItem.Click += new System.EventHandler(this.damnToolStripMenuItem_Click);
+            // 
+            // customersToolStripMenuItem
+            // 
+            this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newCustomerToolStripMenuItem});
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.customersToolStripMenuItem.Text = "Customers";
+            // 
+            // newCustomerToolStripMenuItem
+            // 
+            this.newCustomerToolStripMenuItem.Name = "newCustomerToolStripMenuItem";
+            this.newCustomerToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.newCustomerToolStripMenuItem.Text = "New customer...";
+            this.newCustomerToolStripMenuItem.Click += new System.EventHandler(this.newCustomerToolStripMenuItem_Click);
             // 
             // scMain
             // 
@@ -327,6 +344,8 @@
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ListView lvProducts;
         private System.Windows.Forms.ToolStripMenuItem damnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newCustomerToolStripMenuItem;
     }
 }
 

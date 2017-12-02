@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace GuitarShop
 {
-    public partial class Customer : Form
+    class Customer
     {
-        public Customer()
-        {
-            InitializeComponent();
-        }
+        public string emailAddress;
+        public string password;
+        public string firstName;
+        public string lastName;
+        public int employeeContact;
     }
 }

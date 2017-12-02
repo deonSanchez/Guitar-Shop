@@ -88,14 +88,11 @@ namespace GuitarShop
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        List<string> customerList = new List<string>();
-
                         while (reader.Read())
                         {
-                            customerList.Add(reader[0].ToString() + " - " + reader[1]);                            
+                            ComboBoxItem cbi = new ComboBoxItem(reader[1].ToString(), Convert.ToInt32(reader[0]));
+                            cmb_customer.Items.Add(cbi);                            
                         }
-
-                        cmb_customer.Items.AddRange(customerList.ToArray());
                     }
                 }
                 catch (Exception ex)
@@ -108,9 +105,53 @@ namespace GuitarShop
         private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmbox = (ComboBox) sender;
-            string selectedCustomer = (string) cmbox.SelectedItem;
-            int selectedCustomerID = int.Parse(selectedCustomer[0].ToString());
-            order.CustomerID = selectedCustomerID;
+
+            int custId = (cmbox.SelectedItem as ComboBoxItem).IdentifyingValue;
+            order.CustomerID = custId;
+
+            // Load the selected customer's avaliable addresses
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = cnn;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT CustAddressID, Line1, City, State, ZipCode FROM CustAddresses WHERE CustomerID = @CustomerID";
+
+                command.Parameters.AddWithValue("@CustomerID", custId);
+
+                // TODO: Exception handling
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    cmb_billlingAddress.Items.Clear();
+                    cmb_shippingAddress.Items.Clear();
+
+                    if (reader.HasRows)
+                    {
+
+                        while (reader.Read())
+                        {
+                            string addressString = string.Format(
+                                "{0} {1}, {2} {3}",
+                                reader[1].ToString(),
+                                reader[2].ToString(),
+                                reader[3].ToString(),
+                                reader[4].ToString()
+                            );
+
+                            ComboBoxItem cbi = new ComboBoxItem(addressString, Convert.ToInt32(reader[0]));
+                            cmb_billlingAddress.Items.Add(cbi);
+                            cmb_shippingAddress.Items.Add(cbi);
+                        }
+
+                        cmb_billlingAddress.Enabled = true;
+                        cmb_shippingAddress.Enabled = true;
+                    }
+                    else
+                    {
+                        cmb_billlingAddress.Enabled = false;
+                        cmb_shippingAddress.Enabled = false;
+                    }
+                }
+            }
         }
 
         private void btn_sumbit_Click(object sender, EventArgs e)
