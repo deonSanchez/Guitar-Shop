@@ -27,9 +27,7 @@ namespace GuitarShop
     public partial class MainForm : Form
     {
         private Dictionary<string, string> tableRegistry;
-        private SqlDataAdapter sqlDataAdapter;
-        DataTable dataTable;
-        BindingSource bindingSource;
+        private Dictionary<string, string> queryRegistry;
 
         private string tableState = "Orders";
 
@@ -38,13 +36,120 @@ namespace GuitarShop
             InitializeComponent();
             tableRegistry = new Dictionary<string, string>();
             tableRegistry.Add("Categories", "Categories");
-            tableRegistry.Add("Instruments", "Products");
+            tableRegistry.Add("Instruments", "Instruments");
+            tableRegistry.Add("Promotions", "Promotions");
+            tableRegistry.Add("Parts", "Parts");
             tableRegistry.Add("Orders", "Orders");
-            tableRegistry.Add("OrderItems", "OrderItems");
             tableRegistry.Add("Repairs", "Repairs");
-            tableRegistry.Add("RepairItems", "RepairItems");
             tableRegistry.Add("Customers", "Customers");
+            tableRegistry.Add("Suppliers", "Suppliers");
             tableRegistry.Add("Administrators", "Administrators");
+
+            queryRegistry = new Dictionary<string, string>();
+            queryRegistry.Add(
+                "Orders",
+                @"SELECT 
+	                OrderID AS ID,
+	                Customers.FirstName + ' ' + Customers.LastName AS 'Full Name',
+	                OrderDate AS 'Order Date',
+	                CONVERT(DECIMAL(10, 2), ShipAmount) as 'Ship Amount',
+	                CONVERT(DECIMAL(10, 2), TaxAmount) as 'TaxAmount',
+	                ShipDate AS 'Ship Date',
+	                Line1 + ' ' + Line2 + ' ' + City + ', ' + [State] + ' ' + ZipCode as 'Shipping Address'
+                FROM Orders
+                JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+                JOIN CustAddresses ON CustAddresses.CustAddressID = Customers.CustomerID;"
+            );
+
+            queryRegistry.Add(
+                "Customers",
+                @"SELECT
+	                Customers.CustomerID AS ID,
+	                Customers.EmailAddress AS 'Email Address',
+	                '*******' AS [Password],
+	                Customers.FirstName + ' ' + Customers.LastName AS 'Full Name',
+	                Employees.FirstName + ' ' + Employees.LastName AS 'Employee Contact'
+                FROM Customers
+                JOIN Employees ON Customers.EmployeeContact = Employees.EmployeeID;"
+            );
+
+            queryRegistry.Add(
+                "Instruments",
+                @"SELECT
+                    ProductID AS ID,
+                    CategoryName AS 'Category',
+                    SupplierName AS 'Supplier Name',
+                    ProductName AS 'Product Name',
+                    AmountInStock As 'Amount In Stock',
+                    CONVERT(DECIMAL(10, 2), Price) AS Price,
+                    DateAdded AS 'Date Added',
+                    [Description]
+                FROM Products
+                JOIN Categories ON Products.CategoryID = Categories.CategoryID
+                JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID
+                WHERE ProductType = 'instrument';"
+            );
+
+            queryRegistry.Add(
+                "Parts",
+                @"SELECT
+                    ProductID AS ID,
+                    CategoryName AS 'Category',
+                    SupplierName AS 'Supplier Name',
+                    ProductName AS 'Product Name',
+                    AmountInStock As 'Amount In Stock',
+                    CONVERT(DECIMAL(10, 2), Price) AS Price,
+                    DateAdded AS 'Date Added',
+                    [Description]
+                FROM Products
+                JOIN Categories ON Products.CategoryID = Categories.CategoryID
+                JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID
+                WHERE ProductType = 'part';"
+            );
+
+            queryRegistry.Add(
+                "Categories",
+                @"SELECT 
+	                CategoryID AS ID,
+	                CategoryName AS Name
+                FROM Categories;"
+            );
+
+            queryRegistry.Add(
+                "Promotions",
+                @"SELECT
+	                PromotionCode AS 'Promo Code',
+	                ProductName AS 'Product',
+	                DiscountAmount AS 'Discount Amount',
+	                Promotions.Description,
+	                StartDate AS 'Start Date',
+	                EndDate AS 'End Date'
+                FROM Promotions
+                JOIN Products ON Products.ProductID = Promotions.ProductID;"
+            );
+
+            queryRegistry.Add(
+                "Repairs",
+                @"SELECT
+                    RepairID AS ID,
+                    Customers.FirstName + ' ' + Customers.LastName AS 'Customer Name',
+                    CompletionDate AS 'Completion Date',
+                    Description
+                FROM Repairs
+                JOIN Customers ON Customers.CustomerID = Repairs.CustomerID;"
+            );
+
+            queryRegistry.Add(
+                "Suppliers",
+                @"SELECT
+	                SupplierID AS ID,
+	                SupplierName AS 'Supplier Name',
+	                ContactFirstName + ' ' + ContactLastName AS 'Contact Full Name',
+	                PhoneNumber As 'Phone Number',
+	                Employees.FirstName + ' ' + Employees.LastName AS 'Employee Contact'
+                FROM Suppliers
+                JOIN Employees ON Suppliers.EmployeeContact = Employees.EmployeeID;"
+            );
         }
         
         private void Form1_Load(object sender, EventArgs e)
@@ -121,7 +226,15 @@ namespace GuitarShop
 
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT * FROM " + escTableName;
+
+                try
+                {
+                    command.CommandText = queryRegistry[tableState];
+                }
+                catch (Exception)
+                {
+                    command.CommandText = "SELECT * FROM " + escTableName;
+                }
 
                 // Create new SqlDataReader object and read data from the command.
                 try

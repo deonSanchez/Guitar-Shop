@@ -28,18 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Categories");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Instruments");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Parts");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Inventory", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("OrderItems");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Orders", new System.Windows.Forms.TreeNode[] {
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Customers");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Administrators");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Orders");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Repairs");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Promotions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Categories");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Instruments");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Parts");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Customers");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Suppliers");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Administrators");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -190,27 +187,34 @@
             this.treeView1.HotTracking = true;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode9.Name = "Node4";
-            treeNode9.Text = "Categories";
-            treeNode10.Name = "Node5";
-            treeNode10.Text = "Instruments";
-            treeNode11.Name = "Node6";
-            treeNode11.Text = "Parts";
-            treeNode12.Name = "nodeInventory";
-            treeNode12.Text = "Inventory";
-            treeNode13.Name = "Node0";
-            treeNode13.Text = "OrderItems";
-            treeNode14.Name = "nodeOrders";
-            treeNode14.Text = "Orders";
-            treeNode15.Name = "Node0";
-            treeNode15.Text = "Customers";
-            treeNode16.Name = "Node0";
-            treeNode16.Text = "Administrators";
+            treeNode1.Name = "nodeOrders";
+            treeNode1.Text = "Orders";
+            treeNode2.Name = "Node3";
+            treeNode2.Text = "Repairs";
+            treeNode3.Name = "Promotions";
+            treeNode3.Text = "Promotions";
+            treeNode4.Name = "Node4";
+            treeNode4.Text = "Categories";
+            treeNode5.Name = "Node5";
+            treeNode5.Text = "Instruments";
+            treeNode6.Name = "Node6";
+            treeNode6.Text = "Parts";
+            treeNode7.Name = "Node0";
+            treeNode7.Text = "Customers";
+            treeNode8.Name = "Node0";
+            treeNode8.Text = "Suppliers";
+            treeNode9.Name = "Node0";
+            treeNode9.Text = "Administrators";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode14,
-            treeNode15,
-            treeNode16});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9});
             this.treeView1.Size = new System.Drawing.Size(138, 529);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);

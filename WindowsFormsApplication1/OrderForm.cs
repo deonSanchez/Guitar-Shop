@@ -142,9 +142,17 @@ namespace GuitarShop
                         oi.OrderItemID = Convert.ToInt32(reader[0]);
                         oi.ProductID = Convert.ToInt32(reader[1]);
                         oi.ItemPrice = Convert.ToDecimal(reader[2]);
-                        oi.PromotionCode = Convert.ToInt32(reader[3]);
-                        oi.Quantity = Convert.ToInt32(reader[4]);
 
+                        if (reader[3] is DBNull)
+                        {
+                            oi.PromotionCode = 0;                            
+                        }
+                        else
+                        {
+                            oi.PromotionCode = Convert.ToInt32(reader[3]);
+                        }
+                        
+                        oi.Quantity = Convert.ToInt32(reader[4]);
                         oiList.Add(oi);
                     }
                 }
