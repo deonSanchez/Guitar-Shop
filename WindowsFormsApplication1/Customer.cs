@@ -8,6 +8,7 @@ namespace GuitarShop
 {
     class Customer
     {
+        public int CustomerID;
         public string emailAddress;
         public string password;
         public string firstName;

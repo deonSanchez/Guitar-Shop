@@ -126,6 +126,7 @@ namespace GuitarShop
             this.btn_orderItemsRemove.TabIndex = 2;
             this.btn_orderItemsRemove.Text = "Remove";
             this.btn_orderItemsRemove.UseVisualStyleBackColor = true;
+            this.btn_orderItemsRemove.Click += new System.EventHandler(this.btn_orderItemsRemove_Click);
             // 
             // btn_orderItemsAdd
             // 

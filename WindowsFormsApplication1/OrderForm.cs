@@ -20,11 +20,11 @@ using System.Configuration;
 /// Danny:
 /// Orders
 /// OrderItems
+/// Payments
 /// Repairs
 /// RepairItems
 /// Products
 /// Promotions
-/// Payments
 /// 
 /// Deon:
 /// Employees
@@ -135,7 +135,7 @@ namespace GuitarShop
                 // Create new SqlDataReader object and read data from the command.
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         OrderItem oi = new OrderItem();
 
@@ -187,27 +187,15 @@ namespace GuitarShop
 
             LoadShippingAddresses(order.CustomerID);
 
-            SetComboBoxToItemWithID(cmb_customer, order.CustomerID);
-            SetComboBoxToItemWithID(cmb_billlingAddress, payment.BillingAddressID);
-            SetComboBoxToItemWithID(cmb_shippingAddress, order.ShippingAddressID);
+            Constants.SetComboBoxToItemWithID(cmb_customer, order.CustomerID);
+            Constants.SetComboBoxToItemWithID(cmb_billlingAddress, payment.BillingAddressID);
+            Constants.SetComboBoxToItemWithID(cmb_shippingAddress, order.ShippingAddressID);
 
             txtb_cardNumber.Text = payment.CardNumber;
             cmb_cardType.Text = payment.CardType;
             updn_shipping.Value = order.ShipAmount;
             txtb_tax.Text = order.TaxAmount.ToString("F");
 
-        }
-
-        private void SetComboBoxToItemWithID(ComboBox cm, int ID)
-        {
-            foreach (ComboBoxItem cbi in cm.Items)
-            {
-                if(cbi.IdentifyingValue == ID)
-                {
-                    cm.SelectedItem = cbi;
-                    return;
-                }
-            }
         }
 
         private void LoadCustomers()

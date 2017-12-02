@@ -28,24 +28,39 @@ namespace GuitarShop
     {
         private Dictionary<string, string> tableRegistry;
         private Dictionary<string, string> queryRegistry;
+        private Dictionary<string, Type> formRegistry;
 
         private string tableState = "Orders";
 
         public MainForm()
         {
             InitializeComponent();
+
             tableRegistry = new Dictionary<string, string>();
+            queryRegistry = new Dictionary<string, string>();
+            formRegistry = new Dictionary<string, Type>();
+
             tableRegistry.Add("Categories", "Categories");
+            formRegistry.Add("Categories", typeof(CategoryForm));
+
             tableRegistry.Add("Instruments", "Instruments");
-            tableRegistry.Add("Promotions", "Promotions");
             tableRegistry.Add("Parts", "Parts");
+
+
+            tableRegistry.Add("Promotions", "Promotions");
+            
             tableRegistry.Add("Orders", "Orders");
+            formRegistry.Add("Orders", typeof(OrderForm));
+
             tableRegistry.Add("Repairs", "Repairs");
+
             tableRegistry.Add("Customers", "Customers");
+            formRegistry.Add("Customers", typeof(CustomerForm));
+
             tableRegistry.Add("Suppliers", "Suppliers");
             tableRegistry.Add("Administrators", "Administrators");
 
-            queryRegistry = new Dictionary<string, string>();
+            
             queryRegistry.Add(
                 "Orders",
                 @"SELECT 
@@ -77,7 +92,7 @@ namespace GuitarShop
                 "Instruments",
                 @"SELECT
                     ProductID AS ID,
-                    CategoryName AS 'Category',
+                    CategoryName AS 'CategoryForm',
                     SupplierName AS 'Supplier Name',
                     ProductName AS 'Product Name',
                     AmountInStock As 'Amount In Stock',
@@ -94,7 +109,7 @@ namespace GuitarShop
                 "Parts",
                 @"SELECT
                     ProductID AS ID,
-                    CategoryName AS 'Category',
+                    CategoryName AS 'CategoryForm',
                     SupplierName AS 'Supplier Name',
                     ProductName AS 'Product Name',
                     AmountInStock As 'Amount In Stock',
@@ -174,35 +189,6 @@ namespace GuitarShop
 
         private void loadDataForInventory(string tableName)
         {
-            //SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
-
-            //SqlCommandBuilder builder = new SqlCommandBuilder();
-            //string escTableName = builder.QuoteIdentifier(tableName);
-
-            //SqlCommand command = new SqlCommand();
-            //command.Connection = cnn;
-            //command.CommandType = CommandType.Text;
-            //command.CommandText = "SELECT * FROM " + escTableName;
-
-            //try
-            //{
-            //    sqlDataAdapter = new SqlDataAdapter();
-            //    sqlDataAdapter.SelectCommand = command;
-
-            //    dataTable = new DataTable();
-            //    sqlDataAdapter.Fill(dataTable);
-
-            //    bindingSource = new BindingSource();
-            //    bindingSource.DataSource = dataTable;
-            //    dataGridView1.DataSource = bindingSource;
-            //    sqlDataAdapter.Update(dataTable);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-            // Clear the ListView of existing data
 
             tableState = tableName;
             lvProducts.Items.Clear();
@@ -298,13 +284,7 @@ namespace GuitarShop
         {
             OrderForm of = new OrderForm(true, 0);
             of.Show();
-            of.FormClosed += orderForm_closed;
-        }
-
-        private void orderForm_closed(object sender, EventArgs e)
-        {
-            Console.WriteLine("Orderform closed");
-            loadDataForInventory(tableState);
+            of.FormClosed += tableForm_closed;
         }
 
         private void lvProducts_SelectedIndexChanged(object sender, EventArgs e)
@@ -312,34 +292,11 @@ namespace GuitarShop
             
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            loadDataForInventory("Orders");
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            // TODO: This ought to be contextual
-            OrderForm of = new OrderForm(true, 0);
-            of.Show();
-        }
-
+        // Test cnnection
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
 
             // Looks like we're gonna need specific deletion queries for each table to deal with FK contraints. Nuts.
-
-
             string selectedTable;
             if (tableRegistry.TryGetValue(tableState, out selectedTable))
             {
@@ -414,13 +371,6 @@ namespace GuitarShop
             }
         }
 
-        private void newCustomerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CustomerForm cf = new CustomerForm();
-            cf.Show();
-            cf.FormClosed += orderForm_closed;
-        }
-
         private void lvProducts_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
@@ -452,8 +402,22 @@ namespace GuitarShop
         {
             int selectedItemID = Convert.ToInt32(lvProducts.CheckedItems[0].SubItems[0].Text);
 
-            OrderForm of = new OrderForm(false, selectedItemID);
-            of.Show();
+            Form form = (Form)Activator.CreateInstance(formRegistry[tableState], false, selectedItemID);
+            form.FormClosed += tableForm_closed;
+            form.Show();
         }
+        
+        private void toolStripNew_Click(object sender, EventArgs e)
+        {
+            Form form = (Form)Activator.CreateInstance(formRegistry[tableState], true, 0);
+            form.FormClosed += tableForm_closed;
+            form.Show();
+        }
+
+        public void tableForm_closed(object sender, EventArgs e)
+        {
+            loadDataForInventory(tableState);
+        }
+
     }
 }
