@@ -147,6 +147,8 @@ namespace GuitarShop
 
             datetimePickCompleted.Value = repair.CompletionDate;
             txt_description.Text = repair.Description;
+
+            ValidateForm();
         }
 
         private void LoadCustomers()
@@ -241,7 +243,7 @@ namespace GuitarShop
             riLV.SubItems.AddRange(new String[] {
                 productName,
                 ri.RepairType,
-                ri.LaborPrice.ToString()
+                ri.LaborPrice.ToString("F")
             });
 
             lv_repairItems.Items.Add(riLV);
@@ -357,7 +359,7 @@ namespace GuitarShop
                         command.Connection = cnn;
                         command.CommandText = "INSERT INTO RepairItems(RepairID, ProductID, RepairType, LaborPrice) VALUES (@RepairID, @ProductID, @RepairType, @LaborPrice)";
 
-                        command.Parameters.AddWithValue("@RepairID", autoRepairID);
+                        command.Parameters.AddWithValue("@RepairID", editItemID);
                         command.Parameters.AddWithValue("@ProductID", ri.ProductID);
                         command.Parameters.AddWithValue("@RepairType", ri.RepairType);
                         command.Parameters.AddWithValue("@LaborPrice", ri.LaborPrice);
@@ -411,6 +413,17 @@ namespace GuitarShop
         private void txt_description_TextChanged(object sender, EventArgs e)
         {
             repair.Description = txt_description.Text;
+            ValidateForm();
+        }
+
+        private void cmb_customer_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            ProcessRepair();
         }
     }
 }

@@ -53,6 +53,7 @@ namespace GuitarShop
             formRegistry.Add("Orders", typeof(OrderForm));
 
             tableRegistry.Add("Repairs", "Repairs");
+            formRegistry.Add("Repairs", typeof(RepairForm));
 
             tableRegistry.Add("Customers", "Customers");
             formRegistry.Add("Customers", typeof(CustomerForm));
@@ -92,7 +93,7 @@ namespace GuitarShop
                 "Instruments",
                 @"SELECT
                     ProductID AS ID,
-                    CategoryName AS 'CategoryForm',
+                    CategoryName AS 'Category',
                     SupplierName AS 'Supplier Name',
                     ProductName AS 'Product Name',
                     AmountInStock As 'Amount In Stock',
@@ -109,7 +110,7 @@ namespace GuitarShop
                 "Parts",
                 @"SELECT
                     ProductID AS ID,
-                    CategoryName AS 'CategoryForm',
+                    CategoryName AS 'Category',
                     SupplierName AS 'Supplier Name',
                     ProductName AS 'Product Name',
                     AmountInStock As 'Amount In Stock',

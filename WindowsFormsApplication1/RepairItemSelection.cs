@@ -15,12 +15,16 @@ namespace GuitarShop
     {
         RepairForm parent;
 
+        RepairItem repairItem;
+
         static SqlConnection cnn;
 
         public RepairItemSelection(RepairForm parent)
         {
             InitializeComponent();
             this.parent = parent;
+
+            repairItem = new RepairItem();
 
             cnn = new SqlConnection(Constants.ConnectionString);
 
@@ -33,6 +37,8 @@ namespace GuitarShop
                 MessageBox.Show("Error: the connection could not be opened.");
                 Close();
             }
+
+            loadItems();
         }
 
         private void loadItems()
@@ -41,23 +47,18 @@ namespace GuitarShop
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT ProductID, ProductName, Price FROM Products WHERE ProductType = 'instrument';";
+                command.CommandText = "SELECT ProductID, ProductName FROM Products";
 
-                // Create new SqlDataReader object and read data from the command.
                 try
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        List<string> customerList = new List<string>();
-
                         while (reader.Read())
                         {
-                            string displayString = reader[0].ToString() + " - " + reader[1] + " - " + reader[2];
-                            customerList.Add(displayString);
-                            //orderItemRegistry.Add(displayString, new RepairItem(int.Parse(reader[0].ToString()), decimal.Parse(reader[2].ToString()), reader[1].ToString()));
+                            ComboBoxItem cbi = new ComboBoxItem(reader[1].ToString(), Convert.ToInt32(reader[0]));
+                            cmb_Item.Items.Add(cbi);
+                            
                         }
-
-                        //cmb_orderItemSelect.Items.AddRange(customerList.ToArray());
                     }
                 }
                 catch (SqlException ex)
@@ -65,6 +66,32 @@ namespace GuitarShop
                     Console.WriteLine("Could not open Products.");
                 }
             }
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            repairItem.LaborPrice = updn_labor.Value;
+
+            parent.AddRepairItem(repairItem);
+
+            cnn.Close();
+            Close();
+        }
+
+        private void cmb_Item_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            repairItem.ProductID = (cmb_Item.SelectedItem as ComboBoxItem).IdentifyingValue;
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            cnn.Close();
+            Close();
+        }
+
+        private void txt_repairType_TextChanged(object sender, EventArgs e)
+        {
+            repairItem.RepairType = txt_repairType.Text;
         }
     }
 }

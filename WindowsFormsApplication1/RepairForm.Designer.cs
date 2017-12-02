@@ -51,6 +51,7 @@
             this.cmb_customer.Name = "cmb_customer";
             this.cmb_customer.Size = new System.Drawing.Size(414, 21);
             this.cmb_customer.TabIndex = 3;
+            this.cmb_customer.SelectedIndexChanged += new System.EventHandler(this.cmb_customer_SelectedIndexChanged_1);
             // 
             // lbl_customer
             // 
@@ -117,6 +118,7 @@
             this.btn_add.TabIndex = 36;
             this.btn_add.Text = "Create";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // lbl_repairItems
             // 
