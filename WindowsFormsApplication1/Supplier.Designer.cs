@@ -57,7 +57,7 @@
             this.SupplierName.Name = "SupplierName";
             this.SupplierName.Size = new System.Drawing.Size(76, 13);
             this.SupplierName.TabIndex = 1;
-            this.SupplierName.Text = "Suppiler Name";
+            this.SupplierName.Text = "Supplier Name";
             // 
             // FirstNameLabel
             // 
