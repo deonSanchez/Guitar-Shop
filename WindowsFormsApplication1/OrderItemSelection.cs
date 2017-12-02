@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GuitarShop
@@ -24,6 +20,9 @@ namespace GuitarShop
 
         private bool promoCodeIsValid = true;
 
+        /// <summary>
+        /// Form for OrderItemCreation
+        /// </summary>
         public OrderItemSelection(OrderForm parent)
         {
             InitializeComponent();
@@ -46,6 +45,9 @@ namespace GuitarShop
             lbl_validation.Visible = false;
         }
         
+        /// <summary>
+        /// Populate choices for Product selection combobox.
+        /// </summary>
         private void loadItems()
         {
             using (SqlCommand command = new SqlCommand())
@@ -55,29 +57,25 @@ namespace GuitarShop
                 command.CommandText = "SELECT ProductID, ProductName, Price FROM Products WHERE ProductType = 'instrument';";
 
                 // Create new SqlDataReader object and read data from the command.
-                try
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        List<string> customerList = new List<string>();
+                    List<string> customerList = new List<string>();
                                                 
-                        while (reader.Read())
-                        {
-                            string displayString = reader[0].ToString() + " - " + reader[1] + " - " + reader[2];
-                            customerList.Add(displayString);
-                            orderItemRegistry.Add(displayString, new OrderItem(int.Parse(reader[0].ToString()), decimal.Parse(reader[2].ToString()), reader[1].ToString()));
-                        }
-
-                        cmb_orderItemSelect.Items.AddRange(customerList.ToArray());
+                    while (reader.Read())
+                    {
+                        string displayString = reader[1] + " - " + reader[2];
+                        customerList.Add(displayString);
+                        orderItemRegistry.Add(displayString, new OrderItem(int.Parse(reader[0].ToString()), decimal.Parse(reader[2].ToString()), reader[1].ToString()));
                     }
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine("Could not open Products.");
+
+                    cmb_orderItemSelect.Items.AddRange(customerList.ToArray());
                 }
             }
         }
 
+        /// <summary>
+        /// Ensure that form is ready to submit before allowing the user to do so.
+        /// </summary>
         private void ValidateForm()
         {
             if(promoCodeIsValid && selected != null)
@@ -113,6 +111,9 @@ namespace GuitarShop
             Close();
         }
 
+        /// <summary>
+        /// Dynamically validate entered promotion code.
+        /// </summary>
         private void CheckPromoCode()
         {
             int promoCode = 0;
@@ -152,7 +153,6 @@ namespace GuitarShop
                 command.Parameters.AddWithValue("@ProductID", selected.ProductID);
                 command.Parameters.AddWithValue("@PromotionCode", Convert.ToInt32(txtb_promoCode.Text));
 
-                // TODO: Exception handling
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     Console.WriteLine(command.CommandText);

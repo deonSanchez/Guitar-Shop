@@ -51,7 +51,7 @@
             this.cmb_customer.Name = "cmb_customer";
             this.cmb_customer.Size = new System.Drawing.Size(414, 21);
             this.cmb_customer.TabIndex = 3;
-            this.cmb_customer.SelectedIndexChanged += new System.EventHandler(this.cmb_customer_SelectedIndexChanged_1);
+            this.cmb_customer.SelectedIndexChanged += new System.EventHandler(this.cmb_customer_SelectedIndexChanged);
             // 
             // lbl_customer
             // 
@@ -108,6 +108,7 @@
             this.btn_cancel.TabIndex = 37;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_add
             // 
@@ -139,6 +140,7 @@
             this.lv_repairItems.TabIndex = 42;
             this.lv_repairItems.UseCompatibleStateImageBehavior = false;
             this.lv_repairItems.View = System.Windows.Forms.View.Details;
+            this.lv_repairItems.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lv_repairItems_ItemChecked);
             // 
             // btn_repairItemsAdd
             // 

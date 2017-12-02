@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GuitarShop
@@ -129,7 +124,7 @@ namespace GuitarShop
                 @"SELECT
 	                PromotionCode AS 'Promo Code',
 	                ProductName AS 'Product',
-	                DiscountAmount AS 'Discount Amount',
+	                CONVERT(DECIMAL(10, 2), DiscountAmount) AS 'Discount Amount',
 	                Promotions.Description,
 	                StartDate AS 'Start Date',
 	                EndDate AS 'End Date'
@@ -187,7 +182,7 @@ namespace GuitarShop
 	                EmployeeType AS Type,
 	                DateHired AS 'Date Hired',
 	                PrivilegeLevel AS 'Privilege Level',
-	                OverideCode
+	                OverideCode AS 'Override Code'
                 FROM Employees
                 JOIN Administrators ON AdminID = EmployeeID;"
             );

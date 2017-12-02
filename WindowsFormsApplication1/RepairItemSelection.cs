@@ -41,13 +41,29 @@ namespace GuitarShop
             loadItems();
         }
 
+        /// <summary>
+        /// Ensure that form is ready to submit before allowing the user to do so,
+        /// </summary>
+        private void ValidateForm()
+        {
+            if (cmb_Item.SelectedIndex > -1
+                && txt_repairType.Text != "")
+            {
+                btn_add.Enabled = true;
+            }
+            else
+            {
+                btn_add.Enabled = false;
+            }
+        }
+
         private void loadItems()
         {
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT ProductID, ProductName FROM Products";
+                command.CommandText = "SELECT ProductID, ProductName FROM Products WHERE ProductType = 'part'";
 
                 try
                 {
@@ -81,6 +97,7 @@ namespace GuitarShop
         private void cmb_Item_SelectedIndexChanged(object sender, EventArgs e)
         {
             repairItem.ProductID = (cmb_Item.SelectedItem as ComboBoxItem).IdentifyingValue;
+            ValidateForm();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -92,6 +109,7 @@ namespace GuitarShop
         private void txt_repairType_TextChanged(object sender, EventArgs e)
         {
             repairItem.RepairType = txt_repairType.Text;
+            ValidateForm();
         }
     }
 }

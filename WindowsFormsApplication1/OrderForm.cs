@@ -51,6 +51,7 @@ namespace GuitarShop
             {
                 order = new Order();
                 payment = new Payment();
+                order.ShipDate = dt_ship.Value;
             }
             else
             {
@@ -76,7 +77,7 @@ namespace GuitarShop
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT CustomerID, ShipAmount, TaxAmount, ShipAddressID FROM Orders WHERE OrderId = @OrderID";
+                command.CommandText = "SELECT CustomerID, ShipAmount, TaxAmount, ShipAddressID, ShipDate FROM Orders WHERE OrderId = @OrderID";
 
                 command.Parameters.AddWithValue("@OrderID", editItemID);
 
@@ -89,6 +90,7 @@ namespace GuitarShop
                         order.ShipAmount = Convert.ToDecimal(reader[1]);
                         order.TaxAmount = Convert.ToDecimal(reader[2]);
                         order.ShippingAddressID = Convert.ToInt32(reader[3]);
+                        order.ShipDate = Convert.ToDateTime(reader[4]);
                     }
                 }
             }
@@ -166,6 +168,7 @@ namespace GuitarShop
             txtb_cardNumber.Text = payment.CardNumber;
             cmb_cardType.Text = payment.CardType;
             updn_shipping.Value = order.ShipAmount;
+            dt_ship.Value = order.ShipDate;
             txtb_tax.Text = order.TaxAmount.ToString("F");
 
         }
@@ -280,7 +283,6 @@ namespace GuitarShop
         /// <summary>
         /// Add an OrderItem to the list of stages OrderItems for this Order.
         /// </summary>
-        /// <param name="oi"></param>
         public void addOrderItem(OrderItem oi)
         {
             ListViewItem oiLV = new ListViewItem();
@@ -381,11 +383,12 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, CURRENT_TIMESTAMP, @ShipAddressID); SELECT SCOPE_IDENTITY()";
+                    command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, @ShipDate, @ShipAddressID); SELECT SCOPE_IDENTITY()";
 
                     command.Parameters.AddWithValue("@CustomerID", order.CustomerID);
                     command.Parameters.AddWithValue("@ShipAmount", order.ShipAmount);
                     command.Parameters.AddWithValue("@TaxAmount", order.TaxAmount);
+                    command.Parameters.AddWithValue("@ShipDate", order.ShipDate);
                     command.Parameters.AddWithValue("@ShipAddressID", order.ShippingAddressID);
 
                     autoOrderID = Convert.ToInt32(command.ExecuteScalar());
@@ -399,12 +402,13 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "UPDATE Orders SET CustomerID = @CustomerID, OrderDate = CURRENT_TIMESTAMP, ShipAmount = @ShipAmount, TaxAmount = @TaxAmount, ShipDate = CURRENT_TIMESTAMP, ShipAddressID = @ShipAddressID WHERE OrderID = @OrderID";
+                    command.CommandText = "UPDATE Orders SET CustomerID = @CustomerID, OrderDate = CURRENT_TIMESTAMP, ShipAmount = @ShipAmount, TaxAmount = @TaxAmount, ShipDate = @ShipDate, ShipAddressID = @ShipAddressID WHERE OrderID = @OrderID";
 
                     command.Parameters.AddWithValue("@OrderID", order.OrderID);
                     command.Parameters.AddWithValue("@CustomerID", order.CustomerID);
                     command.Parameters.AddWithValue("@ShipAmount", order.ShipAmount);
                     command.Parameters.AddWithValue("@TaxAmount", order.TaxAmount);
+                    command.Parameters.AddWithValue("@ShipDate", order.ShipDate);
                     command.Parameters.AddWithValue("@ShipAddressID", order.ShippingAddressID);
                     
                     autoOrderID = Convert.ToInt32(command.ExecuteScalar());
@@ -586,6 +590,11 @@ namespace GuitarShop
         {
             order.ShippingAddressID = (cmb_shippingAddress.SelectedItem as ComboBoxItem).IdentifyingValue;
             ValidateForm();
+        }
+
+        private void dt_ship_ValueChanged(object sender, EventArgs e)
+        {
+            order.ShipDate = dt_ship.Value;
         }
     }
 }

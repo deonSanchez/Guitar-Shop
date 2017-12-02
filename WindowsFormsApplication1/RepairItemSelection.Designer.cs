@@ -113,6 +113,7 @@
             // 
             // btn_add
             // 
+            this.btn_add.Enabled = false;
             this.btn_add.Location = new System.Drawing.Point(116, 166);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
@@ -138,7 +139,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RepairItemSelection";
-            this.Text = "RepairItemSelection";
+            this.Text = "Repair Items";
             ((System.ComponentModel.ISupportInitialize)(this.updn_labor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
