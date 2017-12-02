@@ -165,9 +165,7 @@ namespace GuitarShop
                 btn_add.Enabled = false;
             }
         }
-
-
-
+        
         private void ProcessProduct()
         {
             if (creating)
@@ -188,26 +186,18 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@Price", product.Price);
                     command.Parameters.AddWithValue("@DateAdded", product.DateAdded);
 
-                    try
-                    {
-                        command.ExecuteScalar();
-                        MessageBox.Show("Product succefully created!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write order.");
-                        return;
-                    }
+                    command.ExecuteScalar();
+                    MessageBox.Show("Product succefully created!");
                 }
             }
             else
             {
-                // Edit Order
+                // Edit Product
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "Update Products SET CategoryID = @CategoryID, SupplierID = @SupplierID, ProductName = @ProductName, ProductType = @ProductType, Description = @Description, AmountInStock = @AmountInStock, Price = @Price, DateAdded = @DateAdded) WHERE ProductID = @ProductID";
+                    command.CommandText = "Update Products SET CategoryID = @CategoryID, SupplierID = @SupplierID, ProductName = @ProductName, ProductType = @ProductType, Description = @Description, AmountInStock = @AmountInStock, Price = @Price, DateAdded = @DateAdded WHERE ProductID = @ProductID";
 
                     command.Parameters.AddWithValue("@ProductID", editItemID);
                     command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
@@ -219,16 +209,8 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@Price", product.Price);
                     command.Parameters.AddWithValue("@DateAdded", product.DateAdded);
 
-                    try
-                    {
-                        command.ExecuteScalar();
-                        MessageBox.Show("Product succesfully updated!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write order.");
-                        return;
-                    }
+                    command.ExecuteScalar();
+                    MessageBox.Show("Product succesfully updated!");
                 }
             }
 
@@ -274,7 +256,7 @@ namespace GuitarShop
 
         private void num_price_ValueChanged(object sender, EventArgs e)
         {
-            product.Price = num_stock.Value;
+            product.Price = num_price.Value;
             ValidateForm();
         }
 
@@ -287,6 +269,12 @@ namespace GuitarShop
         private void btn_add_Click(object sender, EventArgs e)
         {
             ProcessProduct();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            cnn.Close();
+            Close();
         }
     }
 }

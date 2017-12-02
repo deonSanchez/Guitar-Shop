@@ -217,6 +217,7 @@
             this.btn_cancel.TabIndex = 39;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_add
             // 
@@ -252,8 +253,11 @@
             this.Controls.Add(this.lbl_supplier);
             this.Controls.Add(this.cmb_cat);
             this.Controls.Add(this.lbl_cat);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ProductForm";
-            this.Text = "ProductForm";
+            this.Text = "Products";
             ((System.ComponentModel.ISupportInitialize)(this.num_stock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_price)).EndInit();
             this.ResumeLayout(false);

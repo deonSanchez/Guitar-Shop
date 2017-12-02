@@ -9,19 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/// <summary>
-/// General TODOS:
-/// 
-/// - Abstract SQL connection prep/teardown. Because we have to repeat the same steps so many times
-///   let's find a way to not re-write so much code.
-/// 
-/// - Better data source management. Pull directly from application properties, avoid duplicating sources.
-/// 
-/// - Clean up event handlers accidentally created in form designer.
-/// 
-/// - Either make forms more rigid or more responsive.
-/// 
-/// </summary>
 namespace GuitarShop
 {
     public partial class MainForm : Form
@@ -61,6 +48,8 @@ namespace GuitarShop
             formRegistry.Add("Customers", typeof(CustomerForm));
 
             tableRegistry.Add("Suppliers", "Suppliers");
+
+            tableRegistry.Add("Employees", "Employees");
             tableRegistry.Add("Administrators", "Administrators");
 
             
@@ -167,6 +156,38 @@ namespace GuitarShop
 	                Employees.FirstName + ' ' + Employees.LastName AS 'Employee Contact'
                 FROM Suppliers
                 JOIN Employees ON Suppliers.EmployeeContact = Employees.EmployeeID;"
+            );
+
+            queryRegistry.Add(
+                "Employees",
+                @"SELECT
+	                EmployeeID AS ID,
+	                Title,
+	                '********' AS [Password],
+	                EmailAddress AS 'Email Address',
+	                FirstName + ' ' + LastName AS 'Full Name',
+	                BirthDate AS 'Birth Date',
+	                EmployeeType AS Type,
+	                DateHired AS 'Date Hired',
+	                PrivilegeLevel AS 'Privilege Level'
+                FROM Employees;"
+            );
+
+            queryRegistry.Add(
+                "Administrators",
+                @"SELECT
+	                EmployeeID AS ID,
+	                Title,
+	                '********' AS [Password],
+	                EmailAddress AS 'Email Address',
+	                FirstName + ' ' + LastName AS 'Full Name',
+	                BirthDate AS 'Birth Date',
+	                EmployeeType AS Type,
+	                DateHired AS 'Date Hired',
+	                PrivilegeLevel AS 'Privilege Level',
+	                OverideCode
+                FROM Employees
+                JOIN Administrators ON AdminID = EmployeeID;"
             );
         }
         

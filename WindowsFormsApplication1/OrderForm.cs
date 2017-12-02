@@ -468,11 +468,20 @@ namespace GuitarShop
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = cnn;
-                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, 101, @Quantity)";
+                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, @PromotionCode, @Quantity)";
 
                         command.Parameters.AddWithValue("@OrderID", autoOrderID);
                         command.Parameters.AddWithValue("@ProductID", oi.ProductID);
                         command.Parameters.AddWithValue("@ItemPrice", oi.ItemPrice);
+
+                        if (oi.PromotionCode != 0)
+                        {
+                            command.Parameters.AddWithValue("@PromotionCode", oi.PromotionCode);
+                        } else
+                        {
+                            command.Parameters.AddWithValue("@PromotionCode", DBNull.Value);
+                        }
+
                         command.Parameters.AddWithValue("@Quantity", oi.Quantity);
 
                         try
@@ -507,11 +516,21 @@ namespace GuitarShop
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = cnn;
-                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, 101, @Quantity)";
+                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, @PromotionCode, @Quantity)";
 
                         command.Parameters.AddWithValue("@OrderID", order.OrderID);
                         command.Parameters.AddWithValue("@ProductID", oi.ProductID);
                         command.Parameters.AddWithValue("@ItemPrice", oi.ItemPrice);
+
+                        if (oi.PromotionCode != 0)
+                        {
+                            command.Parameters.AddWithValue("@PromotionCode", oi.PromotionCode);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@PromotionCode", DBNull.Value);
+                        }
+
                         command.Parameters.AddWithValue("@Quantity", oi.Quantity);
 
                         command.ExecuteNonQuery();
