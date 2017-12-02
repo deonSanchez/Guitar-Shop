@@ -183,7 +183,7 @@ namespace GuitarShop
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OrderForm of = new OrderForm();
+            OrderForm of = new OrderForm(true, 0);
             of.Show();
             of.FormClosed += orderForm_closed;
         }
@@ -217,7 +217,7 @@ namespace GuitarShop
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             // TODO: This ought to be contextual
-            OrderForm of = new OrderForm();
+            OrderForm of = new OrderForm(true, 0);
             of.Show();
         }
 
@@ -306,6 +306,41 @@ namespace GuitarShop
             CustomerForm cf = new CustomerForm();
             cf.Show();
             cf.FormClosed += orderForm_closed;
+        }
+
+        private void lvProducts_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvProducts_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            // If at least one item is checked, then the user may remove or edit checked items from the list.
+            if (lvProducts.CheckedItems.Count == 1)
+            {
+                toolStripEdit.Enabled = true;
+            } 
+            else
+            {
+                toolStripEdit.Enabled = false;
+            }
+
+            if (lvProducts.CheckedItems.Count > 0)
+            {
+                toolStripDelete.Enabled = true;
+            }
+            else
+            {
+                toolStripDelete.Enabled = false;
+            }
+        }
+
+        private void toolStripEdit_Click(object sender, EventArgs e)
+        {
+            int selectedItemID = Convert.ToInt32(lvProducts.CheckedItems[0].SubItems[0].Text);
+
+            OrderForm of = new OrderForm(false, selectedItemID);
+            of.Show();
         }
     }
 }

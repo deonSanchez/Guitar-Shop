@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Categories");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Instruments");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Parts");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Inventory", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("OrderItems");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Orders", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Customers");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Administrators");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Categories");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Instruments");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Parts");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Inventory", new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("OrderItems");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Orders", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Customers");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Administrators");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,12 +56,9 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.lvProducts = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEdit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDelete = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scMain)).BeginInit();
             this.scMain.Panel1.SuspendLayout();
@@ -193,27 +190,27 @@
             this.treeView1.HotTracking = true;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node4";
-            treeNode1.Text = "Categories";
-            treeNode2.Name = "Node5";
-            treeNode2.Text = "Instruments";
-            treeNode3.Name = "Node6";
-            treeNode3.Text = "Parts";
-            treeNode4.Name = "nodeInventory";
-            treeNode4.Text = "Inventory";
-            treeNode5.Name = "Node0";
-            treeNode5.Text = "OrderItems";
-            treeNode6.Name = "nodeOrders";
-            treeNode6.Text = "Orders";
-            treeNode7.Name = "Node0";
-            treeNode7.Text = "Customers";
-            treeNode8.Name = "Node0";
-            treeNode8.Text = "Administrators";
+            treeNode9.Name = "Node4";
+            treeNode9.Text = "Categories";
+            treeNode10.Name = "Node5";
+            treeNode10.Text = "Instruments";
+            treeNode11.Name = "Node6";
+            treeNode11.Text = "Parts";
+            treeNode12.Name = "nodeInventory";
+            treeNode12.Text = "Inventory";
+            treeNode13.Name = "Node0";
+            treeNode13.Text = "OrderItems";
+            treeNode14.Name = "nodeOrders";
+            treeNode14.Text = "Orders";
+            treeNode15.Name = "Node0";
+            treeNode15.Text = "Customers";
+            treeNode16.Name = "Node0";
+            treeNode16.Text = "Administrators";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            treeNode12,
+            treeNode14,
+            treeNode15,
+            treeNode16});
             this.treeView1.Size = new System.Drawing.Size(138, 529);
             this.treeView1.TabIndex = 3;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -231,45 +228,20 @@
             this.lvProducts.TabIndex = 0;
             this.lvProducts.UseCompatibleStateImageBehavior = false;
             this.lvProducts.View = System.Windows.Forms.View.Details;
+            this.lvProducts.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvProducts_ItemChecked);
+            this.lvProducts.SelectedIndexChanged += new System.EventHandler(this.lvProducts_SelectedIndexChanged_1);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripSeparator1,
             this.toolStripButton1,
-            this.toolStripButton5,
-            this.toolStripButton4});
+            this.toolStripEdit,
+            this.toolStripDelete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(913, 25);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::GuitarShop.Properties.Resources.arrow_back_16xMD;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(32, 22);
-            this.toolStripButton2.Text = "Previous";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::GuitarShop.Properties.Resources.arrow_Forward_16xMD;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "toolStripButton3";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton1
             // 
@@ -280,22 +252,25 @@
             this.toolStripButton1.Text = "New Item";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // toolStripButton5
+            // toolStripEdit
             // 
-            this.toolStripButton5.Image = global::GuitarShop.Properties.Resources.PencilTool_206;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(74, 22);
-            this.toolStripButton5.Text = "Edit Item";
+            this.toolStripEdit.Enabled = false;
+            this.toolStripEdit.Image = global::GuitarShop.Properties.Resources.PencilTool_206;
+            this.toolStripEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripEdit.Name = "toolStripEdit";
+            this.toolStripEdit.Size = new System.Drawing.Size(74, 22);
+            this.toolStripEdit.Text = "Edit Item";
+            this.toolStripEdit.Click += new System.EventHandler(this.toolStripEdit_Click);
             // 
-            // toolStripButton4
+            // toolStripDelete
             // 
-            this.toolStripButton4.Image = global::GuitarShop.Properties.Resources.DeleteTablefromDatabase_270_24;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(107, 22);
-            this.toolStripButton4.Text = "Delete Selected";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            this.toolStripDelete.Enabled = false;
+            this.toolStripDelete.Image = global::GuitarShop.Properties.Resources.DeleteTablefromDatabase_270_24;
+            this.toolStripDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDelete.Name = "toolStripDelete";
+            this.toolStripDelete.Size = new System.Drawing.Size(107, 22);
+            this.toolStripDelete.Text = "Delete Selected";
+            this.toolStripDelete.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // MainForm
             // 
@@ -335,11 +310,8 @@
         private System.Windows.Forms.ToolStripMenuItem showAllToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripSplitButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton toolStripDelete;
+        private System.Windows.Forms.ToolStripButton toolStripEdit;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ListView lvProducts;

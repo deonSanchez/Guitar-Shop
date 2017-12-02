@@ -207,6 +207,7 @@ namespace GuitarShop
             // 
             // btn_sumbit
             // 
+            this.btn_sumbit.Enabled = false;
             this.btn_sumbit.Location = new System.Drawing.Point(580, 472);
             this.btn_sumbit.Name = "btn_sumbit";
             this.btn_sumbit.Size = new System.Drawing.Size(75, 23);
@@ -270,6 +271,7 @@ namespace GuitarShop
             this.cmb_billlingAddress.Name = "cmb_billlingAddress";
             this.cmb_billlingAddress.Size = new System.Drawing.Size(640, 21);
             this.cmb_billlingAddress.TabIndex = 9;
+            this.cmb_billlingAddress.SelectedIndexChanged += new System.EventHandler(this.cmb_billlingAddress_SelectedIndexChanged);
             // 
             // lbl_shippingAddress
             // 
@@ -290,6 +292,7 @@ namespace GuitarShop
             this.cmb_shippingAddress.Name = "cmb_shippingAddress";
             this.cmb_shippingAddress.Size = new System.Drawing.Size(640, 21);
             this.cmb_shippingAddress.TabIndex = 11;
+            this.cmb_shippingAddress.SelectedIndexChanged += new System.EventHandler(this.cmb_shippingAddress_SelectedIndexChanged);
             // 
             // OrderForm
             // 

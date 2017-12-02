@@ -15,7 +15,6 @@ namespace GuitarShop
         public int CustomerID = 1;
         public decimal ShipAmount = 0;
         public decimal TaxAmount = 0;
-        public string CardType = "";
-        public string CardNumber = "";  
+        public int ShippingAddressID;
     }
 }
