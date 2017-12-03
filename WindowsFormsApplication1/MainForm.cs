@@ -58,6 +58,8 @@ namespace GuitarShop
             formRegistry.Add("Customers", typeof(CustomerForm));
 
             tableRegistry.Add("Suppliers", "Suppliers");
+            formRegistry.Add("Suppliers", typeof(SupplierForm));
+
             tableRegistry.Add("Administrators", "Administrators");
 
             
