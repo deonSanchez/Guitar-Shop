@@ -10,7 +10,7 @@ namespace GuitarShop
     class Constants
     {
         public static string ConnectionString {
-            get { return @"Data Source=localhost\LOCAL;Initial Catalog=MyGuitarShop;Integrated Security=True"; }
+            get { return @"Data Source=DEONSANCHEZEB14;Initial Catalog=MyGuitarShop;Integrated Security=True"; }
         }
 
         public static void SetComboBoxToItemWithID(ComboBox cm, int ID)

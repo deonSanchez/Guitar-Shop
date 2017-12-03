@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuitarShop
 {
-    class SupplierAddress
+    public class SupplierAddress
     {
         public int SupAddressID;
         public int SupplierID;

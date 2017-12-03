@@ -20,7 +20,7 @@ namespace GuitarShop
 
         Employees employees;
     
-        public Staff(bool creating, int editItemID)
+        public StaffForm(bool creating, int editItemID)
         {
             InitializeComponent();
 
@@ -75,10 +75,10 @@ namespace GuitarShop
                         employees.lastName = reader[2].ToString();
                         employees.emailAddress = reader[3].ToString();
                         employees.password = reader[4].ToString();
-                        employees.birthDate = Convert.ToInt32(reader[5]);
+                      //  employees.birthDate = Convert.ToInt32(reader[5]);
                         employees.employeeType = reader[6].ToString();
-                        employees.privilegeLevel = reader[7].ToString();
-                        employees.dateHired = Convert.ToInt32(reader[8]);
+                      //  employees.privilegeLevel = reader[7].ToString();
+                       // employees.dateHired = Convert.ToInt32(reader[8]);
                     }
                 }
 

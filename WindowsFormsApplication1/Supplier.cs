@@ -10,7 +10,7 @@ namespace GuitarShop
     {
         public int SupplierID;
         public string SupplierName;
-        public string AddressID;
+        public int AddressID;
         public string ContactFirstName;
         public string ContactLastName;
         public string PhoneNumber;

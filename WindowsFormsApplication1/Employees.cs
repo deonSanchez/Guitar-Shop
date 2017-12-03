@@ -10,10 +10,10 @@ namespace GuitarShop
     {
         public int EmployeeID;
         public string title;
-        public int birthDate;
+        public DateTime birthDate;
         public string employeeType;
-        public int dateHired;
-        public string privilegeLevel;
+        public DateTime dateHired;
+        public Boolean privilegeLevel;
         public string emailAddress;
         public string password;
         public string firstName;
