@@ -40,5 +40,10 @@ namespace GuitarShop
             (parent as CustomerForm).AddAddress(address);
             Close();
         }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
