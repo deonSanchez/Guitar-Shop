@@ -1,41 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
 
-/// <summary>
-/// Create a new order with user-provided data values.
-/// 
-/// TODO: validation. Check out https://docs.microsoft.com/en-us/dotnet/framework/winforms/user-input-validation-in-windows-forms.
-/// 
-/// TODO: Data binding - audio update total fields, etc.
-/// 
-/// Danny:
-/// Orders
-/// OrderItems
-/// Payments
-/// Repairs
-/// RepairItems
-/// Products
-/// Promotions
-/// 
-/// Deon:
-/// Employees
-/// Cusomters
-/// Administrators
-/// Suppliers
-/// Addreses
-/// 
-/// 
-/// 
-/// </summary>
 namespace GuitarShop
 {
     public partial class OrderForm : Form
@@ -50,6 +18,9 @@ namespace GuitarShop
 
         SqlConnection cnn;
 
+        /// <summary>
+        /// Form for creating a modifying Orders.
+        /// </summary>
         public OrderForm(bool creating, int editItemID)
         {
             InitializeComponent();
@@ -80,18 +51,20 @@ namespace GuitarShop
             {
                 order = new Order();
                 payment = new Payment();
+                order.ShipDate = dt_ship.Value;
             }
             else
             {
                 this.creating = false;
                 this.editItemID = editItemID;
-
                 btn_sumbit.Text = "Update";
-
                 PreloadData();
             }
         }
 
+        /// <summary>
+        /// If editing a previously existing order, preload all fields.
+        /// </summary>
         private void PreloadData()
         {
             order = new Order();
@@ -104,7 +77,7 @@ namespace GuitarShop
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT CustomerID, ShipAmount, TaxAmount, ShipAddressID FROM Orders WHERE OrderId = @OrderID";
+                command.CommandText = "SELECT CustomerID, ShipAmount, TaxAmount, ShipAddressID, ShipDate FROM Orders WHERE OrderId = @OrderID";
 
                 command.Parameters.AddWithValue("@OrderID", editItemID);
 
@@ -117,6 +90,7 @@ namespace GuitarShop
                         order.ShipAmount = Convert.ToDecimal(reader[1]);
                         order.TaxAmount = Convert.ToDecimal(reader[2]);
                         order.ShippingAddressID = Convert.ToInt32(reader[3]);
+                        order.ShipDate = Convert.ToDateTime(reader[4]);
                     }
                 }
             }
@@ -194,10 +168,14 @@ namespace GuitarShop
             txtb_cardNumber.Text = payment.CardNumber;
             cmb_cardType.Text = payment.CardType;
             updn_shipping.Value = order.ShipAmount;
+            dt_ship.Value = order.ShipDate;
             txtb_tax.Text = order.TaxAmount.ToString("F");
 
         }
 
+        /// <summary>
+        /// Load available options for Customer combobox.
+        /// </summary>
         private void LoadCustomers()
         {
             using (SqlCommand command = new SqlCommand())
@@ -207,23 +185,20 @@ namespace GuitarShop
                 command.CommandText = "SELECT CustomerID, EmailAddress FROM Customers";
 
                 // Create new SqlDataReader object and read data from the command.
-                try
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            ComboBoxItem cbi = new ComboBoxItem(reader[1].ToString(), Convert.ToInt32(reader[0]));
-                            cmb_customer.Items.Add(cbi);                            
-                        }
+                        ComboBoxItem cbi = new ComboBoxItem(reader[1].ToString(), Convert.ToInt32(reader[0]));
+                        cmb_customer.Items.Add(cbi);                            
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Could not open customers.");
                 }
             }
         }
+
+        /// <summary>
+        /// Load available addresses for the selected customer.
+        /// </summary>
         private void LoadShippingAddresses(int custId)
         {
             // Load the selected customer's avaliable addresses
@@ -274,6 +249,9 @@ namespace GuitarShop
             }
         }
 
+        /// <summary>
+        /// Ensure that form is ready to submit before allowing the user to do so,
+        /// </summary>
         private void ValidateForm()
         {
             if (lv_orderItems.Items.Count > 0
@@ -290,13 +268,10 @@ namespace GuitarShop
 
         private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox cmbox = (ComboBox) sender;
-
-            int custId = (cmbox.SelectedItem as ComboBoxItem).IdentifyingValue;
+            int custId = (cmb_customer.SelectedItem as ComboBoxItem).IdentifyingValue;
             order.CustomerID = custId;
 
             LoadShippingAddresses(custId);
-
             ValidateForm();
         }
 
@@ -305,6 +280,9 @@ namespace GuitarShop
             ProcessOrder();
         }
 
+        /// <summary>
+        /// Add an OrderItem to the list of stages OrderItems for this Order.
+        /// </summary>
         public void addOrderItem(OrderItem oi)
         {
             ListViewItem oiLV = new ListViewItem();
@@ -321,17 +299,12 @@ namespace GuitarShop
 
                 command.Parameters.AddWithValue("@ProductID", oi.ProductID);
 
-                // TODO: Exception handling
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     // Should always be true
                     if (reader.Read())
                     {
                         productName = reader[0].ToString();
-                    }
-                    else
-                    {
-                        // Somehow there was an error applying the promo code to the order (perhaps it just expired)
                     }
                 }
             }
@@ -348,17 +321,12 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@ProductID", oi.ProductID);
                     command.Parameters.AddWithValue("@PromotionCode", oi.PromotionCode);
 
-                    // TODO: Exception handling
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         // Should always be true
                         if (reader.Read())
                         {
                             discountAmount = (decimal)reader[0];
-                        }
-                        else
-                        {
-                            // Somehow there was an error applying the promo code to the order (perhaps it just expired)
                         }
                     }
                 }
@@ -382,6 +350,9 @@ namespace GuitarShop
             ValidateForm();
         }
 
+        /// <summary>
+        /// Rollup staged OrderItems and display total
+        /// </summary>
         public void CalcTotals()
         {
             decimal totalPrice = 0;
@@ -393,13 +364,14 @@ namespace GuitarShop
             }
 
             txtb_subtotal.Text = totalPrice.ToString("F");
-
-            order.TaxAmount = totalPrice * (decimal)0.07;
+            order.TaxAmount = totalPrice * (decimal) 0.07;
             txtb_tax.Text = order.TaxAmount.ToString("F");
-
             txtb_orderTotal.Text = ((totalPrice + order.TaxAmount) + updn_shipping.Value).ToString("F");
         }
 
+        /// <summary>
+        /// Proccess Order and commit changes to database
+        /// </summary>
         private void ProcessOrder()
         {
             int autoOrderID = 0;
@@ -411,23 +383,16 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, CURRENT_TIMESTAMP, @ShipAddressID); SELECT SCOPE_IDENTITY()";
+                    command.CommandText = "INSERT INTO Orders (CustomerID, OrderDate, ShipAmount, TaxAmount, ShipDate, ShipAddressID) VALUES (@CustomerID, CURRENT_TIMESTAMP, @ShipAmount, @TaxAmount, @ShipDate, @ShipAddressID); SELECT SCOPE_IDENTITY()";
 
                     command.Parameters.AddWithValue("@CustomerID", order.CustomerID);
                     command.Parameters.AddWithValue("@ShipAmount", order.ShipAmount);
                     command.Parameters.AddWithValue("@TaxAmount", order.TaxAmount);
+                    command.Parameters.AddWithValue("@ShipDate", order.ShipDate);
                     command.Parameters.AddWithValue("@ShipAddressID", order.ShippingAddressID);
 
-                    try
-                    {
-                        autoOrderID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Order Succefully Placed!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write order.");
-                        return;
-                    }
+                    autoOrderID = Convert.ToInt32(command.ExecuteScalar());
+                    MessageBox.Show("Order Succefully Placed!");
                 }
             }
             else
@@ -437,24 +402,17 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "UPDATE Orders SET CustomerID = @CustomerID, OrderDate = CURRENT_TIMESTAMP, ShipAmount = @ShipAmount, TaxAmount = @TaxAmount, ShipDate = CURRENT_TIMESTAMP, ShipAddressID = @ShipAddressID WHERE OrderID = @OrderID";
+                    command.CommandText = "UPDATE Orders SET CustomerID = @CustomerID, OrderDate = CURRENT_TIMESTAMP, ShipAmount = @ShipAmount, TaxAmount = @TaxAmount, ShipDate = @ShipDate, ShipAddressID = @ShipAddressID WHERE OrderID = @OrderID";
 
                     command.Parameters.AddWithValue("@OrderID", order.OrderID);
                     command.Parameters.AddWithValue("@CustomerID", order.CustomerID);
                     command.Parameters.AddWithValue("@ShipAmount", order.ShipAmount);
                     command.Parameters.AddWithValue("@TaxAmount", order.TaxAmount);
+                    command.Parameters.AddWithValue("@ShipDate", order.ShipDate);
                     command.Parameters.AddWithValue("@ShipAddressID", order.ShippingAddressID);
-
-                    try
-                    {
-                        autoOrderID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Order Succefully Updated!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write order.");
-                        return;
-                    }
+                    
+                    autoOrderID = Convert.ToInt32(command.ExecuteScalar());
+                    MessageBox.Show("Order Succefully Updated!");
                 }
             }
 
@@ -468,21 +426,23 @@ namespace GuitarShop
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = cnn;
-                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, 101, @Quantity)";
+                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, @PromotionCode, @Quantity)";
 
                         command.Parameters.AddWithValue("@OrderID", autoOrderID);
                         command.Parameters.AddWithValue("@ProductID", oi.ProductID);
                         command.Parameters.AddWithValue("@ItemPrice", oi.ItemPrice);
-                        command.Parameters.AddWithValue("@Quantity", oi.Quantity);
 
-                        try
+                        if (oi.PromotionCode != 0)
                         {
-                            command.ExecuteNonQuery();
+                            command.Parameters.AddWithValue("@PromotionCode", oi.PromotionCode);
                         }
-                        catch (SqlException ex)
+                        else
                         {
-                            Console.WriteLine("Could not write OrderItem.");
+                            command.Parameters.AddWithValue("@PromotionCode", DBNull.Value);
                         }
+
+                        command.Parameters.AddWithValue("@Quantity", oi.Quantity);
+                        command.ExecuteNonQuery();
                     }
                 }
             }
@@ -507,11 +467,21 @@ namespace GuitarShop
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = cnn;
-                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, 101, @Quantity)";
+                        command.CommandText = "INSERT INTO OrderItems(OrderID, ProductID, ItemPrice, PromotionCode, Quantity) VALUES (@OrderID, @ProductID, @ItemPrice, @PromotionCode, @Quantity)";
 
                         command.Parameters.AddWithValue("@OrderID", order.OrderID);
                         command.Parameters.AddWithValue("@ProductID", oi.ProductID);
                         command.Parameters.AddWithValue("@ItemPrice", oi.ItemPrice);
+
+                        if (oi.PromotionCode != 0)
+                        {
+                            command.Parameters.AddWithValue("@PromotionCode", oi.PromotionCode);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@PromotionCode", DBNull.Value);
+                        }
+
                         command.Parameters.AddWithValue("@Quantity", oi.Quantity);
 
                         command.ExecuteNonQuery();
@@ -533,15 +503,7 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@CardNumber", payment.CardNumber);
                     command.Parameters.AddWithValue("@BillingAddressID", payment.BillingAddressID);
 
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write payment.");
-                        return;
-                    }
+                    command.ExecuteNonQuery();
                 }
             }
             else
@@ -558,16 +520,8 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@CardType", payment.CardType);
                     command.Parameters.AddWithValue("@CardNumber", payment.CardNumber);
                     command.Parameters.AddWithValue("@BillingAddressID", payment.BillingAddressID);
-
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write payment.");
-                        return;
-                    }
+                    
+                    command.ExecuteNonQuery();
                 }
             }
 
@@ -577,15 +531,13 @@ namespace GuitarShop
 
         private void cmb_cardType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox cmbox = (ComboBox)sender;
-            payment.CardType = (string)cmbox.SelectedItem;
+            payment.CardType = cmb_cardType.SelectedItem.ToString();
             ValidateForm();
         }
 
         private void txtb_cardNumber_TextChanged(object sender, EventArgs e)
         {
-            TextBox txtbox = (TextBox)sender;
-            payment.CardNumber = txtbox.Text;
+            payment.CardNumber = txtb_cardNumber.Text;
             ValidateForm();
         }
 
@@ -638,6 +590,11 @@ namespace GuitarShop
         {
             order.ShippingAddressID = (cmb_shippingAddress.SelectedItem as ComboBoxItem).IdentifyingValue;
             ValidateForm();
+        }
+
+        private void dt_ship_ValueChanged(object sender, EventArgs e)
+        {
+            order.ShipDate = dt_ship.Value;
         }
     }
 }

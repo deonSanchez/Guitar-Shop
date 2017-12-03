@@ -53,6 +53,8 @@ namespace GuitarShop
             this.cmb_billlingAddress = new System.Windows.Forms.ComboBox();
             this.lbl_shippingAddress = new System.Windows.Forms.Label();
             this.cmb_shippingAddress = new System.Windows.Forms.ComboBox();
+            this.lbl_shipDate = new System.Windows.Forms.Label();
+            this.dt_ship = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.updn_shipping)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +101,7 @@ namespace GuitarShop
             // lbl_orderItems
             // 
             this.lbl_orderItems.AutoSize = true;
-            this.lbl_orderItems.Location = new System.Drawing.Point(12, 188);
+            this.lbl_orderItems.Location = new System.Drawing.Point(12, 223);
             this.lbl_orderItems.Name = "lbl_orderItems";
             this.lbl_orderItems.Size = new System.Drawing.Size(61, 13);
             this.lbl_orderItems.TabIndex = 0;
@@ -109,7 +111,7 @@ namespace GuitarShop
             // 
             this.lv_orderItems.Alignment = System.Windows.Forms.ListViewAlignment.Default;
             this.lv_orderItems.CheckBoxes = true;
-            this.lv_orderItems.Location = new System.Drawing.Point(15, 204);
+            this.lv_orderItems.Location = new System.Drawing.Point(15, 239);
             this.lv_orderItems.Name = "lv_orderItems";
             this.lv_orderItems.Size = new System.Drawing.Size(640, 97);
             this.lv_orderItems.TabIndex = 4;
@@ -120,7 +122,7 @@ namespace GuitarShop
             // btn_orderItemsRemove
             // 
             this.btn_orderItemsRemove.Enabled = false;
-            this.btn_orderItemsRemove.Location = new System.Drawing.Point(580, 307);
+            this.btn_orderItemsRemove.Location = new System.Drawing.Point(580, 342);
             this.btn_orderItemsRemove.Name = "btn_orderItemsRemove";
             this.btn_orderItemsRemove.Size = new System.Drawing.Size(75, 23);
             this.btn_orderItemsRemove.TabIndex = 2;
@@ -130,7 +132,7 @@ namespace GuitarShop
             // 
             // btn_orderItemsAdd
             // 
-            this.btn_orderItemsAdd.Location = new System.Drawing.Point(499, 307);
+            this.btn_orderItemsAdd.Location = new System.Drawing.Point(499, 342);
             this.btn_orderItemsAdd.Name = "btn_orderItemsAdd";
             this.btn_orderItemsAdd.Size = new System.Drawing.Size(75, 23);
             this.btn_orderItemsAdd.TabIndex = 2;
@@ -141,7 +143,7 @@ namespace GuitarShop
             // lbl_subtotal
             // 
             this.lbl_subtotal.AutoSize = true;
-            this.lbl_subtotal.Location = new System.Drawing.Point(503, 350);
+            this.lbl_subtotal.Location = new System.Drawing.Point(503, 392);
             this.lbl_subtotal.Name = "lbl_subtotal";
             this.lbl_subtotal.Size = new System.Drawing.Size(46, 13);
             this.lbl_subtotal.TabIndex = 0;
@@ -150,7 +152,7 @@ namespace GuitarShop
             // 
             // txtb_subtotal
             // 
-            this.txtb_subtotal.Location = new System.Drawing.Point(555, 347);
+            this.txtb_subtotal.Location = new System.Drawing.Point(555, 389);
             this.txtb_subtotal.Name = "txtb_subtotal";
             this.txtb_subtotal.ReadOnly = true;
             this.txtb_subtotal.Size = new System.Drawing.Size(100, 20);
@@ -160,7 +162,7 @@ namespace GuitarShop
             // 
             // txtb_tax
             // 
-            this.txtb_tax.Location = new System.Drawing.Point(555, 373);
+            this.txtb_tax.Location = new System.Drawing.Point(555, 415);
             this.txtb_tax.Name = "txtb_tax";
             this.txtb_tax.ReadOnly = true;
             this.txtb_tax.Size = new System.Drawing.Size(100, 20);
@@ -171,7 +173,7 @@ namespace GuitarShop
             // lbl_tax
             // 
             this.lbl_tax.AutoSize = true;
-            this.lbl_tax.Location = new System.Drawing.Point(524, 376);
+            this.lbl_tax.Location = new System.Drawing.Point(524, 418);
             this.lbl_tax.Name = "lbl_tax";
             this.lbl_tax.Size = new System.Drawing.Size(25, 13);
             this.lbl_tax.TabIndex = 0;
@@ -180,7 +182,7 @@ namespace GuitarShop
             // lbl_shipping
             // 
             this.lbl_shipping.AutoSize = true;
-            this.lbl_shipping.Location = new System.Drawing.Point(501, 402);
+            this.lbl_shipping.Location = new System.Drawing.Point(501, 444);
             this.lbl_shipping.Name = "lbl_shipping";
             this.lbl_shipping.Size = new System.Drawing.Size(48, 13);
             this.lbl_shipping.TabIndex = 0;
@@ -188,7 +190,7 @@ namespace GuitarShop
             // 
             // txtb_orderTotal
             // 
-            this.txtb_orderTotal.Location = new System.Drawing.Point(555, 425);
+            this.txtb_orderTotal.Location = new System.Drawing.Point(555, 467);
             this.txtb_orderTotal.Name = "txtb_orderTotal";
             this.txtb_orderTotal.ReadOnly = true;
             this.txtb_orderTotal.Size = new System.Drawing.Size(100, 20);
@@ -200,7 +202,7 @@ namespace GuitarShop
             // 
             this.lbl_orderTotal.AutoSize = true;
             this.lbl_orderTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_orderTotal.Location = new System.Drawing.Point(478, 428);
+            this.lbl_orderTotal.Location = new System.Drawing.Point(478, 470);
             this.lbl_orderTotal.Name = "lbl_orderTotal";
             this.lbl_orderTotal.Size = new System.Drawing.Size(71, 13);
             this.lbl_orderTotal.TabIndex = 0;
@@ -209,7 +211,7 @@ namespace GuitarShop
             // btn_sumbit
             // 
             this.btn_sumbit.Enabled = false;
-            this.btn_sumbit.Location = new System.Drawing.Point(580, 472);
+            this.btn_sumbit.Location = new System.Drawing.Point(580, 509);
             this.btn_sumbit.Name = "btn_sumbit";
             this.btn_sumbit.Size = new System.Drawing.Size(75, 23);
             this.btn_sumbit.TabIndex = 6;
@@ -220,7 +222,7 @@ namespace GuitarShop
             // updn_shipping
             // 
             this.updn_shipping.DecimalPlaces = 2;
-            this.updn_shipping.Location = new System.Drawing.Point(555, 399);
+            this.updn_shipping.Location = new System.Drawing.Point(555, 441);
             this.updn_shipping.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -295,11 +297,31 @@ namespace GuitarShop
             this.cmb_shippingAddress.TabIndex = 11;
             this.cmb_shippingAddress.SelectedIndexChanged += new System.EventHandler(this.cmb_shippingAddress_SelectedIndexChanged);
             // 
+            // lbl_shipDate
+            // 
+            this.lbl_shipDate.AutoSize = true;
+            this.lbl_shipDate.Location = new System.Drawing.Point(12, 181);
+            this.lbl_shipDate.Name = "lbl_shipDate";
+            this.lbl_shipDate.Size = new System.Drawing.Size(54, 13);
+            this.lbl_shipDate.TabIndex = 12;
+            this.lbl_shipDate.Text = "Ship Date";
+            // 
+            // dt_ship
+            // 
+            this.dt_ship.Location = new System.Drawing.Point(15, 197);
+            this.dt_ship.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.dt_ship.Name = "dt_ship";
+            this.dt_ship.Size = new System.Drawing.Size(640, 20);
+            this.dt_ship.TabIndex = 13;
+            this.dt_ship.ValueChanged += new System.EventHandler(this.dt_ship_ValueChanged);
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 568);
+            this.ClientSize = new System.Drawing.Size(667, 544);
+            this.Controls.Add(this.dt_ship);
+            this.Controls.Add(this.lbl_shipDate);
             this.Controls.Add(this.cmb_shippingAddress);
             this.Controls.Add(this.lbl_shippingAddress);
             this.Controls.Add(this.cmb_billlingAddress);
@@ -363,5 +385,7 @@ namespace GuitarShop
         private System.Windows.Forms.ComboBox cmb_billlingAddress;
         private System.Windows.Forms.Label lbl_shippingAddress;
         private System.Windows.Forms.ComboBox cmb_shippingAddress;
+        private System.Windows.Forms.Label lbl_shipDate;
+        private System.Windows.Forms.DateTimePicker dt_ship;
     }
 }

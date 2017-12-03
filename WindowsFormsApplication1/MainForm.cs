@@ -1,27 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/// <summary>
-/// General TODOS:
-/// 
-/// - Abstract SQL connection prep/teardown. Because we have to repeat the same steps so many times
-///   let's find a way to not re-write so much code.
-/// 
-/// - Better data source management. Pull directly from application properties, avoid duplicating sources.
-/// 
-/// - Clean up event handlers accidentally created in form designer.
-/// 
-/// - Either make forms more rigid or more responsive.
-/// 
-/// </summary>
 namespace GuitarShop
 {
     public partial class MainForm : Form
@@ -36,6 +18,7 @@ namespace GuitarShop
         {
             InitializeComponent();
 
+            // Stored values/procedures for specific user-facing tables
             tableRegistry = new Dictionary<string, string>();
             queryRegistry = new Dictionary<string, string>();
             formRegistry = new Dictionary<string, Type>();
@@ -44,15 +27,19 @@ namespace GuitarShop
             formRegistry.Add("Categories", typeof(CategoryForm));
 
             tableRegistry.Add("Instruments", "Instruments");
-            tableRegistry.Add("Parts", "Parts");
+            formRegistry.Add("Instruments", typeof(ProductForm));
 
+            tableRegistry.Add("Parts", "Parts");
+            formRegistry.Add("Parts", typeof(ProductForm));
 
             tableRegistry.Add("Promotions", "Promotions");
-            
+            formRegistry.Add("Promotions", typeof(PromotionForm));
+
             tableRegistry.Add("Orders", "Orders");
             formRegistry.Add("Orders", typeof(OrderForm));
 
             tableRegistry.Add("Repairs", "Repairs");
+            formRegistry.Add("Repairs", typeof(RepairForm));
 
             tableRegistry.Add("Customers", "Customers");
             formRegistry.Add("Customers", typeof(CustomerForm));
@@ -60,6 +47,7 @@ namespace GuitarShop
             tableRegistry.Add("Suppliers", "Suppliers");
             formRegistry.Add("Suppliers", typeof(SupplierForm));
 
+            tableRegistry.Add("Employees", "Employees");
             tableRegistry.Add("Administrators", "Administrators");
 
             
@@ -75,7 +63,8 @@ namespace GuitarShop
 	                Line1 + ' ' + Line2 + ' ' + City + ', ' + [State] + ' ' + ZipCode as 'Shipping Address'
                 FROM Orders
                 JOIN Customers ON Orders.CustomerID = Customers.CustomerID
-                JOIN CustAddresses ON CustAddresses.CustAddressID = Customers.CustomerID;"
+                JOIN CustAddresses ON CustAddresses.CustAddressID = Orders.ShipAddressID
+                ORDER BY [Order Date] DESC;"
             );
 
             queryRegistry.Add(
@@ -94,7 +83,7 @@ namespace GuitarShop
                 "Instruments",
                 @"SELECT
                     ProductID AS ID,
-                    CategoryName AS 'CategoryForm',
+                    CategoryName AS 'Category',
                     SupplierName AS 'Supplier Name',
                     ProductName AS 'Product Name',
                     AmountInStock As 'Amount In Stock',
@@ -111,7 +100,7 @@ namespace GuitarShop
                 "Parts",
                 @"SELECT
                     ProductID AS ID,
-                    CategoryName AS 'CategoryForm',
+                    CategoryName AS 'Category',
                     SupplierName AS 'Supplier Name',
                     ProductName AS 'Product Name',
                     AmountInStock As 'Amount In Stock',
@@ -137,12 +126,13 @@ namespace GuitarShop
                 @"SELECT
 	                PromotionCode AS 'Promo Code',
 	                ProductName AS 'Product',
-	                DiscountAmount AS 'Discount Amount',
+	                CONVERT(DECIMAL(10, 2), DiscountAmount) AS 'Discount Amount',
 	                Promotions.Description,
 	                StartDate AS 'Start Date',
 	                EndDate AS 'End Date'
                 FROM Promotions
-                JOIN Products ON Products.ProductID = Promotions.ProductID;"
+                JOIN Products ON Products.ProductID = Promotions.ProductID
+                ORDER BY [Start Date] DESC;"
             );
 
             queryRegistry.Add(
@@ -153,7 +143,8 @@ namespace GuitarShop
                     CompletionDate AS 'Completion Date',
                     Description
                 FROM Repairs
-                JOIN Customers ON Customers.CustomerID = Repairs.CustomerID;"
+                JOIN Customers ON Customers.CustomerID = Repairs.CustomerID
+                ORDER BY [Completion Date] DESC;"
             );
 
             queryRegistry.Add(
@@ -167,26 +158,38 @@ namespace GuitarShop
                 FROM Suppliers
                 JOIN Employees ON Suppliers.EmployeeContact = Employees.EmployeeID;"
             );
-        }
-        
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
+            queryRegistry.Add(
+                "Employees",
+                @"SELECT
+	                EmployeeID AS ID,
+	                Title,
+	                '********' AS [Password],
+	                EmailAddress AS 'Email Address',
+	                FirstName + ' ' + LastName AS 'Full Name',
+	                BirthDate AS 'Birth Date',
+	                EmployeeType AS Type,
+	                DateHired AS 'Date Hired',
+	                PrivilegeLevel AS 'Privilege Level'
+                FROM Employees;"
+            );
 
-        private void openConnectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
-            try
-            {
-                cnn.Open();
-                MessageBox.Show("Connection successful.");
-                cnn.Close();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error: the connection could not be opened.");
-            }
+            queryRegistry.Add(
+                "Administrators",
+                @"SELECT
+	                EmployeeID AS ID,
+	                Title,
+	                '********' AS [Password],
+	                EmailAddress AS 'Email Address',
+	                FirstName + ' ' + LastName AS 'Full Name',
+	                BirthDate AS 'Birth Date',
+	                EmployeeType AS Type,
+	                DateHired AS 'Date Hired',
+	                PrivilegeLevel AS 'Privilege Level',
+	                OverideCode AS 'Override Code'
+                FROM Employees
+                JOIN Administrators ON AdminID = EmployeeID;"
+            );
         }
 
         private void loadDataForInventory(string tableName)
@@ -232,6 +235,7 @@ namespace GuitarShop
                         DataTable tableSchema = reader.GetSchemaTable();
                         string[] columNames = new string[tableSchema.Rows.Count];
 
+                        // Set columns
                         for (int i = 0; i < columNames.Length; i++)
                         {
                             columNames[i] = tableSchema.Rows[i]["ColumnName"].ToString();
@@ -242,7 +246,7 @@ namespace GuitarShop
                             lvProducts.Columns.Add(column, -2, HorizontalAlignment.Left);
                         }
 
-                        // while there is another record present
+                        // While there is another record present
                         while (reader.Read())
                         {
                             string[] rowData = new string[columNames.Length];
@@ -264,11 +268,6 @@ namespace GuitarShop
             }
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             string selectedTable;
@@ -287,11 +286,6 @@ namespace GuitarShop
             OrderForm of = new OrderForm(true, 0);
             of.Show();
             of.FormClosed += tableForm_closed;
-        }
-
-        private void lvProducts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         // Test cnnection
@@ -373,11 +367,6 @@ namespace GuitarShop
             }
         }
 
-        private void lvProducts_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void lvProducts_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             // If at least one item is checked, then the user may remove or edit checked items from the list.
@@ -420,6 +409,5 @@ namespace GuitarShop
         {
             loadDataForInventory(tableState);
         }
-
     }
 }

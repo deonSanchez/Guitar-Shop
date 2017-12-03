@@ -56,6 +56,7 @@
             this.cmb_Item.Name = "cmb_Item";
             this.cmb_Item.Size = new System.Drawing.Size(257, 21);
             this.cmb_Item.TabIndex = 2;
+            this.cmb_Item.SelectedIndexChanged += new System.EventHandler(this.cmb_Item_SelectedIndexChanged);
             // 
             // lbl_repairType
             // 
@@ -73,6 +74,7 @@
             this.txt_repairType.Name = "txt_repairType";
             this.txt_repairType.Size = new System.Drawing.Size(257, 20);
             this.txt_repairType.TabIndex = 4;
+            this.txt_repairType.TextChanged += new System.EventHandler(this.txt_repairType_TextChanged);
             // 
             // lbl_labor
             // 
@@ -107,6 +109,7 @@
             this.btn_cancel.TabIndex = 8;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_add
             // 
@@ -117,6 +120,7 @@
             this.btn_add.TabIndex = 7;
             this.btn_add.Text = "Add";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // RepairItemSelection
             // 
@@ -135,7 +139,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RepairItemSelection";
-            this.Text = "RepairItemSelection";
+            this.Text = "Repair Items";
             ((System.ComponentModel.ISupportInitialize)(this.updn_labor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

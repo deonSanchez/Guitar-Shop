@@ -1,41 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
 
-/// <summary>
-/// Create a new order with user-provided data values.
-/// 
-/// TODO: validation. Check out https://docs.microsoft.com/en-us/dotnet/framework/winforms/user-input-validation-in-windows-forms.
-/// 
-/// TODO: Data binding - audio update total fields, etc.
-/// 
-/// Danny:
-/// Orders
-/// OrderItems
-/// Payments
-/// Repairs
-/// RepairItems
-/// Products
-/// Promotions
-/// 
-/// Deon:
-/// Employees
-/// Cusomters
-/// Administrators
-/// Suppliers
-/// Addreses
-/// 
-/// 
-/// 
-/// </summary>
 namespace GuitarShop
 {
     public partial class RepairForm : Form
@@ -47,6 +15,9 @@ namespace GuitarShop
 
         SqlConnection cnn;
 
+        /// <summary>
+        /// Form for creating a modifying Orders.
+        /// </summary>
         public RepairForm(bool creating, int editItemID)
         {
             InitializeComponent();
@@ -78,13 +49,14 @@ namespace GuitarShop
             {
                 this.creating = false;
                 this.editItemID = editItemID;
-
                 btn_add.Text = "Update";
-
                 PreloadData();
             }
         }
 
+        /// <summary>
+        /// If editing a previously existing order, preload all fields.
+        /// </summary>
         private void PreloadData()
         {;
             repair = new Repair();
@@ -147,8 +119,13 @@ namespace GuitarShop
 
             datetimePickCompleted.Value = repair.CompletionDate;
             txt_description.Text = repair.Description;
+
+            ValidateForm();
         }
 
+        /// <summary>
+        /// Load available options for Customer combobox.
+        /// </summary>
         private void LoadCustomers()
         {
             using (SqlCommand command = new SqlCommand())
@@ -176,6 +153,9 @@ namespace GuitarShop
             }
         }
 
+        /// <summary>
+        /// Ensure that form is ready to submit before allowing the user to do so,
+        /// </summary>
         private void ValidateForm()
         {
             if (lv_repairItems.Items.Count > 0
@@ -190,21 +170,9 @@ namespace GuitarShop
             }
         }
 
-        private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox cmbox = (ComboBox)sender;
-
-            int custId = (cmbox.SelectedItem as ComboBoxItem).IdentifyingValue;
-            repair.CustomerID = custId;
-
-            ValidateForm();
-        }
-
-        private void btn_sumbit_Click(object sender, EventArgs e)
-        {
-            ProcessRepair();
-        }
-
+        /// <summary>
+        /// Add a RepairItem to the list of staged RepairItems for this Repair.
+        /// </summary>
         public void AddRepairItem(RepairItem ri)
         {
             ListViewItem riLV = new ListViewItem();
@@ -236,12 +204,11 @@ namespace GuitarShop
                 }
             }
             
-
             riLV.Tag = ri;
             riLV.SubItems.AddRange(new String[] {
                 productName,
                 ri.RepairType,
-                ri.LaborPrice.ToString()
+                ri.LaborPrice.ToString("F")
             });
 
             lv_repairItems.Items.Add(riLV);
@@ -264,19 +231,11 @@ namespace GuitarShop
                     command.CommandText = "INSERT INTO Repairs (CustomerID, CompletionDate, Description) VALUES (@CustomerID, @CompletionDate, @Description); SELECT SCOPE_IDENTITY()";
 
                     command.Parameters.AddWithValue("@CustomerID", repair.CustomerID);
-                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate);
+                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate.ToString("yyyy-MM-dd"));
                     command.Parameters.AddWithValue("@Description", repair.Description);
-
-                    try
-                    {
-                        autoRepairID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Repair succefully placed!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write repair.");
-                        return;
-                    }
+                    
+                    autoRepairID = Convert.ToInt32(command.ExecuteScalar());
+                    MessageBox.Show("Repair succefully placed!");
                 }
             }
             else
@@ -290,19 +249,11 @@ namespace GuitarShop
 
                     command.Parameters.AddWithValue("@RepairID", editItemID);
                     command.Parameters.AddWithValue("@CustomerID", repair.CustomerID);
-                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate);
+                    command.Parameters.AddWithValue("@CompletionDate", repair.CompletionDate.ToString("yyyy-MM-dd"));
                     command.Parameters.AddWithValue("@Description", repair.Description);
-
-                    try
-                    {
-                        autoRepairID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Repair succefully updated!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write repair.");
-                        return;
-                    }
+                    
+                    autoRepairID = Convert.ToInt32(command.ExecuteScalar());
+                    MessageBox.Show("Repair succefully updated!");
                 }
             }
 
@@ -322,15 +273,8 @@ namespace GuitarShop
                         command.Parameters.AddWithValue("@ProductID", ri.ProductID);
                         command.Parameters.AddWithValue("@RepairType", ri.RepairType);
                         command.Parameters.AddWithValue("@LaborPrice", ri.LaborPrice);
-
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
-                        catch (SqlException ex)
-                        {
-                            Console.WriteLine("Could not write RepairItem.");
-                        }
+                        
+                        command.ExecuteNonQuery();
                     }
                 }
             }
@@ -357,7 +301,7 @@ namespace GuitarShop
                         command.Connection = cnn;
                         command.CommandText = "INSERT INTO RepairItems(RepairID, ProductID, RepairType, LaborPrice) VALUES (@RepairID, @ProductID, @RepairType, @LaborPrice)";
 
-                        command.Parameters.AddWithValue("@RepairID", autoRepairID);
+                        command.Parameters.AddWithValue("@RepairID", editItemID);
                         command.Parameters.AddWithValue("@ProductID", ri.ProductID);
                         command.Parameters.AddWithValue("@RepairType", ri.RepairType);
                         command.Parameters.AddWithValue("@LaborPrice", ri.LaborPrice);
@@ -400,6 +344,15 @@ namespace GuitarShop
                 lv_repairItems.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
 
+            if (lv_repairItems.CheckedItems.Count > 0)
+            {
+                btn_repairItemsRemove.Enabled = true;
+            }
+            else
+            {
+                btn_repairItemsRemove.Enabled = false;
+            }
+
             ValidateForm();
         }
 
@@ -411,6 +364,28 @@ namespace GuitarShop
         private void txt_description_TextChanged(object sender, EventArgs e)
         {
             repair.Description = txt_description.Text;
+            ValidateForm();
+        }
+        
+        private void cmb_customer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmbox = (ComboBox)sender;
+
+            int custId = (cmbox.SelectedItem as ComboBoxItem).IdentifyingValue;
+            repair.CustomerID = custId;
+
+            ValidateForm();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            ProcessRepair();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            cnn.Close();
+            Close();
         }
     }
 }

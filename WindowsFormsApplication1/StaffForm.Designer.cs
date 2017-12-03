@@ -1,6 +1,6 @@
 ﻿namespace GuitarShop
 {
-    partial class Staff
+    partial class StaffForm
     {
         /// <summary>
         /// Required designer variable.

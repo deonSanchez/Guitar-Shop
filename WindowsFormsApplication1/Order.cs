@@ -16,5 +16,6 @@ namespace GuitarShop
         public decimal ShipAmount = 0;
         public decimal TaxAmount = 0;
         public int ShippingAddressID;
+        public DateTime ShipDate;
     }
 }

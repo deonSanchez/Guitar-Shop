@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
-    public partial class Staff : Form
+    public partial class StaffForm : Form
     {
         SqlConnection cnn;
 
