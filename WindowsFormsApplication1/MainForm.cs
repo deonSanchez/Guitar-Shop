@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Entry point for the GUI.
+    /// </summary>
     public partial class MainForm : Form
     {
         private Dictionary<string, string> tableRegistry;
@@ -195,7 +198,10 @@ namespace GuitarShop
             );
         }
 
-        private void loadDataForInventory(string tableName)
+        /// <summary>
+        /// Load data for the selected table.
+        /// </summary>
+        private void LoadTableData(string tableName)
         {
 
             tableState = tableName;
@@ -276,7 +282,7 @@ namespace GuitarShop
             string selectedTable;
             if (tableRegistry.TryGetValue(e.Node.Text, out selectedTable))
             {
-                loadDataForInventory(selectedTable);
+                LoadTableData(selectedTable);
             }
             else
             {
@@ -351,7 +357,7 @@ namespace GuitarShop
                             if (MessageBox.Show("Are you sure you want to delete the selected records?", "Confirm Record Deletion", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
                                 command.ExecuteNonQuery();
-                                loadDataForInventory(tableState);
+                                LoadTableData(tableState);
                             }
                         }
                         catch (SqlException)
@@ -407,7 +413,7 @@ namespace GuitarShop
 
         public void tableForm_closed(object sender, EventArgs e)
         {
-            loadDataForInventory(tableState);
+            LoadTableData(tableState);
         }
     }
 }

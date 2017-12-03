@@ -22,6 +22,9 @@ namespace GuitarShop
         int editItemID;
 
         Employees employee;
+
+        bool loadedAsAdmin = false;
+        bool saveAsAdmin = false;
     
         public StaffForm(bool creating, int editItemID)
         {
@@ -99,7 +102,9 @@ namespace GuitarShop
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, BirthDate FROM Employees WHERE EmployeeID = @EmployeeID";
+                command.CommandText = @"SELECT Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, BirthDate, OverideCode
+                                        FROM Employees
+                                        LEFT JOIN Administrators ON AdminID = EmployeeID WHERE EmployeeID = @EmployeeID";
 
                 command.Parameters.AddWithValue("@EmployeeID", editItemID);
 
@@ -117,6 +122,18 @@ namespace GuitarShop
                         employee.DateHired = Convert.ToDateTime(reader[6]);
                         employee.PrivilegeLevel = reader[7].ToString();
                         employee.BirthDate = Convert.ToDateTime(reader[8]);
+
+                        if(reader[9] is DBNull)
+                        {
+                            loadedAsAdmin = false;
+                            saveAsAdmin = false;
+                        } 
+                        else
+                        {
+                            loadedAsAdmin = true;
+                            saveAsAdmin = true;
+                            employee.OverrideCode = Convert.ToInt32(reader[9]);
+                        }
                     }
                 }
 
@@ -130,7 +147,11 @@ namespace GuitarShop
                 cmb_type.Text = employee.EmployeeType;
                 cmb_priv.Text = employee.PrivilegeLevel;
 
-                txt_code.Enabled = cmb_priv.SelectedItem.ToString() == "admin";
+                if(loadedAsAdmin)
+                {
+                    txt_code.Enabled = true;
+                    txt_code.Text = employee.OverrideCode.ToString();
+                }
             }
         }
 
@@ -148,13 +169,18 @@ namespace GuitarShop
             employee.PrivilegeLevel = cmb_priv.Text;
             employee.DateHired = dt_hired.Value;
 
+            if(saveAsAdmin)
+            {
+                employee.OverrideCode = Convert.ToInt32(txt_code.Text);
+            }
+
             if (creating)
             {
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "INSERT INTO Employee (Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, birthDate) VALUES (@Title, @FirstName, @LastName, @EmailAddress, @Password, @EmployeeType, @DateHired, @PrivilegeLevel, @birthDate); SELECT SCOPE_IDENTITY()";
+                    command.CommandText = "INSERT INTO Employee (Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, BirthDate) VALUES (@Title, @FirstName, @LastName, @EmailAddress, @Password, @EmployeeType, @DateHired, @PrivilegeLevel, @BirthDate);";
 
                     command.Parameters.AddWithValue("@Title", employee.Title);
                     command.Parameters.AddWithValue("@FirstName", employee.FirstName);
@@ -162,20 +188,21 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@EmailAddress", employee.EmailAddress);
                     command.Parameters.AddWithValue("@Password", employee.Password);
                     command.Parameters.AddWithValue("@EmployeeType", employee.EmployeeType);
-                    command.Parameters.AddWithValue("@DateHired", employee.DateHired);
+                    command.Parameters.AddWithValue("@DateHired", employee.DateHired.ToString("yyyy-MM-dd"));
                     command.Parameters.AddWithValue("@PrivilegeLevel", employee.PrivilegeLevel);
-                    command.Parameters.AddWithValue("@birthDate", employee.BirthDate);
+                    command.Parameters.AddWithValue("@BirthDate", employee.BirthDate.ToString("yyyy-MM-dd"));
 
-                    try
+                    autoEmployeeID = Convert.ToInt32(command.ExecuteScalar());
+                    
+                    if (saveAsAdmin)
                     {
-                        autoEmployeeID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Customer successfully created!");
+                        command.CommandText = "INSERT INTO Administrators (AdminID, OverideCode) VALUES (@AdminID, @OverideCode);";
+
+                        command.Parameters.AddWithValue("@AdminID", autoEmployeeID);
+                        command.Parameters.AddWithValue("@OverideCode", employee.OverrideCode);
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write customer.");
-                        return;
-                    }
+
+                    MessageBox.Show("Staff member successfully created!");
                 }
             }
             else
@@ -184,28 +211,51 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "UPDATE Employees SET EmailAddress = @EmailAddress, Password = @Password, FirstName = @FirstName, LastName = @LastName, EmployeeContact = @EmployeeContact WHERE CustomerID = @CustomerID";
+                    command.CommandText = "UPDATE Employees SET Title = @Title, FirstName = @FirstName, LastName = @LastName, EmailAddress = @EmailAddress, Password = @Password, EmployeeType = @EmployeeType, DateHired = @DateHired, PrivilegeLevel = @PrivilegeLevel, BirthDate = @BirthDate WHERE EmployeeID = @EmployeeID";
 
+                    command.Parameters.AddWithValue("@EmployeeID", employee.EmployeeID);
                     command.Parameters.AddWithValue("@Title", employee.Title);
                     command.Parameters.AddWithValue("@FirstName", employee.FirstName);
                     command.Parameters.AddWithValue("@LastName", employee.LastName);
                     command.Parameters.AddWithValue("@EmailAddress", employee.EmailAddress);
                     command.Parameters.AddWithValue("@Password", employee.Password);
                     command.Parameters.AddWithValue("@EmployeeType", employee.EmployeeType);
-                    command.Parameters.AddWithValue("@DateHired", employee.DateHired);
+                    command.Parameters.AddWithValue("@DateHired", employee.DateHired.ToString("yyyy-MM-dd"));
                     command.Parameters.AddWithValue("@PrivilegeLevel", employee.PrivilegeLevel);
-                    command.Parameters.AddWithValue("@birthDate", employee.BirthDate);
+                    command.Parameters.AddWithValue("@BirthDate", employee.BirthDate.ToString("yyyy-MM-dd"));
 
-                    try
+                    command.ExecuteNonQuery();
+
+                    if (loadedAsAdmin && saveAsAdmin)
                     {
-                        autoEmployeeID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Customer successfully updated!");
+                        command.CommandText = "UPDATE Administrators SET OverideCode = @OverideCode WHERE AdminID = @AdminID;";
+
+                        command.Parameters.AddWithValue("@AdminID", employee.EmployeeID);
+                        command.Parameters.AddWithValue("@OverideCode", employee.OverrideCode);
+
+                        command.ExecuteNonQuery();
                     }
-                    catch (Exception ex)
+
+                    if (!loadedAsAdmin && saveAsAdmin)
                     {
-                        Console.WriteLine("Could not write customer.");
-                        return;
+                        command.CommandText = "INSERT INTO Administrators (AdminID, OverideCode) VALUES (@AdminID, @OverideCode);";
+
+                        command.Parameters.AddWithValue("@AdminID", employee.EmployeeID);
+                        command.Parameters.AddWithValue("@OverideCode", employee.OverrideCode);
+
+                        command.ExecuteNonQuery();
                     }
+
+                    if (loadedAsAdmin && !saveAsAdmin)
+                    {
+                        command.CommandText = "DELETE FROM INTO Administrators WHERE AdminID = @AdminID;";
+
+                        command.Parameters.AddWithValue("@AdminID", employee.EmployeeID);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Staff member successfully updated!");
                 }
             }
             cnn.Close();
@@ -220,7 +270,17 @@ namespace GuitarShop
 
         private void cmb_priv_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt_code.Enabled = cmb_priv.SelectedItem.ToString() == "admin";
+            if(cmb_priv.SelectedItem.ToString() == "admin")
+            {
+                txt_code.Enabled = true;
+                saveAsAdmin = true;
+            }
+            else
+            {
+                txt_code.Enabled = false;
+                saveAsAdmin = false;
+            }
+
             ValidateForm();
         }
 

@@ -18,5 +18,6 @@ namespace GuitarShop
         public string Password;
         public string FirstName;
         public string LastName;
+        public int OverrideCode;
     }
 }
