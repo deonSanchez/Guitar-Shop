@@ -13,18 +13,21 @@ namespace GuitarShop
 {
     public partial class StaffForm : Form
     {
+        private static string[] employeeTypes = new string[] { "FULLTIME", "PARTTIME" };
+        private static string[] employeePrivileges = new string[] { "normal", "admin" };
+
         SqlConnection cnn;
 
         bool creating = true;
         int editItemID;
 
-        Employees employees;
+        Employees employee;
     
         public StaffForm(bool creating, int editItemID)
         {
             InitializeComponent();
 
-            employees = new Employees();
+            employee = new Employees();
 
             // Initialize SQL connection for this form.
             cnn = new SqlConnection(Constants.ConnectionString);
@@ -38,30 +41,65 @@ namespace GuitarShop
                 Close();
             }
 
-            LoadEmployees();
+            cmb_priv.Items.AddRange(employeePrivileges);
+            cmb_type.Items.AddRange(employeeTypes);
 
             this.creating = creating;
             this.editItemID = editItemID;
 
             if (!creating)
             {
-                button1.Text = "Update";
+                btn_add.Text = "Update";
                 PreloadData();
+            }
+            else
+            {
+                employee.BirthDate = dt_birth.Value;
+                employee.DateHired = dt_hired.Value;
+            }
+        }
+
+        /// <summary>
+        /// Ensure that form is ready to submit before allowing the user to do so,
+        /// </summary>
+        private void ValidateForm()
+        {
+            if (cmb_type.SelectedIndex > -1
+                && cmb_priv.SelectedIndex > -1
+                && cmb_type.SelectedIndex > -1
+                && txt_title.Text != ""
+                && txt_firstname.Text != ""
+                && txt_lastname.Text != ""
+                && txt_email.Text != ""
+                && txt_pass.Text != "")
+            {
+                if (cmb_priv.SelectedItem.ToString() == "admin")
+                {
+                    btn_add.Enabled = txt_code.Text != "";
+                }
+                else
+                {
+                    btn_add.Enabled = true;
+                }
+            }
+            else
+            {
+                btn_add.Enabled = false;
             }
         }
 
         private void PreloadData()
         {
-            employees = new Employees();
+            employee = new Employees();
 
-            employees.EmployeeID = editItemID;
+            employee.EmployeeID = editItemID;
 
             // Load in Customer details
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, birthDate FROM Employees WHERE EmployeeID = @EmployeeID";
+                command.CommandText = "SELECT Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, BirthDate FROM Employees WHERE EmployeeID = @EmployeeID";
 
                 command.Parameters.AddWithValue("@EmployeeID", editItemID);
 
@@ -70,57 +108,29 @@ namespace GuitarShop
                 {
                     if (reader.Read())
                     {
-                        employees.title = reader[0].ToString();
-                        employees.firstName = reader[1].ToString();
-                        employees.lastName = reader[2].ToString();
-                        employees.emailAddress = reader[3].ToString();
-                        employees.password = reader[4].ToString();
-                        employees.birthDate = reader[5].ToString();
-                        employees.employeeType = reader[6].ToString();
-                      //  employees.privilegeLevel = reader[7].ToString();
-                        employees.dateHired = reader[8].ToString();
+                        employee.Title = reader[0].ToString();
+                        employee.FirstName = reader[1].ToString();
+                        employee.LastName = reader[2].ToString();
+                        employee.EmailAddress = reader[3].ToString();
+                        employee.Password = reader[4].ToString();
+                        employee.EmployeeType = reader[5].ToString();
+                        employee.DateHired = Convert.ToDateTime(reader[6]);
+                        employee.PrivilegeLevel = reader[7].ToString();
+                        employee.BirthDate = Convert.ToDateTime(reader[8]);
                     }
                 }
 
-                titleComboBox.Text = employees.title;
-                textBox2.Text = employees.firstName;
-                textBox3.Text = employees.lastName;
-                textBox4.Text = employees.emailAddress;
-                textBox5.Text = employees.password;
-                textBox8.Text = employees.birthDate.ToString();
-                //EmployeeTypeComboBox.Text = employees.employeeType;
-                //employees.privilegeLevel;
-                textBox7.Text = employees.dateHired.ToString();
+                txt_title.Text = employee.Title;
+                txt_firstname.Text = employee.FirstName;
+                txt_lastname.Text = employee.LastName;
+                txt_email.Text = employee.EmailAddress;
+                txt_pass.Text = employee.Password;
+                dt_birth.Value = employee.BirthDate;
+                dt_hired.Value = employee.DateHired;
+                cmb_type.Text = employee.EmployeeType;
+                cmb_priv.Text = employee.PrivilegeLevel;
 
-                //Constants.SetComboBoxToItemWithID(EmployeeTypeComboBox, employees.employeeType);
-            }
-        }
-
-       
-        private void LoadEmployees()
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = cnn;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT EmployeeID, FirstName, LastName FROM Employees";
-
-                // Create new SqlDataReader object and read data from the command.
-                try
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            //ComboBoxItem cbi = new ComboBoxItem(reader[1].ToString() + " " + reader[2].ToString(), Convert.ToInt32(reader[0]));
-                            //cmb_employeeContact.Items.Add(cbi);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Could not open customers.");
-                }
+                txt_code.Enabled = cmb_priv.SelectedItem.ToString() == "admin";
             }
         }
 
@@ -128,15 +138,15 @@ namespace GuitarShop
         {
             int autoEmployeeID = 0;
 
-            employees.title = titleComboBox.Text;
-            employees.firstName = textBox2.Text;
-            employees.lastName = textBox3.Text;
-            employees.emailAddress = textBox4.Text;
-            employees.password = textBox5.Text;
-            employees.birthDate = textBox8.Text;
-            //employees.employeeType = EmployeeTypeComboBox.Text;
-            //employees.privilegeLevel = reader[7].ToString();
-            //employees.dateHired = textBox7.Text;
+            employee.Title = txt_title.Text;
+            employee.FirstName = txt_firstname.Text;
+            employee.LastName = txt_lastname.Text;
+            employee.EmailAddress = txt_email.Text;
+            employee.Password = txt_pass.Text;
+            employee.BirthDate = dt_birth.Value;
+            employee.EmployeeType = cmb_type.Text;
+            employee.PrivilegeLevel = cmb_priv.Text;
+            employee.DateHired = dt_hired.Value;
 
             if (creating)
             {
@@ -146,15 +156,15 @@ namespace GuitarShop
                     command.CommandType = CommandType.Text;
                     command.CommandText = "INSERT INTO Employee (Title, FirstName, LastName, EmailAddress, Password, EmployeeType, DateHired, PrivilegeLevel, birthDate) VALUES (@Title, @FirstName, @LastName, @EmailAddress, @Password, @EmployeeType, @DateHired, @PrivilegeLevel, @birthDate); SELECT SCOPE_IDENTITY()";
 
-                    command.Parameters.AddWithValue("@Title", employees.title);
-                    command.Parameters.AddWithValue("@FirstName", employees.firstName);
-                    command.Parameters.AddWithValue("@LastName", employees.lastName);
-                    command.Parameters.AddWithValue("@EmailAddress", employees.emailAddress);
-                    command.Parameters.AddWithValue("@Password", employees.password);
-                    command.Parameters.AddWithValue("@EmployeeType", employees.employeeType);
-                    command.Parameters.AddWithValue("@DateHired", employees.dateHired);
-                    command.Parameters.AddWithValue("@PrivilegeLevel", employees.privilegeLevel);
-                    command.Parameters.AddWithValue("@birthDate", employees.birthDate);
+                    command.Parameters.AddWithValue("@Title", employee.Title);
+                    command.Parameters.AddWithValue("@FirstName", employee.FirstName);
+                    command.Parameters.AddWithValue("@LastName", employee.LastName);
+                    command.Parameters.AddWithValue("@EmailAddress", employee.EmailAddress);
+                    command.Parameters.AddWithValue("@Password", employee.Password);
+                    command.Parameters.AddWithValue("@EmployeeType", employee.EmployeeType);
+                    command.Parameters.AddWithValue("@DateHired", employee.DateHired);
+                    command.Parameters.AddWithValue("@PrivilegeLevel", employee.PrivilegeLevel);
+                    command.Parameters.AddWithValue("@birthDate", employee.BirthDate);
 
                     try
                     {
@@ -176,15 +186,15 @@ namespace GuitarShop
                     command.CommandType = CommandType.Text;
                     command.CommandText = "UPDATE Employees SET EmailAddress = @EmailAddress, Password = @Password, FirstName = @FirstName, LastName = @LastName, EmployeeContact = @EmployeeContact WHERE CustomerID = @CustomerID";
 
-                    command.Parameters.AddWithValue("@Title", employees.title);
-                    command.Parameters.AddWithValue("@FirstName", employees.firstName);
-                    command.Parameters.AddWithValue("@LastName", employees.lastName);
-                    command.Parameters.AddWithValue("@EmailAddress", employees.emailAddress);
-                    command.Parameters.AddWithValue("@Password", employees.password);
-                    command.Parameters.AddWithValue("@EmployeeType", employees.employeeType);
-                    command.Parameters.AddWithValue("@DateHired", employees.dateHired);
-                    command.Parameters.AddWithValue("@PrivilegeLevel", employees.privilegeLevel);
-                    command.Parameters.AddWithValue("@birthDate", employees.birthDate);
+                    command.Parameters.AddWithValue("@Title", employee.Title);
+                    command.Parameters.AddWithValue("@FirstName", employee.FirstName);
+                    command.Parameters.AddWithValue("@LastName", employee.LastName);
+                    command.Parameters.AddWithValue("@EmailAddress", employee.EmailAddress);
+                    command.Parameters.AddWithValue("@Password", employee.Password);
+                    command.Parameters.AddWithValue("@EmployeeType", employee.EmployeeType);
+                    command.Parameters.AddWithValue("@DateHired", employee.DateHired);
+                    command.Parameters.AddWithValue("@PrivilegeLevel", employee.PrivilegeLevel);
+                    command.Parameters.AddWithValue("@birthDate", employee.BirthDate);
 
                     try
                     {
@@ -200,6 +210,68 @@ namespace GuitarShop
             }
             cnn.Close();
             Close();
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            cnn.Close();
+            Close();
+        }
+
+        private void cmb_priv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txt_code.Enabled = cmb_priv.SelectedItem.ToString() == "admin";
+            ValidateForm();
+        }
+
+        private void dt_hired_ValueChanged(object sender, EventArgs e)
+        {
+            employee.DateHired = dt_hired.Value;
+        }
+
+        private void dt_birth_ValueChanged(object sender, EventArgs e)
+        {
+            employee.DateHired = dt_birth.Value;
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            CreateEmployees();
+        }
+
+        private void txt_title_TextChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void txt_firstname_TextChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void txt_lastname_TextChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void txt_email_TextChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void txt_pass_TextChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void cmb_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
+        }
+
+        private void txt_code_TextChanged(object sender, EventArgs e)
+        {
+            ValidateForm();
         }
     }
 }

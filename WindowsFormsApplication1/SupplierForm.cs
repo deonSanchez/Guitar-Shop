@@ -26,9 +26,9 @@ namespace GuitarShop
 
             supplier = new Supplier();
 
-            supplierList.Columns.Add("", -2, HorizontalAlignment.Left); // Checkbox column
-            supplierList.Columns.Add("Line 1", -2, HorizontalAlignment.Left);
-            supplierList.Columns.Add("Line 2", -2, HorizontalAlignment.Left);
+            lv_addresses.Columns.Add("", -2, HorizontalAlignment.Left); // Checkbox column
+            lv_addresses.Columns.Add("Line 1", -2, HorizontalAlignment.Left);
+            lv_addresses.Columns.Add("Line 2", -2, HorizontalAlignment.Left);
 
             // Initialize SQL connection for this form.
             cnn = new SqlConnection(Constants.ConnectionString);
@@ -44,8 +44,7 @@ namespace GuitarShop
 
             this.creating = creating;
             this.editItemID = editItemID;
-
-
+            
             if (!creating)
             {
                 button1.Text = "Update";
@@ -59,7 +58,7 @@ namespace GuitarShop
 
             supplier.SupplierID = editItemID;
 
-            // Load in SUpplier details
+            // Load in Supplier details
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = cnn;
@@ -85,14 +84,14 @@ namespace GuitarShop
                 textBox5.Text = supplier.PhoneNumber;
             }
 
-            //Load Supplier Address
+            // Load Supplier Addresses
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = cnn;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT Line1, Line2, City, State, ZipCode FROM SupplierAddress WHERE SupAddressID = @SupAddressID";
+                command.CommandText = "SELECT Line1, Line2, City, State, ZipCode FROM SupplierAddress WHERE SupplierID = @SupplierID";
 
-                command.Parameters.AddWithValue("@SupAddressID", editItemID);
+                command.Parameters.AddWithValue("@SupplierID", editItemID);
 
                 List<SupplierAddress> supAddrList = new List<SupplierAddress>();
 
@@ -130,8 +129,8 @@ namespace GuitarShop
                 supAddress.Line2
             });
 
-            supplierList.Items.Add(spLV);
-            supplierList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lv_addresses.Items.Add(spLV);
+            lv_addresses.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void CreateSuppliers()
@@ -196,7 +195,7 @@ namespace GuitarShop
 
             if (creating)
             {
-                foreach (ListViewItem item in supplierList.Items)
+                foreach (ListViewItem item in lv_addresses.Items)
                 {
                     SupplierAddress supaddress = item.Tag as SupplierAddress;
 
@@ -236,7 +235,7 @@ namespace GuitarShop
                     command.ExecuteNonQuery();
                 }
 
-                foreach (ListViewItem item in supplierList.Items)
+                foreach (ListViewItem item in lv_addresses.Items)
                 {
                     SupplierAddress supaddress = item.Tag as SupplierAddress;
 
@@ -260,11 +259,10 @@ namespace GuitarShop
             Close();
         }
 
-
-        private void SupplierList_ItemChecked(object sender, ItemCheckedEventArgs e)
+        private void lv_addresses_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             // If at least one item is checked, then the user may remove checked items from the list.
-            if (supplierList.CheckedItems.Count > 0)
+            if (lv_addresses.CheckedItems.Count > 0)
             {
                 button3.Enabled = true;
             }
@@ -293,12 +291,12 @@ namespace GuitarShop
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ListView.CheckedListViewItemCollection checkedItems = supplierList.CheckedItems;
+            ListView.CheckedListViewItemCollection checkedItems = lv_addresses.CheckedItems;
 
             foreach (ListViewItem item in checkedItems)
             {
-                supplierList.Items.Remove(item);
-                supplierList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                lv_addresses.Items.Remove(item);
+                lv_addresses.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
     }

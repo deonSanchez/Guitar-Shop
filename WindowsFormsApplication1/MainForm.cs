@@ -291,11 +291,8 @@ namespace GuitarShop
             of.FormClosed += tableForm_closed;
         }
 
-        // Test cnnection
         private void toolStripDelete_Click(object sender, EventArgs e)
         {
-
-            // Looks like we're gonna need specific deletion queries for each table to deal with FK contraints. Nuts.
             string selectedTable;
             if (tableRegistry.TryGetValue(tableState, out selectedTable))
             {
@@ -357,9 +354,9 @@ namespace GuitarShop
                                 loadDataForInventory(tableState);
                             }
                         }
-                        catch (SqlException ex)
+                        catch (SqlException)
                         {
-                            throw (ex);
+                            MessageBox.Show("One or more of the selected entries could not be deleted because other items in the database depend on them.", "Error");
                         }
                     }
                 }

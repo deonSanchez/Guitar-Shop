@@ -31,30 +31,31 @@
             this.FirstName = new System.Windows.Forms.Label();
             this.LastName = new System.Windows.Forms.Label();
             this.EmailAddress = new System.Windows.Forms.Label();
-            this.titleComboBox = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txt_firstname = new System.Windows.Forms.TextBox();
+            this.txt_lastname = new System.Windows.Forms.TextBox();
             this.title = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txt_email = new System.Windows.Forms.TextBox();
             this.DateHired = new System.Windows.Forms.Label();
             this.DateOfBirth = new System.Windows.Forms.Label();
-            this.EmployeeTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.cmb_type = new System.Windows.Forms.ComboBox();
             this.EmployeeType = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_add = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.Password = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.AdminPrivilege = new System.Windows.Forms.CheckBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txt_pass = new System.Windows.Forms.TextBox();
+            this.txt_code = new System.Windows.Forms.TextBox();
             this.OverrideCode = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.dt_hired = new System.Windows.Forms.DateTimePicker();
+            this.dt_birth = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmb_priv = new System.Windows.Forms.ComboBox();
+            this.txt_title = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // FirstName
             // 
             this.FirstName.AutoSize = true;
-            this.FirstName.Location = new System.Drawing.Point(12, 48);
+            this.FirstName.Location = new System.Drawing.Point(13, 51);
             this.FirstName.Name = "FirstName";
             this.FirstName.Size = new System.Drawing.Size(57, 13);
             this.FirstName.TabIndex = 0;
@@ -63,7 +64,7 @@
             // LastName
             // 
             this.LastName.AutoSize = true;
-            this.LastName.Location = new System.Drawing.Point(12, 87);
+            this.LastName.Location = new System.Drawing.Point(12, 93);
             this.LastName.Name = "LastName";
             this.LastName.Size = new System.Drawing.Size(58, 13);
             this.LastName.TabIndex = 1;
@@ -72,54 +73,52 @@
             // EmailAddress
             // 
             this.EmailAddress.AutoSize = true;
-            this.EmailAddress.Location = new System.Drawing.Point(12, 126);
+            this.EmailAddress.Location = new System.Drawing.Point(12, 135);
             this.EmailAddress.Name = "EmailAddress";
             this.EmailAddress.Size = new System.Drawing.Size(73, 13);
             this.EmailAddress.TabIndex = 2;
             this.EmailAddress.Text = "Email Address";
             // 
-            // titleComboBox
+            // txt_firstname
             // 
-            this.titleComboBox.FormattingEnabled = true;
-            this.titleComboBox.Location = new System.Drawing.Point(15, 24);
-            this.titleComboBox.Name = "titleComboBox";
-            this.titleComboBox.Size = new System.Drawing.Size(258, 21);
-            this.titleComboBox.TabIndex = 4;
+            this.txt_firstname.Location = new System.Drawing.Point(16, 67);
+            this.txt_firstname.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.txt_firstname.Name = "txt_firstname";
+            this.txt_firstname.Size = new System.Drawing.Size(528, 20);
+            this.txt_firstname.TabIndex = 6;
+            this.txt_firstname.TextChanged += new System.EventHandler(this.txt_firstname_TextChanged);
             // 
-            // textBox2
+            // txt_lastname
             // 
-            this.textBox2.Location = new System.Drawing.Point(15, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(258, 20);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(15, 103);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(258, 20);
-            this.textBox3.TabIndex = 7;
+            this.txt_lastname.Location = new System.Drawing.Point(16, 109);
+            this.txt_lastname.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.txt_lastname.Name = "txt_lastname";
+            this.txt_lastname.Size = new System.Drawing.Size(528, 20);
+            this.txt_lastname.TabIndex = 7;
+            this.txt_lastname.TextChanged += new System.EventHandler(this.txt_lastname_TextChanged);
             // 
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(12, 8);
+            this.title.Location = new System.Drawing.Point(13, 8);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(27, 13);
             this.title.TabIndex = 8;
             this.title.Text = "Title";
             // 
-            // textBox4
+            // txt_email
             // 
-            this.textBox4.Location = new System.Drawing.Point(15, 143);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(258, 20);
-            this.textBox4.TabIndex = 9;
+            this.txt_email.Location = new System.Drawing.Point(16, 151);
+            this.txt_email.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(528, 20);
+            this.txt_email.TabIndex = 9;
+            this.txt_email.TextChanged += new System.EventHandler(this.txt_email_TextChanged);
             // 
             // DateHired
             // 
             this.DateHired.AutoSize = true;
-            this.DateHired.Location = new System.Drawing.Point(289, 10);
+            this.DateHired.Location = new System.Drawing.Point(13, 219);
             this.DateHired.Name = "DateHired";
             this.DateHired.Size = new System.Drawing.Size(58, 13);
             this.DateHired.TabIndex = 12;
@@ -128,129 +127,164 @@
             // DateOfBirth
             // 
             this.DateOfBirth.AutoSize = true;
-            this.DateOfBirth.Location = new System.Drawing.Point(289, 48);
+            this.DateOfBirth.Location = new System.Drawing.Point(12, 261);
             this.DateOfBirth.Name = "DateOfBirth";
             this.DateOfBirth.Size = new System.Drawing.Size(66, 13);
             this.DateOfBirth.TabIndex = 13;
             this.DateOfBirth.Text = "Date of Birth";
             // 
-            // EmployeeTypeComboBox
+            // cmb_type
             // 
-            this.EmployeeTypeComboBox.FormattingEnabled = true;
-            this.EmployeeTypeComboBox.Location = new System.Drawing.Point(292, 102);
-            this.EmployeeTypeComboBox.Name = "EmployeeTypeComboBox";
-            this.EmployeeTypeComboBox.Size = new System.Drawing.Size(236, 21);
-            this.EmployeeTypeComboBox.TabIndex = 14;
+            this.cmb_type.FormattingEnabled = true;
+            this.cmb_type.Location = new System.Drawing.Point(16, 319);
+            this.cmb_type.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.cmb_type.Name = "cmb_type";
+            this.cmb_type.Size = new System.Drawing.Size(528, 21);
+            this.cmb_type.TabIndex = 14;
+            this.cmb_type.SelectedIndexChanged += new System.EventHandler(this.cmb_type_SelectedIndexChanged);
             // 
             // EmployeeType
             // 
             this.EmployeeType.AutoSize = true;
-            this.EmployeeType.Location = new System.Drawing.Point(289, 86);
+            this.EmployeeType.Location = new System.Drawing.Point(13, 303);
             this.EmployeeType.Name = "EmployeeType";
             this.EmployeeType.Size = new System.Drawing.Size(80, 13);
             this.EmployeeType.TabIndex = 15;
             this.EmployeeType.Text = "Employee Type";
             // 
-            // button1
+            // btn_add
             // 
-            this.button1.Location = new System.Drawing.Point(334, 182);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Update";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_add.Enabled = false;
+            this.btn_add.Location = new System.Drawing.Point(360, 457);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(92, 23);
+            this.btn_add.TabIndex = 16;
+            this.btn_add.Text = "Add";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(442, 182);
+            this.Cancel.Location = new System.Drawing.Point(458, 457);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(86, 23);
             this.Cancel.TabIndex = 17;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // Password
             // 
             this.Password.AutoSize = true;
-            this.Password.Location = new System.Drawing.Point(12, 166);
+            this.Password.Location = new System.Drawing.Point(12, 177);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(53, 13);
             this.Password.TabIndex = 18;
             this.Password.Text = "Password";
             // 
-            // textBox5
+            // txt_pass
             // 
-            this.textBox5.Location = new System.Drawing.Point(15, 182);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(258, 20);
-            this.textBox5.TabIndex = 19;
+            this.txt_pass.Location = new System.Drawing.Point(16, 193);
+            this.txt_pass.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.txt_pass.Name = "txt_pass";
+            this.txt_pass.Size = new System.Drawing.Size(528, 20);
+            this.txt_pass.TabIndex = 19;
+            this.txt_pass.TextChanged += new System.EventHandler(this.txt_pass_TextChanged);
             // 
-            // AdminPrivilege
+            // txt_code
             // 
-            this.AdminPrivilege.AutoSize = true;
-            this.AdminPrivilege.Location = new System.Drawing.Point(293, 143);
-            this.AdminPrivilege.Name = "AdminPrivilege";
-            this.AdminPrivilege.Size = new System.Drawing.Size(103, 17);
-            this.AdminPrivilege.TabIndex = 20;
-            this.AdminPrivilege.Text = "Admin Privileges";
-            this.AdminPrivilege.UseVisualStyleBackColor = true;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(411, 142);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(117, 20);
-            this.textBox6.TabIndex = 21;
+            this.txt_code.Enabled = false;
+            this.txt_code.Location = new System.Drawing.Point(16, 405);
+            this.txt_code.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.txt_code.Name = "txt_code";
+            this.txt_code.Size = new System.Drawing.Size(528, 20);
+            this.txt_code.TabIndex = 21;
+            this.txt_code.TextChanged += new System.EventHandler(this.txt_code_TextChanged);
             // 
             // OverrideCode
             // 
             this.OverrideCode.AutoSize = true;
-            this.OverrideCode.Location = new System.Drawing.Point(430, 126);
+            this.OverrideCode.Location = new System.Drawing.Point(13, 389);
             this.OverrideCode.Name = "OverrideCode";
             this.OverrideCode.Size = new System.Drawing.Size(75, 13);
             this.OverrideCode.TabIndex = 22;
             this.OverrideCode.Text = "Override Code";
             // 
-            // textBox7
+            // dt_hired
             // 
-            this.textBox7.Location = new System.Drawing.Point(293, 24);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(235, 20);
-            this.textBox7.TabIndex = 23;
+            this.dt_hired.Location = new System.Drawing.Point(16, 235);
+            this.dt_hired.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.dt_hired.Name = "dt_hired";
+            this.dt_hired.Size = new System.Drawing.Size(528, 20);
+            this.dt_hired.TabIndex = 25;
+            this.dt_hired.ValueChanged += new System.EventHandler(this.dt_hired_ValueChanged);
             // 
-            // textBox8
+            // dt_birth
             // 
-            this.textBox8.Location = new System.Drawing.Point(293, 64);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(235, 20);
-            this.textBox8.TabIndex = 24;
+            this.dt_birth.Location = new System.Drawing.Point(16, 277);
+            this.dt_birth.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.dt_birth.Name = "dt_birth";
+            this.dt_birth.Size = new System.Drawing.Size(528, 20);
+            this.dt_birth.TabIndex = 26;
+            this.dt_birth.ValueChanged += new System.EventHandler(this.dt_birth_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 346);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Privilege Level";
+            // 
+            // cmb_priv
+            // 
+            this.cmb_priv.FormattingEnabled = true;
+            this.cmb_priv.Location = new System.Drawing.Point(16, 362);
+            this.cmb_priv.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.cmb_priv.Name = "cmb_priv";
+            this.cmb_priv.Size = new System.Drawing.Size(528, 21);
+            this.cmb_priv.TabIndex = 28;
+            this.cmb_priv.SelectedIndexChanged += new System.EventHandler(this.cmb_priv_SelectedIndexChanged);
+            // 
+            // txt_title
+            // 
+            this.txt_title.Location = new System.Drawing.Point(16, 24);
+            this.txt_title.Name = "txt_title";
+            this.txt_title.Size = new System.Drawing.Size(528, 20);
+            this.txt_title.TabIndex = 29;
+            this.txt_title.TextChanged += new System.EventHandler(this.txt_title_TextChanged);
             // 
             // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 229);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
+            this.ClientSize = new System.Drawing.Size(556, 496);
+            this.Controls.Add(this.txt_title);
+            this.Controls.Add(this.cmb_priv);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dt_birth);
+            this.Controls.Add(this.dt_hired);
             this.Controls.Add(this.OverrideCode);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.AdminPrivilege);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txt_code);
+            this.Controls.Add(this.txt_pass);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.Cancel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_add);
             this.Controls.Add(this.EmployeeType);
-            this.Controls.Add(this.EmployeeTypeComboBox);
+            this.Controls.Add(this.cmb_type);
             this.Controls.Add(this.DateOfBirth);
             this.Controls.Add(this.DateHired);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txt_email);
             this.Controls.Add(this.title);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.titleComboBox);
+            this.Controls.Add(this.txt_lastname);
+            this.Controls.Add(this.txt_firstname);
             this.Controls.Add(this.EmailAddress);
             this.Controls.Add(this.LastName);
             this.Controls.Add(this.FirstName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "StaffForm";
             this.Text = "Staff";
             this.ResumeLayout(false);
@@ -263,23 +297,24 @@
         private System.Windows.Forms.Label FirstName;
         private System.Windows.Forms.Label LastName;
         private System.Windows.Forms.Label EmailAddress;
-        private System.Windows.Forms.ComboBox titleComboBox;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txt_firstname;
+        private System.Windows.Forms.TextBox txt_lastname;
         private System.Windows.Forms.Label title;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txt_email;
         private System.Windows.Forms.Label DateHired;
         private System.Windows.Forms.Label DateOfBirth;
-        private System.Windows.Forms.ComboBox EmployeeTypeComboBox;
+        private System.Windows.Forms.ComboBox cmb_type;
         private System.Windows.Forms.Label EmployeeType;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Label Password;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.CheckBox AdminPrivilege;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txt_pass;
+        private System.Windows.Forms.TextBox txt_code;
         private System.Windows.Forms.Label OverrideCode;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.DateTimePicker dt_hired;
+        private System.Windows.Forms.DateTimePicker dt_birth;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmb_priv;
+        private System.Windows.Forms.TextBox txt_title;
     }
 }

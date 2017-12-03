@@ -39,9 +39,9 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.supplierList = new System.Windows.Forms.ListView();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.lv_addresses = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // SupplierName
@@ -74,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 211);
+            this.label1.Location = new System.Drawing.Point(12, 242);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 4;
@@ -93,7 +93,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(15, 25);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(344, 20);
+            this.textBox2.Size = new System.Drawing.Size(348, 20);
             this.textBox2.TabIndex = 11;
             // 
             // textBox3
@@ -107,19 +107,19 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(196, 64);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(163, 20);
+            this.textBox4.Size = new System.Drawing.Size(167, 20);
             this.textBox4.TabIndex = 13;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(96, 208);
+            this.textBox5.Location = new System.Drawing.Point(15, 258);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(91, 20);
+            this.textBox5.Size = new System.Drawing.Size(348, 20);
             this.textBox5.TabIndex = 14;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 255);
+            this.button1.Location = new System.Drawing.Point(164, 304);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 23);
             this.button1.TabIndex = 22;
@@ -130,7 +130,7 @@
             // button2
             // 
             this.button2.AccessibleName = "Cancel";
-            this.button2.Location = new System.Drawing.Point(272, 255);
+            this.button2.Location = new System.Drawing.Point(267, 304);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 23);
             this.button2.TabIndex = 23;
@@ -138,19 +138,10 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // supplierList
-            // 
-            this.supplierList.AccessibleName = "supplierList";
-            this.supplierList.Location = new System.Drawing.Point(15, 104);
-            this.supplierList.Name = "supplierList";
-            this.supplierList.Size = new System.Drawing.Size(344, 97);
-            this.supplierList.TabIndex = 24;
-            this.supplierList.UseCompatibleStateImageBehavior = false;
-            // 
             // button3
             // 
             this.button3.AccessibleName = "addbutton";
-            this.button3.Location = new System.Drawing.Point(206, 208);
+            this.button3.Location = new System.Drawing.Point(207, 208);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 25;
@@ -169,14 +160,27 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // lv_addresses
+            // 
+            this.lv_addresses.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.lv_addresses.CheckBoxes = true;
+            this.lv_addresses.Location = new System.Drawing.Point(15, 103);
+            this.lv_addresses.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
+            this.lv_addresses.Name = "lv_addresses";
+            this.lv_addresses.Size = new System.Drawing.Size(348, 96);
+            this.lv_addresses.TabIndex = 31;
+            this.lv_addresses.UseCompatibleStateImageBehavior = false;
+            this.lv_addresses.View = System.Windows.Forms.View.Details;
+            this.lv_addresses.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lv_addresses_ItemChecked);
+            // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 290);
+            this.ClientSize = new System.Drawing.Size(380, 338);
+            this.Controls.Add(this.lv_addresses);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.supplierList);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox5);
@@ -188,6 +192,9 @@
             this.Controls.Add(this.LastNameC);
             this.Controls.Add(this.FirstNameLabel);
             this.Controls.Add(this.SupplierName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SupplierForm";
             this.Text = "Supplier";
             this.ResumeLayout(false);
@@ -207,8 +214,8 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListView supplierList;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ListView lv_addresses;
     }
 }

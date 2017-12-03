@@ -9,14 +9,14 @@ namespace GuitarShop
     public class Employees
     {
         public int EmployeeID;
-        public string title;
-        public string birthDate;
-        public string employeeType;
-        public string dateHired;
-        public Boolean privilegeLevel;
-        public string emailAddress;
-        public string password;
-        public string firstName;
-        public string lastName;
+        public string Title;
+        public DateTime BirthDate;
+        public string EmployeeType;
+        public DateTime DateHired;
+        public string PrivilegeLevel;
+        public string EmailAddress;
+        public string Password;
+        public string FirstName;
+        public string LastName;
     }
 }
