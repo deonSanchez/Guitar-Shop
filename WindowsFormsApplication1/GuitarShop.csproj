@@ -53,6 +53,7 @@
     <Compile Include="AddressForm.Designer.cs">
       <DependentUpon>AddressForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrators.cs" />
     <Compile Include="CategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +69,7 @@
     <Compile Include="CustomerForm.Designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employees.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -121,11 +123,13 @@
     <Compile Include="Staff.Designer.cs">
       <DependentUpon>Staff.cs</DependentUpon>
     </Compile>
-    <Compile Include="Supplier.cs">
+    <Compile Include="Supplier.cs" />
+    <Compile Include="SupplierAddress.cs" />
+    <Compile Include="SupplierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Supplier.Designer.cs">
-      <DependentUpon>Supplier.cs</DependentUpon>
+    <Compile Include="SupplierForm.Designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddressForm.resx">
       <DependentUpon>AddressForm.cs</DependentUpon>
@@ -164,8 +168,8 @@
     <EmbeddedResource Include="Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Supplier.resx">
-      <DependentUpon>Supplier.cs</DependentUpon>
+    <EmbeddedResource Include="SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MyGuitarShopDataSet.xsc">
       <DependentUpon>MyGuitarShopDataSet.xsd</DependentUpon>

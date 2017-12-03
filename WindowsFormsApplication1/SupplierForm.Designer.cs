@@ -1,6 +1,6 @@
 ﻿namespace GuitarShop
 {
-    partial class Supplier
+    partial class SupplierForm
     {
         /// <summary>
         /// Required designer variable.
@@ -202,6 +202,7 @@
             this.button1.TabIndex = 22;
             this.button1.Text = "Update";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -212,7 +213,7 @@
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Supplier
+            // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -237,7 +238,7 @@
             this.Controls.Add(this.LastNameC);
             this.Controls.Add(this.FirstNameLabel);
             this.Controls.Add(this.SupplierName);
-            this.Name = "Supplier";
+            this.Name = "SupplierForm";
             this.Text = "Supplier";
             this.ResumeLayout(false);
             this.PerformLayout();

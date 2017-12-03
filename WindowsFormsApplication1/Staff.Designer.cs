@@ -96,7 +96,6 @@
             this.titleComboBox.Name = "titleComboBox";
             this.titleComboBox.Size = new System.Drawing.Size(155, 21);
             this.titleComboBox.TabIndex = 4;
-            this.titleComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -160,7 +159,6 @@
             this.EmployeeTypeComboBox.Name = "EmployeeTypeComboBox";
             this.EmployeeTypeComboBox.Size = new System.Drawing.Size(236, 21);
             this.EmployeeTypeComboBox.TabIndex = 14;
-            this.EmployeeTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.EmployeeTypeComboBox_SelectedIndexChanged);
             // 
             // EmployeeType
             // 
@@ -214,7 +212,6 @@
             this.AdminPrivilege.TabIndex = 20;
             this.AdminPrivilege.Text = "Admin Privileges";
             this.AdminPrivilege.UseVisualStyleBackColor = true;
-            this.AdminPrivilege.CheckedChanged += new System.EventHandler(this.AdminPrivilege_CheckedChanged);
             // 
             // textBox6
             // 
