@@ -75,20 +75,20 @@ namespace GuitarShop
                         employees.lastName = reader[2].ToString();
                         employees.emailAddress = reader[3].ToString();
                         employees.password = reader[4].ToString();
-                      //  employees.birthDate = Convert.ToInt32(reader[5]);
+                        employees.birthDate = reader[5].ToString();
                         employees.employeeType = reader[6].ToString();
                       //  employees.privilegeLevel = reader[7].ToString();
-                       // employees.dateHired = Convert.ToInt32(reader[8]);
+                        employees.dateHired = reader[8].ToString();
                     }
                 }
 
                 titleComboBox.Text = employees.title;
-                textBox1.Text = employees.firstName;
-                textBox2.Text = employees.lastName;
+                textBox2.Text = employees.firstName;
+                textBox3.Text = employees.lastName;
                 textBox4.Text = employees.emailAddress;
                 textBox5.Text = employees.password;
                 textBox8.Text = employees.birthDate.ToString();
-                EmployeeTypeComboBox.Text = employees.employeeType;
+                //EmployeeTypeComboBox.Text = employees.employeeType;
                 //employees.privilegeLevel;
                 textBox7.Text = employees.dateHired.ToString();
 
@@ -129,12 +129,12 @@ namespace GuitarShop
             int autoEmployeeID = 0;
 
             employees.title = titleComboBox.Text;
-            employees.firstName = textBox1.Text;
-            employees.lastName = textBox2.Text;
+            employees.firstName = textBox2.Text;
+            employees.lastName = textBox3.Text;
             employees.emailAddress = textBox4.Text;
             employees.password = textBox5.Text;
-            //employees.birthDate = textBox8.Text;
-            employees.employeeType = EmployeeTypeComboBox.Text;
+            employees.birthDate = textBox8.Text;
+            //employees.employeeType = EmployeeTypeComboBox.Text;
             //employees.privilegeLevel = reader[7].ToString();
             //employees.dateHired = textBox7.Text;
 

@@ -48,9 +48,12 @@ namespace GuitarShop
             formRegistry.Add("Suppliers", typeof(SupplierForm));
 
             tableRegistry.Add("Employees", "Employees");
-            tableRegistry.Add("Administrators", "Administrators");
+            formRegistry.Add("Employees", typeof(StaffForm));
 
-            
+            tableRegistry.Add("Administrators", "Administrators");
+            formRegistry.Add("Administrators", typeof(StaffForm));
+
+
             queryRegistry.Add(
                 "Orders",
                 @"SELECT 

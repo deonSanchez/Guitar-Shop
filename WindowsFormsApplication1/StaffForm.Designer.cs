@@ -31,9 +31,7 @@
             this.FirstName = new System.Windows.Forms.Label();
             this.LastName = new System.Windows.Forms.Label();
             this.EmailAddress = new System.Windows.Forms.Label();
-            this.IDNumber = new System.Windows.Forms.Label();
             this.titleComboBox = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.title = new System.Windows.Forms.Label();
@@ -80,29 +78,13 @@
             this.EmailAddress.TabIndex = 2;
             this.EmailAddress.Text = "Email Address";
             // 
-            // IDNumber
-            // 
-            this.IDNumber.AutoSize = true;
-            this.IDNumber.Location = new System.Drawing.Point(12, 9);
-            this.IDNumber.Name = "IDNumber";
-            this.IDNumber.Size = new System.Drawing.Size(58, 13);
-            this.IDNumber.TabIndex = 3;
-            this.IDNumber.Text = "ID Number";
-            // 
             // titleComboBox
             // 
             this.titleComboBox.FormattingEnabled = true;
-            this.titleComboBox.Location = new System.Drawing.Point(118, 24);
+            this.titleComboBox.Location = new System.Drawing.Point(15, 24);
             this.titleComboBox.Name = "titleComboBox";
-            this.titleComboBox.Size = new System.Drawing.Size(155, 21);
+            this.titleComboBox.Size = new System.Drawing.Size(258, 21);
             this.titleComboBox.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(15, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(97, 20);
-            this.textBox1.TabIndex = 5;
             // 
             // textBox2
             // 
@@ -121,7 +103,7 @@
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(115, 8);
+            this.title.Location = new System.Drawing.Point(12, 8);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(27, 13);
             this.title.TabIndex = 8;
@@ -243,7 +225,7 @@
             this.textBox8.Size = new System.Drawing.Size(235, 20);
             this.textBox8.TabIndex = 24;
             // 
-            // Staff
+            // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -265,13 +247,11 @@
             this.Controls.Add(this.title);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.titleComboBox);
-            this.Controls.Add(this.IDNumber);
             this.Controls.Add(this.EmailAddress);
             this.Controls.Add(this.LastName);
             this.Controls.Add(this.FirstName);
-            this.Name = "Staff";
+            this.Name = "StaffForm";
             this.Text = "Staff";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -283,9 +263,7 @@
         private System.Windows.Forms.Label FirstName;
         private System.Windows.Forms.Label LastName;
         private System.Windows.Forms.Label EmailAddress;
-        private System.Windows.Forms.Label IDNumber;
         private System.Windows.Forms.ComboBox titleComboBox;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label title;

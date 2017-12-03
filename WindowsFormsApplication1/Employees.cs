@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace GuitarShop
 {
-    class Employees
+    public class Employees
     {
         public int EmployeeID;
         public string title;
-        public DateTime birthDate;
+        public string birthDate;
         public string employeeType;
-        public DateTime dateHired;
+        public string dateHired;
         public Boolean privilegeLevel;
         public string emailAddress;
         public string password;
