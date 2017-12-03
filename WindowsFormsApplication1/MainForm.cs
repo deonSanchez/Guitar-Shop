@@ -62,7 +62,8 @@ namespace GuitarShop
 	                Line1 + ' ' + Line2 + ' ' + City + ', ' + [State] + ' ' + ZipCode as 'Shipping Address'
                 FROM Orders
                 JOIN Customers ON Orders.CustomerID = Customers.CustomerID
-                JOIN CustAddresses ON CustAddresses.CustAddressID = Customers.CustomerID;"
+                JOIN CustAddresses ON CustAddresses.CustAddressID = Orders.ShipAddressID
+                ORDER BY [Order Date] DESC;"
             );
 
             queryRegistry.Add(
@@ -129,7 +130,8 @@ namespace GuitarShop
 	                StartDate AS 'Start Date',
 	                EndDate AS 'End Date'
                 FROM Promotions
-                JOIN Products ON Products.ProductID = Promotions.ProductID;"
+                JOIN Products ON Products.ProductID = Promotions.ProductID
+                ORDER BY [Start Date] DESC;"
             );
 
             queryRegistry.Add(
@@ -140,7 +142,8 @@ namespace GuitarShop
                     CompletionDate AS 'Completion Date',
                     Description
                 FROM Repairs
-                JOIN Customers ON Customers.CustomerID = Repairs.CustomerID;"
+                JOIN Customers ON Customers.CustomerID = Repairs.CustomerID
+                ORDER BY [Completion Date] DESC;"
             );
 
             queryRegistry.Add(
