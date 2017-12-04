@@ -9,9 +9,11 @@ namespace GuitarShop
     {
 
         public static string ConnectionString {
-            get { return @"Data Source=loalhost\Local;Initial Catalog=MyGuitarShop;Integrated Security=True"; }
-            set { ConnectionString = value; }
+            get;
+            set;
         }
+
+        public static string DefaultConnectionString = @"Data Source=loalhost\Local;Initial Catalog=MyGuitarShop;Integrated Security=True";
 
         public static void SetComboBoxToItemWithID(ComboBox cm, int ID)
         {

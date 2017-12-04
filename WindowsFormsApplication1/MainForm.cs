@@ -17,6 +17,9 @@ namespace GuitarShop
 
         private string tableState = "Orders";
 
+        SqlConnection mainCnn;
+        bool isConnected = false;
+
         public MainForm()
         {
             InitializeComponent();
@@ -196,6 +199,22 @@ namespace GuitarShop
                 FROM Employees
                 JOIN Administrators ON AdminID = EmployeeID;"
             );
+
+            mainCnn = new SqlConnection(Constants.DefaultConnectionString);
+
+            try
+            {
+                mainCnn.Open();
+
+                Constants.ConnectionString = Constants.DefaultConnectionString;
+                isConnected = true;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error: the connection could not be opened. Please specify initialize a new connection.");
+                return;
+            }
+           
         }
 
         /// <summary>
@@ -208,24 +227,19 @@ namespace GuitarShop
             lvProducts.Items.Clear();
             lvProducts.Columns.Clear();
 
-            SqlConnection cnn = new SqlConnection(Constants.ConnectionString);
+            if(!isConnected)
+            {
+                return;
+            }
 
             using (SqlCommand command = new SqlCommand())
             {
-                try
-                {
-                    cnn.Open();
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: the connection could not be opened. Please specify initialize a new connection.");
-                    return;
-                }
+                
 
                 SqlCommandBuilder builder = new SqlCommandBuilder();
                 string escTableName = builder.QuoteIdentifier(tableName);
 
-                command.Connection = cnn;
+                command.Connection = mainCnn;
                 command.CommandType = CommandType.Text;
 
                 try
