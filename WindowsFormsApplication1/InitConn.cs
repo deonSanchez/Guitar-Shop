@@ -13,9 +13,13 @@ namespace GuitarShop
 {
     public partial class InitConn : Form
     {
-        public InitConn()
+        MainForm parent;
+
+        public InitConn(MainForm parent)
         {
             InitializeComponent();
+
+            this.parent = parent;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -27,11 +31,16 @@ namespace GuitarShop
 
                 Constants.ConnectionString = textBox1.Text;
                 MessageBox.Show("Connection succesfully intialized.");
+                parent.isConnected = true;
 
                 cnn.Close();
                 Close();
             }
             catch (SqlException ex)
+            {
+                MessageBox.Show("Error: the connection could not be opened.");
+            }
+            catch (ArgumentException ex)
             {
                 MessageBox.Show("Error: the connection could not be opened.");
             }

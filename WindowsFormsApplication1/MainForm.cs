@@ -18,7 +18,7 @@ namespace GuitarShop
         private string tableState = "Orders";
 
         SqlConnection mainCnn;
-        bool isConnected = false;
+        public bool isConnected = false;
 
         public MainForm()
         {
@@ -222,7 +222,6 @@ namespace GuitarShop
         /// </summary>
         private void LoadTableData(string tableName)
         {
-
             tableState = tableName;
             lvProducts.Items.Clear();
             lvProducts.Columns.Clear();
@@ -230,6 +229,19 @@ namespace GuitarShop
             if(!isConnected)
             {
                 return;
+            }
+            else
+            {
+                try
+                {
+                    mainCnn = new SqlConnection(Constants.ConnectionString);
+                    mainCnn.Open();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: the connection could not be opened. Please specify initialize a new connection.");
+                    return;
+                }
             }
 
             using (SqlCommand command = new SqlCommand())
@@ -440,9 +452,15 @@ namespace GuitarShop
             LoadTableData(tableState);
         }
 
+        public void onConnInitClose(object sender, EventArgs e)
+        {
+            LoadTableData(tableState);
+        }
+
         private void btn_init_Click(object sender, EventArgs e)
         {
-            InitConn ic = new InitConn();
+            InitConn ic = new InitConn(this);
+            ic.FormClosed += onConnInitClose;
             ic.Show();
         }
     }

@@ -7,13 +7,12 @@ namespace GuitarShop
     /// </summary>
     class Constants
     {
-
         public static string ConnectionString {
             get;
             set;
         }
 
-        public static string DefaultConnectionString = @"Data Source=loalhost\Local;Initial Catalog=MyGuitarShop;Integrated Security=True";
+        public static string DefaultConnectionString = @"Data Source=localhost\SQLEXPRESS01;Initial Catalog=MyGuitarShop;Integrated Security=True";
 
         public static void SetComboBoxToItemWithID(ComboBox cm, int ID)
         {
