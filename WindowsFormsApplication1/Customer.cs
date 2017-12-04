@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Data structure for Customers
+    /// </summary>
     class Customer
     {
         public int CustomerID;

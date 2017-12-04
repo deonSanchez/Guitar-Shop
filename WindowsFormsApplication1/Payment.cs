@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GuitarShop
+﻿namespace GuitarShop
 {
+    /// <summary>
+    /// Data structure for Payment
+    /// </summary>
     class Payment
     {
         public int PaymentID;

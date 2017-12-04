@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GuitarShop
+﻿namespace GuitarShop
 {
+    /// <summary>
+    /// Utility combobox helper to store ID and display value.
+    /// </summary>
     class ComboBoxItem
     {
         string displayValue;

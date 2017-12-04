@@ -42,6 +42,8 @@ namespace GuitarShop
                 Close();
             }
 
+            LoadEmployees();
+
             this.creating = creating;
             this.editItemID = editItemID;
             
@@ -51,6 +53,34 @@ namespace GuitarShop
                 PreloadData();
             }
         }
+
+        private void LoadEmployees()
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = cnn;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT EmployeeID, FirstName, LastName FROM Employees";
+
+                // Create new SqlDataReader object and read data from the command.
+                try
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ComboBoxItem cbi = new ComboBoxItem(reader[1].ToString() + " " + reader[2].ToString(), Convert.ToInt32(reader[0]));
+                            cmb_emp.Items.Add(cbi);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Could not open customers.");
+                }
+            }
+        }
+
 
         private void PreloadData()
         {
@@ -75,8 +105,11 @@ namespace GuitarShop
                         supplier.ContactFirstName = reader[1].ToString();
                         supplier.ContactLastName = reader[2].ToString();
                         supplier.PhoneNumber = reader[3].ToString();
+                        supplier.EmployeeContact = Convert.ToInt32(reader[4]);
                     }
                 }
+
+                Constants.SetComboBoxToItemWithID(cmb_emp, supplier.EmployeeContact);
 
                 textBox2.Text = supplier.SupplierName;
                 textBox3.Text = supplier.ContactFirstName;
@@ -148,12 +181,13 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "INSERT INTO Suppliers (SupplierName, ContactFirstName, ContactLastName, PhoneNumber) VALUES (@SupplierName, @ContactFirstName, @ContactLastName, @PhoneNumber); SELECT SCOPE_IDENTITY()";
+                    command.CommandText = "INSERT INTO Suppliers (SupplierName, ContactFirstName, ContactLastName, PhoneNumber, EmployeeContact) VALUES (@SupplierName, @ContactFirstName, @ContactLastName, @PhoneNumber, @EmployeeContact);";
 
                     command.Parameters.AddWithValue("@SupplierName", supplier.SupplierName);
                     command.Parameters.AddWithValue("@ContactFirstName", supplier.ContactFirstName);
                     command.Parameters.AddWithValue("@ContactLastName", supplier.ContactLastName);
                     command.Parameters.AddWithValue("@PhoneNumber", supplier.PhoneNumber);
+                    command.Parameters.AddWithValue("@EmployeeContact", supplier.EmployeeContact);
 
                     try
                     {
@@ -173,23 +207,17 @@ namespace GuitarShop
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "UPDATE Suppliers SET SupplierName = @SupplierName, ContactFirstName = @ContactFirstName, ContactLastName = @ContactLastName, PhoneNumber = @PhoneNumber WHERE SuppliersID = @SuppliersID";
+                    command.CommandText = "UPDATE Suppliers SET SupplierName = @SupplierName, ContactFirstName = @ContactFirstName, ContactLastName = @ContactLastName, PhoneNumber = @PhoneNumber WHERE SupplierID = @SupplierID";
 
+                    command.Parameters.AddWithValue("@SupplierID", editItemID);
                     command.Parameters.AddWithValue("@SupplierName", supplier.SupplierName);
                     command.Parameters.AddWithValue("@ContactFirstName", supplier.ContactFirstName);
                     command.Parameters.AddWithValue("@ContactLastName", supplier.ContactLastName);
                     command.Parameters.AddWithValue("@PhoneNumber", supplier.PhoneNumber);
+                    command.Parameters.AddWithValue("@EmployeeContact", supplier.EmployeeContact);
 
-                    try
-                    {
-                        autoSupplierID = Convert.ToInt32(command.ExecuteScalar());
-                        MessageBox.Show("Customer successfully updated!");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Could not write customer.");
-                        return;
-                    }
+                    autoSupplierID = Convert.ToInt32(command.ExecuteScalar());
+                    MessageBox.Show("Customer successfully updated!");
                 }
             }
 
@@ -202,7 +230,7 @@ namespace GuitarShop
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = cnn;
-                        command.CommandText = "INSERT INTO SupAddresses(SupplierID, Line1, Line2, City, State, ZipCode) VALUES (@SupplierID, @Line1, @Line2, @City, @State, @ZipCode)";
+                        command.CommandText = "INSERT INTO SupplierAddress(SupplierID, Line1, Line2, City, State, ZipCode) VALUES (@SupplierID, @Line1, @Line2, @City, @State, @ZipCode)";
 
                         command.Parameters.AddWithValue("@SupplierID", autoSupplierID);
                         command.Parameters.AddWithValue("@Line1", supaddress.Line1);
@@ -224,11 +252,11 @@ namespace GuitarShop
             }
             else
             {
-                // Delete OrderItems
+                // Delete Address
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
-                    command.CommandText = "DELETE FROM SupAddress WHERE SupplierID = @SupplierID";
+                    command.CommandText = "DELETE FROM SupplierAddress WHERE SupplierID = @SupplierID";
 
                     command.Parameters.AddWithValue("@SupplierID", editItemID);
 
@@ -242,9 +270,9 @@ namespace GuitarShop
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = cnn;
-                        command.CommandText = "INSERT INTO SupAddresses(SupplierID, Line1, Line2, City, State, ZipCode) VALUES (@SupplierID, @Line1, @Line2, @City, @State, @ZipCode)";
+                        command.CommandText = "INSERT INTO SupplierAddress(SupplierID, Line1, Line2, City, State, ZipCode) VALUES (@SupplierID, @Line1, @Line2, @City, @State, @ZipCode)";
 
-                        command.Parameters.AddWithValue("@SupplierID", autoSupplierID);
+                        command.Parameters.AddWithValue("@SupplierID", editItemID);
                         command.Parameters.AddWithValue("@Line1", supaddress.Line1);
                         command.Parameters.AddWithValue("@Line2", supaddress.Line2);
                         command.Parameters.AddWithValue("@City", supaddress.City);
@@ -274,7 +302,7 @@ namespace GuitarShop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //CreateSupplier();
+            CreateSuppliers();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -285,7 +313,7 @@ namespace GuitarShop
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AddressForm af = new AddressForm(this);
+            AddressForm af = new AddressForm(this, "suppliers");
             af.Show();
         }
 

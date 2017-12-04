@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Application-wide constants and utilites.
+    /// </summary>
     class Constants
     {
         public static string ConnectionString {
-            get { return @"Data Source=DANNY-LAPTOP\SQLEXPRESS01;Initial Catalog=MyGuitarShop;Integrated Security=True"; }
+            get { return @"Data Source=localhost\Local;Initial Catalog=MyGuitarShop;Integrated Security=True"; }
         }
 
         public static void SetComboBoxToItemWithID(ComboBox cm, int ID)

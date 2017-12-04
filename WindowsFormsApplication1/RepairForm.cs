@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating a modifying Repairs.
+    /// </summary>
     public partial class RepairForm : Form
     {
         private Repair repair;
@@ -15,9 +18,6 @@ namespace GuitarShop
 
         SqlConnection cnn;
 
-        /// <summary>
-        /// Form for creating a modifying Orders.
-        /// </summary>
         public RepairForm(bool creating, int editItemID)
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace GuitarShop
         }
 
         /// <summary>
-        /// If editing a previously existing order, preload all fields.
+        /// If editing a previously existing repair, preload all fields.
         /// </summary>
         private void PreloadData()
         {;

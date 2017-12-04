@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GuitarShop
+﻿namespace GuitarShop
 {
+    /// <summary>
+    /// Data structure for Addresses
+    /// </summary>
     public class Address
     {
-        public string line1;
-        public string line2;
-        public string city;
-        public string state;
-        public int zip;
-        public string phoneNumber;
-
+        public string Line1;
+        public string Line2;
+        public string City;
+        public string State;
+        public int Zip;
+        public string PhoneNumber;
     }
 }

@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating and modifying OrderItem.
+    /// </summary>
     public partial class OrderItemSelection : Form
     {
         public OrderForm parent;
@@ -20,9 +23,6 @@ namespace GuitarShop
 
         private bool promoCodeIsValid = true;
 
-        /// <summary>
-        /// Form for OrderItemCreation
-        /// </summary>
         public OrderItemSelection(OrderForm parent)
         {
             InitializeComponent();

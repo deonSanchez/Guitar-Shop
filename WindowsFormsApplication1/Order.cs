@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GuitarShop
 {
     /// <summary>
-    /// This might not be necesary - evaluate.
+    /// Data structure for Orders
     /// </summary>
     class Order
     {

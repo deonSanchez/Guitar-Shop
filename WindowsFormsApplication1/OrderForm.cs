@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating and modifying Orders.
+    /// </summary>
     public partial class OrderForm : Form
     {
         private static string[] cardTypes = new string[] {"Visa", "Discover", "Mastercard", "American Express"};
@@ -17,10 +20,6 @@ namespace GuitarShop
         int editItemID;
 
         SqlConnection cnn;
-
-        /// <summary>
-        /// Form for creating a modifying Orders.
-        /// </summary>
         public OrderForm(bool creating, int editItemID)
         {
             InitializeComponent();
@@ -281,7 +280,7 @@ namespace GuitarShop
         }
 
         /// <summary>
-        /// Add an OrderItem to the list of stages OrderItems for this Order.
+        /// Add an OrderItem to the list of staged OrderItems for this Order.
         /// </summary>
         public void addOrderItem(OrderItem oi)
         {

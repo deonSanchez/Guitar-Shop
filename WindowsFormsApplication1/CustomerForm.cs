@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating and modifying Orders.
+    /// </summary>
     public partial class CustomerForm : Form
     {
         SqlConnection cnn;
@@ -54,6 +52,9 @@ namespace GuitarShop
             }
         }
 
+        /// <summary>
+        /// If editing a previously existing order, preload all fields.
+        /// </summary>
         private void PreloadData()
         {
             customer = new Customer();
@@ -109,12 +110,12 @@ namespace GuitarShop
                     {
                         Address addr = new Address();
 
-                        addr.line1 = reader[0].ToString();
-                        addr.line2 = reader[1].ToString();
-                        addr.city = reader[2].ToString();
-                        addr.state = reader[3].ToString();
-                        addr.phoneNumber = reader[4].ToString();
-                        addr.zip = Convert.ToInt32(reader[5]);
+                        addr.Line1 = reader[0].ToString();
+                        addr.Line2 = reader[1].ToString();
+                        addr.City = reader[2].ToString();
+                        addr.State = reader[3].ToString();
+                        addr.PhoneNumber = reader[4].ToString();
+                        addr.Zip = Convert.ToInt32(reader[5]);
                         
                         addrList.Add(addr);
                     }
@@ -127,14 +128,17 @@ namespace GuitarShop
             }
         }
 
+        /// <summary>
+        /// Add an OrderItem to the list of staged Addresses for this Customer.
+        /// </summary>
         public void AddAddress(Address address)
         {
             ListViewItem aLV = new ListViewItem();
 
             aLV.Tag = address;
             aLV.SubItems.AddRange(new String[] {
-                address.line1,
-                address.line2
+                address.Line1,
+                address.Line2
             });
 
             lv_addresses.Items.Add(aLV);
@@ -259,12 +263,12 @@ namespace GuitarShop
                         command.CommandText = "INSERT INTO CustAddresses(CustomerID, Line1, Line2, City, State, ZipCode, Phone) VALUES (@CustomerID, @Line1, @Line2, @City, @State, @ZipCode, @Phone)";
 
                         command.Parameters.AddWithValue("@CustomerID", autoCustomerID);
-                        command.Parameters.AddWithValue("@Line1", address.line1);
-                        command.Parameters.AddWithValue("@Line2", address.line2);
-                        command.Parameters.AddWithValue("@City", address.city);
-                        command.Parameters.AddWithValue("@State", address.state);
-                        command.Parameters.AddWithValue("@ZipCode", address.zip.ToString());
-                        command.Parameters.AddWithValue("@Phone", address.phoneNumber);
+                        command.Parameters.AddWithValue("@Line1", address.Line1);
+                        command.Parameters.AddWithValue("@Line2", address.Line2);
+                        command.Parameters.AddWithValue("@City", address.City);
+                        command.Parameters.AddWithValue("@State", address.State);
+                        command.Parameters.AddWithValue("@ZipCode", address.Zip.ToString());
+                        command.Parameters.AddWithValue("@Phone", address.PhoneNumber);
 
                         try
                         {
@@ -300,12 +304,12 @@ namespace GuitarShop
                         command.CommandText = "INSERT INTO CustAddresses(CustomerID, Line1, Line2, City, State, ZipCode, Phone) VALUES (@CustomerID, @Line1, @Line2, @City, @State, @ZipCode, @Phone)";
 
                         command.Parameters.AddWithValue("@CustomerID", editItemID);
-                        command.Parameters.AddWithValue("@Line1", address.line1);
-                        command.Parameters.AddWithValue("@Line2", address.line2);
-                        command.Parameters.AddWithValue("@City", address.city);
-                        command.Parameters.AddWithValue("@State", address.state);
-                        command.Parameters.AddWithValue("@ZipCode", address.zip.ToString());
-                        command.Parameters.AddWithValue("@Phone", address.phoneNumber);
+                        command.Parameters.AddWithValue("@Line1", address.Line1);
+                        command.Parameters.AddWithValue("@Line2", address.Line2);
+                        command.Parameters.AddWithValue("@City", address.City);
+                        command.Parameters.AddWithValue("@State", address.State);
+                        command.Parameters.AddWithValue("@ZipCode", address.Zip.ToString());
+                        command.Parameters.AddWithValue("@Phone", address.PhoneNumber);
                         
                         command.ExecuteNonQuery();
                     }
@@ -342,7 +346,7 @@ namespace GuitarShop
 
         private void btn_addressAdd_Click(object sender, EventArgs e)
         {
-            AddressForm af = new AddressForm(this);
+            AddressForm af = new AddressForm(this, "customer");
             af.Show();
         }
     }

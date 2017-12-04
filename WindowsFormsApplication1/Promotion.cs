@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Data structure for Addresses
+    /// </summary>
     class Promotion
     {
         public int PromotionCode;

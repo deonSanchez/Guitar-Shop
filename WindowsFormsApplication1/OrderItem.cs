@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GuitarShop
+﻿namespace GuitarShop
 {
+    /// <summary>
+    /// Data structure for OrderItems
+    /// </summary>
     public class OrderItem
     {
         public int OrderItemID;

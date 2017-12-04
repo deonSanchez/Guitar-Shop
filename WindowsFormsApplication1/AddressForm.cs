@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating aand modifying Addresses.
+    /// </summary>
     public partial class AddressForm : Form
     {
         public Form parent;
@@ -19,10 +15,13 @@ namespace GuitarShop
 
         public Address address;
 
-        public AddressForm(Form parent)
+        public string mode;
+
+        public AddressForm(Form parent, string mode)
         {
             InitializeComponent();
 
+            this.mode = mode;
             this.parent = parent;
         }
 
@@ -30,14 +29,29 @@ namespace GuitarShop
         {
             address = new Address();
 
-            address.line1 = txt_addrLine1.Text;
-            address.line2 = txt_addrLine2.Text;
-            address.city = txt_city.Text;
-            address.state = txt_state.Text;
-            address.zip = Convert.ToInt32(txt_zip.Text);
-            address.phoneNumber = txt_phone.Text;
+            address.Line1 = txt_addrLine1.Text;
+            address.Line2 = txt_addrLine2.Text;
+            address.City = txt_city.Text;
+            address.State = txt_state.Text;
+            address.Zip = Convert.ToInt32(txt_zip.Text);
+            address.PhoneNumber = txt_phone.Text;
 
-            (parent as CustomerForm).AddAddress(address);
+            if (mode == "customer")
+            {
+                (parent as CustomerForm).AddAddress(address);
+            }
+            else if (mode == "suppliers")
+            {
+                SupplierAddress supAddr = new SupplierAddress();
+                supAddr.Line1 = address.Line1;
+                supAddr.Line2 = address.Line2;
+                supAddr.City = address.City;
+                supAddr.State = address.State;
+                supAddr.ZipCode = address.Zip;
+
+                (parent as SupplierForm).AddSupAddress(supAddr);
+            }
+
             Close();
         }
 

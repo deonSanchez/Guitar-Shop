@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuitarShop
 {
+
     public class RepairItem
     {
         public int RepairItemID;

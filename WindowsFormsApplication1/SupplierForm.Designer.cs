@@ -42,6 +42,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.lv_addresses = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmb_emp = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // SupplierName
@@ -113,13 +115,14 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(15, 258);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(348, 20);
             this.textBox5.TabIndex = 14;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(164, 304);
+            this.button1.Location = new System.Drawing.Point(164, 354);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 23);
             this.button1.TabIndex = 22;
@@ -130,7 +133,7 @@
             // button2
             // 
             this.button2.AccessibleName = "Cancel";
-            this.button2.Location = new System.Drawing.Point(267, 304);
+            this.button2.Location = new System.Drawing.Point(267, 354);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 23);
             this.button2.TabIndex = 23;
@@ -173,11 +176,30 @@
             this.lv_addresses.View = System.Windows.Forms.View.Details;
             this.lv_addresses.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lv_addresses_ItemChecked);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 284);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 13);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Employee Contact";
+            // 
+            // cmb_emp
+            // 
+            this.cmb_emp.FormattingEnabled = true;
+            this.cmb_emp.Location = new System.Drawing.Point(15, 300);
+            this.cmb_emp.Name = "cmb_emp";
+            this.cmb_emp.Size = new System.Drawing.Size(348, 21);
+            this.cmb_emp.TabIndex = 33;
+            // 
             // SupplierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 338);
+            this.ClientSize = new System.Drawing.Size(380, 389);
+            this.Controls.Add(this.cmb_emp);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lv_addresses);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -217,5 +239,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ListView lv_addresses;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmb_emp;
     }
 }
