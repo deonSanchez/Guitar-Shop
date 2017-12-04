@@ -168,11 +168,14 @@ namespace GuitarShop
             if (creating)
             {
                 // Insert Product
+
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "INSERT INTO Products (CategoryID, SupplierID, ProductName, ProductType, Description, AmountInStock, Price, DateAdded) VALUES (@CategoryID, @SupplierID, @ProductName, @ProductType, @Description, @AmountInStock, @Price, @DateAdded);";
+                    command.CommandText = 
+                        @"INSERT INTO Products (CategoryID, SupplierID, ProductName, ProductType, Description, AmountInStock, Price, DateAdded) 
+                          VALUES (@CategoryID, @SupplierID, @ProductName, @ProductType, @Description, @AmountInStock, @Price, @DateAdded);";
 
                     command.Parameters.AddWithValue("@CategoryID", product.CategoryID);
                     command.Parameters.AddWithValue("@SupplierID", product.SupplierID);
@@ -183,8 +186,15 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@Price", product.Price);
                     command.Parameters.AddWithValue("@DateAdded", product.DateAdded);
 
-                    command.ExecuteScalar();
-                    MessageBox.Show("Product succefully created!");
+                    try
+                    {
+                        command.ExecuteScalar();
+                        MessageBox.Show("Product succefully created!");
+                    }
+                    catch (SqlException)
+                    {
+
+                    }
                 }
             }
             else

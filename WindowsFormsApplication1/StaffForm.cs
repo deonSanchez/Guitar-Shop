@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating and modifying Staff.
+    /// </summary>
     public partial class StaffForm : Form
     {
         private static string[] employeeTypes = new string[] { "FULLTIME", "PARTTIME" };

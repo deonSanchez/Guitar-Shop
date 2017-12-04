@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Data structure for Supplier Addresses
+    /// </summary>
     public class SupplierAddress
     {
         public int SupAddressID;

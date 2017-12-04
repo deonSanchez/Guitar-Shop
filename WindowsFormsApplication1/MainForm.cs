@@ -218,7 +218,8 @@ namespace GuitarShop
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("Error: the connection could not be opened.");
+                    MessageBox.Show("Error: the connection could not be opened. Please specify initialize a new connection.");
+                    return;
                 }
 
                 SqlCommandBuilder builder = new SqlCommandBuilder();
@@ -349,12 +350,18 @@ namespace GuitarShop
                             return;
                         }
 
+                        int idColumn = int.Parse(lvi.SubItems[0].Text);
+
                         command.CommandText = "DELETE FROM " + escTableName + " WHERE " + IDColumn + " = @IDColumn";
-                        command.Parameters.AddWithValue("@IDColumn", int.Parse(lvi.SubItems[0].Text));
+                        command.Parameters.AddWithValue("@IDColumn", idColumn);
                         
                         try
                         {
-                            if (MessageBox.Show("Are you sure you want to delete the selected records?", "Confirm Record Deletion", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show(
+                                "Are you sure you want to delete the selected records?",
+                                "Confirm Record Deletion", 
+                                MessageBoxButtons.YesNo
+                            ) == DialogResult.Yes)
                             {
                                 command.ExecuteNonQuery();
                                 LoadTableData(tableState);
@@ -362,7 +369,10 @@ namespace GuitarShop
                         }
                         catch (SqlException)
                         {
-                            MessageBox.Show("One or more of the selected entries could not be deleted because other items in the database depend on them.", "Error");
+                            MessageBox.Show(
+                                "One or more of the selected entries could not be deleted because other items in the database depend on them.", 
+                                "Error"
+                            );
                         }
                     }
                 }
@@ -414,6 +424,12 @@ namespace GuitarShop
         public void tableForm_closed(object sender, EventArgs e)
         {
             LoadTableData(tableState);
+        }
+
+        private void btn_init_Click(object sender, EventArgs e)
+        {
+            InitConn ic = new InitConn();
+            ic.Show();
         }
     }
 }

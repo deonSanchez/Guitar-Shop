@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace GuitarShop
 {
+    /// <summary>
+    /// Form for creating and modifying Suppliers.
+    /// </summary>
     public partial class SupplierForm : Form
     {
         SqlConnection cnn;
@@ -80,7 +83,6 @@ namespace GuitarShop
                 }
             }
         }
-
 
         private void PreloadData()
         {

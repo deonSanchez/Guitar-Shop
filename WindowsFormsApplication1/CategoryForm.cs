@@ -85,6 +85,7 @@ namespace GuitarShop
             else
             {
                 // Insert Category
+
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
@@ -94,8 +95,15 @@ namespace GuitarShop
                     command.Parameters.AddWithValue("@CategoryID", editItemID);
                     command.Parameters.AddWithValue("@CategoryName", txt_name.Text);
 
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Category Succefully Updated!");
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Category succefully Updated!");
+                    }
+                    catch (SqlException)
+                    {
+
+                    }
                 }
             }
 
